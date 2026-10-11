@@ -1,0 +1,26 @@
+{
+  "name": "techstore-ecommerce",
+  "version": "1.0.0",
+  "description": "TechStore - Trang thương mại điện tử chuyên kinh doanh sản phẩm công nghệ (Đồ án cơ sở ngành)",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "nodejs",
+    "mysql",
+    "vnpay",
+    "momo",
+    "techstore"
+  ],
+  "author": "TechStore Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0"
+  }
+}

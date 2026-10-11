@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Quản Trị Hệ Thống - TechStore Admin</title>
+  <meta name="description" content="Hệ thống quản lý đơn hàng, kho sản phẩm và doanh thu cho TechStore.">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==================== ADMIN HEADER ==================== -->
+  <header class="admin-header">
+    <div class="container admin-header-flex">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="/" class="admin-brand">
+          <div class="logo-icon"><i class="fa-solid fa-microchip"></i></div>
+          <span>TECHSTORE</span>
+        </a>
+        <span class="admin-brand-tag">PORTAL QUẢN TRỊ</span>
+      </div>
+
+      <div class="admin-user-controls">
+        <!-- DB Mode Pill -->
+        <div id="adminDbStatusPill" class="db-status-pill fallback">
+          <i class="fa-solid fa-server"></i> Đang tải DB...
+        </div>
+
+        <!-- Admin Identity Pill -->
+        <div id="adminUserPill" style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); font-size: 0.82rem; color: #fff;">
+          <i class="fa-solid fa-shield-halved" style="color: #6366f1;"></i>
+          <span id="adminUserName">Admin</span>
+        </div>
+
+        <button type="button" class="header-btn" onclick="Admin.logout()" style="background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); color: #fca5a5; cursor: pointer;">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Đăng xuất</span>
+        </button>
+
+        <a href="/" class="header-btn" style="text-decoration: none;">
+          <i class="fa-solid fa-store"></i>
+          <span>Xem cửa hàng</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <div class="container" style="padding-top: 20px;">
+    <!-- 4 THẺ CHỈ SỐ KPI -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon revenue"><i class="fa-solid fa-sack-dollar"></i></div>
+        <div class="stat-info">
+          <span>Tổng doanh thu</span>
+          <strong id="statTotalRevenue">0đ</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon orders"><i class="fa-solid fa-boxes-packing"></i></div>
+        <div class="stat-info">
+          <span>Tổng đơn hàng</span>
+          <strong id="statTotalOrders">0</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon products"><i class="fa-solid fa-laptop"></i></div>
+        <div class="stat-info">
+          <span>Sản phẩm kinh doanh</span>
+          <strong id="statTotalProducts">0</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon reviews"><i class="fa-solid fa-star"></i></div>
+        <div class="stat-info">
+          <span>Đánh giá từ khách</span>
+          <strong id="statTotalReviews">0</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS ĐIỀU HƯỚNG -->
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" data-tab="orders">
+        <i class="fa-solid fa-receipt"></i> Quản lý Đơn hàng
+      </button>
+      <button class="admin-tab-btn" data-tab="products">
+        <i class="fa-solid fa-boxes-stacked"></i> Quản lý Sản phẩm
+      </button>
+      <button class="admin-tab-btn" data-tab="flashsales">
+        <i class="fa-solid fa-bolt-lightning"></i> Quản lý Flash Sale
+      </button>
+    </div>
+
+    <!-- TAB 1: QUẢN LÝ ĐƠN HÀNG -->
+    <section id="ordersSection" class="admin-card">
+      <div class="table-toolbar">
+        <h3 style="font-size: 1.2rem; font-weight: 700;">Danh sách Đơn hàng gần đây</h3>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label for="orderStatusFilter" style="font-size: 0.88rem; color: #94a3b8;">Lọc trạng thái:</label>
+          <select id="orderStatusFilter" class="form-control" style="width: auto; padding: 6px 14px;">
+            <option value="all">Tất cả trạng thái</option>
+            <option value="pending">Chờ xử lý (pending)</option>
+            <option value="confirmed">Đã xác nhận (confirmed)</option>
+            <option value="shipping">Đang giao hàng (shipping)</option>
+            <option value="completed">Hoàn thành (completed)</option>
+            <option value="cancelled">Đã hủy (cancelled)</option>
+          </select>
+          <button class="header-btn" onclick="Admin.loadOrders(); Admin.loadStats();">
+            <i class="fa-solid fa-rotate"></i> Làm mới
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Mã đơn</th>
+              <th>Khách hàng</th>
+              <th>Thời gian</th>
+              <th>Tổng tiền</th>
+              <th>Thanh toán</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrdersTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 2: QUẢN LÝ SẢN PHẨM -->
+    <section id="productsSection" class="admin-card" style="display: none;">
+      <div class="table-toolbar">
+        <div style="flex: 1; max-width: 380px;">
+          <input type="text" id="adminProductSearch" class="form-control" placeholder="Tìm kiếm theo tên sản phẩm, hãng...">
+        </div>
+        <div>
+          <button class="btn-primary" id="btnOpenAddProduct">
+            <i class="fa-solid fa-plus"></i> Thêm sản phẩm mới
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Ảnh</th>
+              <th>Tên sản phẩm & Hãng</th>
+              <th>Danh mục</th>
+              <th>Giá bán</th>
+              <th>Tồn kho</th>
+              <th>Đánh giá</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="adminProductsTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 3: QUẢN LÝ FLASHSALE (LƯU TRỮ TRÊN SQL) -->
+    <section id="flashsalesSection" class="admin-card" style="display: none;">
+      <div class="table-toolbar">
+        <div>
+          <h3 style="font-size: 1.2rem; font-weight: 700;">Danh sách Flash Sale (Quản lý từ MySQL)</h3>
+          <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 4px;">Dữ liệu bảng flash_sales trong cơ sở dữ liệu MySQL</p>
+        </div>
+        <div>
+          <button class="btn-primary" id="btnOpenAddFlashSale">
+            <i class="fa-solid fa-plus"></i> Thêm sản phẩm Flash Sale
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Ảnh</th>
+              <th>Tên sản phẩm & Hãng</th>
+              <th>Giá Flash Sale</th>
+              <th>Giá niêm yết</th>
+              <th>Tiến độ bán</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="adminFlashSalesTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== MODAL CẬP NHẬT TRẠNG THÁI ĐƠN ==================== -->
+  <div class="modal-overlay" id="orderStatusModal">
+    <div class="modal-content" style="max-width: 480px;">
+      <button class="modal-close-btn" onclick="document.getElementById('orderStatusModal').classList.remove('active')">&times;</button>
+      
+      <div class="admin-modal-layout">
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Cập Nhật Đơn Hàng</h3>
+        <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 20px;">
+          Mã đơn: <strong id="modalOrderCodeDisplay" style="color: #38bdf8;">--</strong>
+        </p>
+
+        <form id="updateOrderStatusForm">
+          <input type="hidden" id="updateOrderCode" value="">
+          
+          <div class="form-group">
+            <label class="form-label" for="newOrderStatus">Trạng thái đơn hàng</label>
+            <select id="newOrderStatus" class="form-control">
+              <option value="pending">Chờ xử lý (pending)</option>
+              <option value="confirmed">Đã duyệt / Chuẩn bị hàng (confirmed)</option>
+              <option value="shipping">Đang giao hàng (shipping)</option>
+              <option value="completed">Đã giao thành công (completed)</option>
+              <option value="cancelled">Hủy đơn hàng (cancelled)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="newPaymentStatus">Trạng thái thanh toán</label>
+            <select id="newPaymentStatus" class="form-control">
+              <option value="unpaid">Chưa thanh toán (unpaid)</option>
+              <option value="paid">Đã thanh toán (paid)</option>
+              <option value="refunded">Đã hoàn tiền (refunded)</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 24px;">
+            <button type="button" class="btn-secondary" style="flex: 1;" onclick="document.getElementById('orderStatusModal').classList.remove('active')">Đóng</button>
+            <button type="submit" class="btn-primary" style="flex: 1;">Lưu thay đổi</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL THÊM / SỬA SẢN PHẨM ==================== -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-content" style="max-width: 750px;">
+      <button class="modal-close-btn" onclick="document.getElementById('productModal').classList.remove('active')">&times;</button>
+      
+      <div class="admin-modal-layout">
+        <h3 id="productFormModalTitle" style="font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">Thêm sản phẩm mới</h3>
+
+        <form id="productForm">
+          <input type="hidden" id="editProductId" value="">
+
+          <div class="form-group">
+            <label class="form-label" for="prodName">Tên sản phẩm công nghệ *</label>
+            <input type="text" id="prodName" class="form-control" placeholder="VD: MacBook Pro 14 M3 Pro (18GB / 512GB)" required>
+          </div>
+
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="prodCategorySelect">Danh mục sản phẩm</label>
+              <select id="prodCategorySelect" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prodBrand">Hãng sản xuất / Thương hiệu *</label>
+              <input type="text" id="prodBrand" class="form-control" placeholder="Apple, Asus, Sony..." required>
+            </div>
+          </div>
+
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="prodPrice">Giá bán khuyến mãi (VNĐ) *</label>
+              <input type="number" id="prodPrice" class="form-control" placeholder="29900000" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prodOriginalPrice">Giá niêm yết gốc (VNĐ)</label>
+              <input type="number" id="prodOriginalPrice" class="form-control" placeholder="34900000">
+            </div>
+          </div>
+
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="prodStock">Số lượng tồn kho *</label>
+              <input type="number" id="prodStock" class="form-control" value="20" required min="0">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prodImageUrl">Ảnh đại diện chính (URL) *</label>
+              <input type="url" id="prodImageUrl" class="form-control" placeholder="https://images.unsplash.com/..." required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="prodImages">Nhiều ảnh demo bổ sung (Mỗi URL 1 dòng)</label>
+            <textarea id="prodImages" class="form-control" style="min-height: 60px; font-family: monospace; font-size: 0.8rem;" placeholder="https://images.unsplash.com/demo1.jpg&#10;https://images.unsplash.com/demo2.jpg"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="prodShortDesc">Mô tả ngắn nổi bật</label>
+            <input type="text" id="prodShortDesc" class="form-control" placeholder="Cấu hình đỉnh cao, thiết kế mỏng nhẹ sang trọng...">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="prodSpecs">Thông số kỹ thuật (Định dạng JSON)</label>
+            <textarea id="prodSpecs" class="form-control" style="font-family: monospace; min-height: 90px;" placeholder='{"CPU": "M3 Pro", "RAM": "18GB", "Ổ cứng": "512GB SSD"}'></textarea>
+          </div>
+
+          <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" id="prodFeatured" style="accent-color: #6366f1; width: 18px; height: 18px;">
+            <label for="prodFeatured" style="font-size: 0.9rem; cursor: pointer;">Đánh dấu là Sản phẩm Nổi bật (Hot Product)</label>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 24px;">
+            <button type="button" class="btn-secondary" style="flex: 1;" onclick="document.getElementById('productModal').classList.remove('active')">Hủy bỏ</button>
+            <button type="submit" class="btn-primary" style="flex: 1;">Lưu sản phẩm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL THÊM SẢN PHẨM FLASHSALE ==================== -->
+  <div class="modal-overlay" id="addFlashSaleModal">
+    <div class="modal-content" style="max-width: 520px;">
+      <button class="modal-close-btn" onclick="document.getElementById('addFlashSaleModal').classList.remove('active')">&times;</button>
+      <div class="admin-modal-layout">
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">Thêm Sản Phẩm Flash Sale</h3>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 20px;">Sản phẩm sẽ được lưu vào bảng flash_sales trong cơ sở dữ liệu MySQL.</p>
+        
+        <form id="addFlashSaleForm">
+          <div class="form-group">
+            <label class="form-label" for="fsProductSelect">Chọn sản phẩm (*)</label>
+            <select id="fsProductSelect" class="form-control" required>
+              <option value="">-- Chọn sản phẩm --</option>
+            </select>
+          </div>
+
+          <div class="admin-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="fsPriceInput">Giá Flash Sale (₫) *</label>
+              <input type="number" id="fsPriceInput" class="form-control" placeholder="vd: 28990000" required min="1000">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fsStockInput">Tổng suất mở bán *</label>
+              <input type="number" id="fsStockInput" class="form-control" value="20" required min="1">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 24px;">
+            <button type="button" class="btn-secondary" style="flex: 1;" onclick="document.getElementById('addFlashSaleModal').classList.remove('active')">Hủy bỏ</button>
+            <button type="submit" class="btn-primary" style="flex: 1;">Thêm vào Flash Sale</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/admin.js"></script>
+</body>
+</html>

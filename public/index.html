@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechStore - Nhà bán lẻ thiết bị công nghệ lớn nhất Việt Nam</title>
+  <meta name="description"
+    content="TechStore chuyên phân phối Điện thoại, Laptop, Máy tính bảng, Phụ kiện chính hãng mới 100% với giá ưu đãi nhất, dịch vụ tốt nhất. Hotline: 1800 8123.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/payment.css">
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-notice-bar">
+    <div class="container">
+      <span><i class="fa-solid fa-gift"></i> Chào mừng đến với TechStore! Giảm ngay 10% đơn đầu tiên với mã
+        <strong>TECH10</strong> &bull; Hotline hỗ trợ: <strong>0000 0000</strong> (Miễn phí)</span>
+    </div>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header">
+    <div class="container">
+      <div class="header-top">
+        <!-- Logo -->
+        <a href="/" class="brand-logo" id="storeLogo">
+          <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div>TECH<span>STORE</span></div>
+        </a>
+
+        <!--   Danh Mục  -->
+        <button type="button" class="header-location-badge"
+          onclick="showToast('Hệ thống áp dụng chính sách giao hàng toàn quốc', 'info')">
+          <span>Xem giá, tồn kho tại:</span>
+          <span>Toàn quốc <i class="fa-solid fa-angle-down" style="font-size: 0.7rem;"></i></span>
+        </button>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="search-wrapper">
+          <div class="search-bar">
+            <input type="text" id="mainSearchInput" placeholder="Bạn cần tìm sản phẩm nào ..." autocomplete="off">
+            <i class="fa-solid fa-magnifying-glass search-icon"
+              onclick="App.state.search = document.getElementById('mainSearchInput').value; App.loadProducts();"></i>
+          </div>
+        </div>
+
+        <!-- Hotline tư vấn -->
+        <a href="tel:0" class="header-hotline-box">
+          <i class="fa-solid fa-phone-volume"></i>
+          <div>
+            <span>Tư vấn mua hàng:</span>
+            <strong>0000 0000</strong>
+          </div>
+        </a>
+
+        <!-- Header Actions: Tra cứu, Cửa hàng, Giỏ hàng, Đăng nhập -->
+        <div class="header-actions">
+          <!-- Tra cứu đơn -->
+          <button class="header-action-item" id="btnOpenTracking" title="Tra cứu đơn hàng">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Tra cứu đơn</span>
+          </button>
+
+          <!-- Cửa hàng -->
+          <button type="button" class="header-action-item"
+            onclick="showToast('Hệ thống có hơn 350 siêu thị trên toàn quốc', 'info')">
+            <i class="fa-solid fa-store"></i>
+            <span>Cửa hàng</span>
+          </button>
+
+          <!-- Giỏ hàng -->
+          <button class="header-action-item" id="btnOpenCart" title="Xem giỏ hàng">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Giỏ hàng</span>
+            <span class="badge-counter" id="cartCountBadge">0</span>
+          </button>
+
+          <!-- Ô Tài khoản / Đăng nhập -->
+          <div id="headerUserSlot">
+            <a href="/login.html" class="header-action-item" title="Đăng nhập tài khoản">
+              <i class="fa-regular fa-circle-user"></i>
+              <span>Đăng nhập</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== NAVIGATION BAR ==================== -->
+    <nav class="vts-navbar">
+      <div class="container">
+        <ul class="vts-menu-list">
+          <li class="vts-menu-item">
+            <a class="vts-menu-link active" data-cat="all" onclick="App.filterByCategory('all')">
+              <i class="fa-solid fa-border-all"></i>
+              <span>Tất cả</span>
+            </a>
+          </li>
+          <li class="vts-menu-item">
+            <a href="/smartphone.html" class="vts-menu-link" data-cat="smartphone">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              <span>Điện thoại</span>
+            </a>
+          </li>
+          <li class="vts-menu-item">
+            <a href="/laptop.html" class="vts-menu-link" data-cat="laptop">
+              <i class="fa-solid fa-laptop"></i>
+              <span>Laptop</span>
+            </a>
+          </li>
+          <li class="vts-menu-item">
+            <a href="/tablet.html" class="vts-menu-link" data-cat="tablet">
+              <i class="fa-solid fa-tablet-screen-button"></i>
+              <span>Máy tính bảng</span>
+            </a>
+          </li>
+          <li class="vts-menu-item">
+            <a href="/smartwatch.html" class="vts-menu-link" data-cat="smartwatch">
+              <i class="fa-solid fa-clock"></i>
+              <span>Đồng hồ thông minh</span>
+            </a>
+          </li>
+          <li class="vts-menu-item">
+            <a href="/audio.html" class="vts-menu-link" data-cat="audio">
+              <i class="fa-solid fa-headphones"></i>
+              <span>Âm thanh & Tai nghe</span>
+            </a>
+          </li>
+          <li class="vts-menu-item">
+            <a href="/gaming-gear.html" class="vts-menu-link" data-cat="gaming-gear">
+              <i class="fa-solid fa-gamepad"></i>
+              <span>Gaming Gear & Phụ kiện</span>
+            </a>
+          </li>
+          <li class="vts-menu-item">
+            <a href="/kids-smartwatch.html" class="vts-menu-link" data-cat="kids-smartwatch">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <span>Đồng hồ trẻ em</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO BANNER SLIDER ==================== -->
+  <section class="hero-promo-section">
+    <div class="container">
+      <div class="hero-slider-box">
+        <!-- Banner Lớn -->
+        <div class="hero-main-slide">
+          <span class="hero-tag"><i class="fa-solid fa-fire"></i> Lễ hội công nghệ 2026</span>
+          <h1>Sở Hữu Flagship Mới Nhất<br>Trợ Giá Lên Tới <span>5.000.000₫</span></h1>
+          <p>Tận hưởng hiệu năng bứt phá với MacBook M3 Pro, iPhone 15 Pro Max và Samsung Galaxy S24 Ultra. Hỗ trợ trả
+            góp 0% lãi suất, giao nhanh trong 2H.</p>
+          <div style="display: flex; gap: 10px;">
+            <a href="#catalogSection" class="btn-primary" style="padding: 10px 22px;">
+              <i class="fa-solid fa-bag-shopping"></i> Mua ngay giá sốc
+            </a>
+            <button class="btn-secondary" onclick="App.filterByCategory('laptop')">
+              <i class="fa-solid fa-laptop"></i> Laptop sinh viên
+            </button>
+          </div>
+        </div>
+
+        <!-- 2 Banner phụ bên phải -->
+        <div class="hero-side-banners">
+          <a href="#catalogSection" class="side-banner-card" onclick="App.filterByCategory('smartphone')">
+            <div class="side-banner-info">
+              <h4>Điện Thoại Giảm Sâu</h4>
+              <p>Giảm đến 30% &bull; Quà tặng kèm</p>
+            </div>
+            <div class="side-banner-icon bg-pink">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+          </a>
+
+          <a href="#catalogSection" class="side-banner-card" onclick="App.filterByCategory('audio')">
+            <div class="side-banner-info">
+              <h4>Âm Thanh Đỉnh Cao</h4>
+              <p>Tai nghe Sony, AirPods chính hãng</p>
+            </div>
+            <div class="side-banner-icon bg-violet">
+              <i class="fa-solid fa-headphones"></i>
+            </div>
+          </a>
+
+          <a href="#catalogSection" class="side-banner-card" onclick="App.filterByCategory('gaming-gear')">
+            <div class="side-banner-info">
+              <h4>Gaming Gear Chuyên Nghiệp</h4>
+              <p>Bàn phím cơ & Chuột công thái học</p>
+            </div>
+            <div class="side-banner-icon bg-green">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DANH MỤC NỔI BẬT ==================== -->
+  <section class="featured-categories-section">
+    <div class="container">
+      <div class="section-white-box">
+        <div class="section-head">
+          <h2>Danh mục nổi bật</h2>
+        </div>
+
+        <div class="categories-badges-grid">
+          <div class="cat-badge-item" onclick="App.filterByCategory('smartphone')">
+            <div class="cat-badge-icon-box bg-pink">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <span>Điện Thoại</span>
+          </div>
+
+          <div class="cat-badge-item" onclick="App.filterByCategory('laptop')">
+            <div class="cat-badge-icon-box bg-green">
+              <i class="fa-solid fa-laptop"></i>
+            </div>
+            <span>Laptop</span>
+          </div>
+
+          <div class="cat-badge-item" onclick="App.filterByCategory('tablet')">
+            <div class="cat-badge-icon-box bg-blue">
+              <i class="fa-solid fa-tablet-screen-button"></i>
+            </div>
+            <span>Máy tính bảng</span>
+          </div>
+
+          <div class="cat-badge-item" onclick="App.filterByCategory('smartwatch')">
+            <div class="cat-badge-icon-box bg-violet">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <span>Đồng hồ thông minh</span>
+          </div>
+
+          <div class="cat-badge-item" onclick="App.filterByCategory('audio')">
+            <div class="cat-badge-icon-box bg-purple">
+              <i class="fa-solid fa-headphones"></i>
+            </div>
+            <span>Tai nghe & Loa</span>
+          </div>
+
+          <div class="cat-badge-item" onclick="App.filterByCategory('gaming-gear')">
+            <div class="cat-badge-icon-box bg-cyan">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <span>Gaming Gear</span>
+          </div>
+
+          <div class="cat-badge-item" onclick="App.filterByCategory('smartwatch-kids')">
+            <div class="cat-badge-icon-box bg-yellow">
+              <i class="fa-solid fa-child"></i>
+            </div>
+            <span>Đồng hồ trẻ em</span>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FLASHSALE TỪ 14H-22H ==================== -->
+  <section class="container">
+    <div class="flashsale-container">
+      <div class="flashsale-header">
+        <div class="flashsale-title">
+          <i class="fa-solid fa-bolt-lightning" style="color: #fef08a;"></i>
+          <span>FLASHSALE</span>
+        </div>
+
+        <div class="flashsale-countdown-box">
+          <span>Kết thúc sau:</span>
+          <div class="countdown-digits">
+            <div class="timer-block" id="fsDays">00</div>
+            <span style="font-weight: 900;">:</span>
+            <div class="timer-block" id="fsHours">00</div>
+            <span style="font-weight: 900;">:</span>
+            <div class="timer-block" id="fsMins">00</div>
+            <span style="font-weight: 900;">:</span>
+            <div class="timer-block" id="fsSecs">00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashsale-body">
+        <div class="flashsale-grid" id="flashsaleGrid">
+          <!-- Rendered by app.js -->
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="#catalogSection" class="btn-secondary"
+            style="background: #ffffff; color: var(--vt-red); border: none; font-weight: 800; padding: 10px 28px;">
+            XEM TẤT CẢ SẢN PHẨM KHUYẾN MÃI <i class="fa-solid fa-angle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SẢN PHẨM NỔI BẬT BÁN CHẠY (TOP 8 BÁN CHẠY - 4 HIỂN THỊ CÙNG LÚC) ==================== -->
+  <section class="container featured-slider-section" id="featuredSliderSection">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-fire" style="color: #f97316;"></i> Sản Phẩm Nổi Bật Bán Chạy</h2>
+          <p>Top thiết bị công nghệ bán chạy nhất hệ thống TechStore sắp xếp theo số lượng bán ra</p>
+        </div>
+        <div class="slider-nav-btns">
+          <button type="button" class="slider-arrow-btn" id="btnFeaturedPrev" title="Lướt sang trái">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button type="button" class="slider-arrow-btn" id="btnFeaturedNext" title="Lướt sang phải">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport" id="featuredCarouselViewport">
+        <div class="featured-carousel-track" id="featuredProductsTrack">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CÁC DÒNG SẢN PHẨM NỔI BẬT THEO DANH MỤC ==================== -->
+
+  <!-- 1. ĐIỆN THOẠI NỔI BẬT BÁN CHẠY -->
+  <section class="container featured-slider-section showcase-section" id="sectionSmartphones">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-mobile-screen-button" style="color: #ec4899;"></i> Điện Thoại Nổi Bật Bán Chạy</h2>
+          <p>iPhone 16 Series, Galaxy S24 Ultra & Flagship cao cấp sắp xếp theo số lượng bán ra</p>
+        </div>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnSmartphonesPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnSmartphonesNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="/smartphone.html" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport carousel-viewport" id="viewportSmartphones">
+        <div class="featured-carousel-track carousel-track" id="showcaseSmartphones">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. LAPTOP NỔI BẬT BÁN CHẠY -->
+  <section class="container featured-slider-section showcase-section" id="sectionLaptops">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-laptop" style="color: #10b981;"></i> Laptop & MacBook Bán Chạy</h2>
+          <p>MacBook Pro M3, Asus ROG Gaming, Dell XPS mỏng nhẹ hiệu năng vượt trội</p>
+        </div>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnLaptopsPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnLaptopsNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="/laptop.html" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport carousel-viewport" id="viewportLaptops">
+        <div class="featured-carousel-track carousel-track" id="showcaseLaptops">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ĐỒNG HỒ NỔI BẬT BÁN CHẠY -->
+  <section class="container featured-slider-section showcase-section" id="sectionSmartwatches">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-clock" style="color: #8b5cf6;"></i> Đồng Hồ Thông Minh Bán Chạy</h2>
+          <p>Apple Watch Ultra 2, Galaxy Watch 6 theo dõi sức khỏe và luyện tập 24/7</p>
+        </div>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnSmartwatchesPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnSmartwatchesNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="/smartwatch.html" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport carousel-viewport" id="viewportSmartwatches">
+        <div class="featured-carousel-track carousel-track" id="showcaseSmartwatches">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MÁY TÍNH BẢNG BÁN CHẠY -->
+  <section class="container featured-slider-section showcase-section" id="sectionTablets">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-tablet-screen-button" style="color: #0ea5e9;"></i> Máy Tính Bảng Bán Chạy</h2>
+          <p>iPad Pro M4, iPad Air 6, Galaxy Tab S9 màn hình sắc nét hỗ trợ bút vẽ</p>
+        </div>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnTabletsPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnTabletsNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="/tablet.html" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport carousel-viewport" id="viewportTablets">
+        <div class="featured-carousel-track carousel-track" id="showcaseTablets">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. THIẾT BỊ ÂM THANH BÁN CHẠY -->
+  <section class="container featured-slider-section showcase-section" id="sectionAudio">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-headphones" style="color: #a855f7;"></i> Thiết Bị Âm Thanh & Tai Nghe Bán Chạy</h2>
+          <p>AirPods Pro, Sony WH-1000XM5 chống ồn chủ động âm trầm sống động</p>
+        </div>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnAudioPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnAudioNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="/audio.html" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport carousel-viewport" id="viewportAudio">
+        <div class="featured-carousel-track carousel-track" id="showcaseAudio">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. GAMING GEAR BÁN CHẠY -->
+  <section class="container featured-slider-section showcase-section" id="sectionGamingGear">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-gamepad" style="color: #06b6d4;"></i> Gaming Gear & Phụ Kiện Bán Chạy</h2>
+          <p>Bàn phím cơ Keychron, Chuột không dây Logitech Master 3S, Tai nghe Razer</p>
+        </div>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnGamingGearPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnGamingGearNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="/gaming-gear.html" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport carousel-viewport" id="viewportGamingGear">
+        <div class="featured-carousel-track carousel-track" id="showcaseGamingGear">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+  <div class="modal-overlay" id="productDetailModal">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="closeDetailModalBtn">&times;</button>
+
+      <div class="product-detail-layout">
+        <!-- Gallery ảnh -->
+        <div class="detail-gallery">
+          <div class="detail-main-img">
+            <img id="detailMainImg" src="" alt="Sản phẩm">
+          </div>
+          <div class="detail-thumbnails" id="detailThumbnails"></div>
+        </div>
+
+        <!-- Thông tin sản phẩm -->
+        <div class="detail-info">
+          <div
+            style="font-size: 0.78rem; font-weight: 800; color: var(--vt-red); text-transform: uppercase; margin-bottom: 4px;"
+            id="detailCategory">DANH MỤC</div>
+          <h2 class="detail-title" id="detailTitle">Tên sản phẩm</h2>
+
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 0.85rem;">
+            <span style="color: var(--accent-gold);"><i class="fa-solid fa-star"></i> <strong
+                id="detailRating">5.0</strong></span>
+            <span style="color: #6b7280;">(<span id="detailReviewCount">0</span> đánh giá)</span>
+            <span
+              style="color: #f97316; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-left: 6px;">
+              <i class="fa-solid fa-fire"></i> <span id="detailSoldCount">Đã bán 0</span>
+            </span>
+            <span style="margin-left: auto; color: #059669; font-weight: 700;" id="detailStock">Còn hàng</span>
+          </div>
+
+          <div class="detail-price-box">
+            <span class="detail-current-price" id="detailPrice">0₫</span>
+            <span class="detail-old-price" id="detailOldPrice"></span>
+          </div>
+
+          <p style="font-size: 0.88rem; color: #4b5563; margin-bottom: 16px; line-height: 1.5;" id="detailDescription">
+          </p>
+
+          <div style="font-weight: 800; font-size: 0.9rem; color: #111; margin-bottom: 6px;">
+            <i class="fa-solid fa-microchip" style="color: var(--vt-red);"></i> Thông số kỹ thuật:
+          </div>
+          <table class="specs-table">
+            <tbody id="detailSpecsTable"></tbody>
+          </table>
+
+          <div style="display: flex; align-items: center; gap: 10px; margin-top: auto;">
+            <div class="quantity-picker" style="padding: 4px 6px;">
+              <button class="quantity-btn" onclick="App.adjustDetailQty(-1)">-</button>
+              <input type="text" id="detailQtyInput" class="quantity-input" value="1" readonly>
+              <button class="quantity-btn" onclick="App.adjustDetailQty(1)">+</button>
+            </div>
+
+            <button class="btn-card-cart" id="detailAddCartBtn" style="padding: 10px 16px;">
+              <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
+            </button>
+            <button class="btn-primary" id="detailBuyNowBtn" style="padding: 10px 20px;">
+              Mua ngay
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Khu vực Đánh giá (Người đã mua) & Hỏi đáp (Cộng đồng) -->
+      <div class="product-interaction-section">
+        <!-- Tab chuyển đổi -->
+        <div class="interaction-tabs-nav">
+          <button type="button" class="interaction-tab-btn active" id="tabBtnReviews"
+            onclick="App.switchInteractionTab('reviews')">
+            <i class="fa-solid fa-star" style="color: var(--accent-gold);"></i>
+            <span>Đánh giá từ khách đã mua</span>
+            <span class="tab-badge" id="tabReviewsCount">0</span>
+          </button>
+          <button type="button" class="interaction-tab-btn" id="tabBtnQuestions"
+            onclick="App.switchInteractionTab('questions')">
+            <i class="fa-solid fa-comments" style="color: var(--vt-red);"></i>
+            <span>Hỏi đáp người đã mua</span>
+            <span class="tab-badge" id="tabQuestionsCount">0</span>
+          </button>
+        </div>
+
+        <!-- 1. TAB ĐÁNH GIÁ (CHỈ TÀI KHOẢN ĐÃ MUA) -->
+        <div class="interaction-tab-content active" id="tabContentReviews">
+          <!-- Tóm tắt số sao trung bình -->
+          <div class="rating-overview-box">
+            <div class="rating-score-block">
+              <div class="big-rating-number" id="detailAvgRatingScore">5.0</div>
+              <div class="rating-stars-row" id="detailAvgStarsRow">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                  class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <div class="rating-count-text">Dựa trên <strong id="detailTotalReviewsCount">0</strong> đánh giá thực tế
+              </div>
+            </div>
+            <div class="rating-policy-notice">
+              <i class="fa-solid fa-shield-halved" style="color: #059669; font-size: 1.4rem;"></i>
+              <div>
+                <strong>Chính sách đánh giá minh bạch 100%:</strong>
+                <p>Chỉ những tài khoản đã mua sản phẩm này tại hệ thống mới có thể chấm sao và nhận xét. Mỗi tài khoản
+                  được phép cập nhật đánh giá của mình (không tạo đánh giá trùng lặp).</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Khung form đánh giá (hoặc thông báo nếu chưa mua / chưa đăng nhập) -->
+          <div id="reviewActionContainer">
+            <!-- Dynamic content rendered by App.checkAndRenderReviewPermission() -->
+          </div>
+
+          <!-- Danh sách nhận xét từ khách hàng -->
+          <div class="reviews-list-wrapper">
+            <h4 style="font-size: 0.95rem; font-weight: 800; margin-bottom: 12px; color: #111;">
+              Nhận xét từ khách hàng đã mua:
+            </h4>
+            <div id="detailReviewsList"></div>
+          </div>
+        </div>
+
+        <!-- 2. TAB HỎI ĐÁP (DÀNH CHO NGƯỜI CHƯA MUA HỎI NGƯỜI ĐÃ MUA) -->
+        <div class="interaction-tab-content" id="tabContentQuestions" style="display: none;">
+          <div class="qa-intro-box">
+            <div class="qa-intro-icon"><i class="fa-solid fa-circle-question"></i></div>
+            <div class="qa-intro-text">
+              <h4>Hỏi đáp & kinh nghiệm sử dụng thực tế</h4>
+              <p>Bạn chưa mua sản phẩm và có băn khoăn về hiệu năng, pin hay trải nghiệm? Hãy đặt câu hỏi ngay để những
+                khách hàng đã mua sản phẩm này chia sẻ thực tế cho bạn!</p>
+            </div>
+          </div>
+
+          <!-- Form đặt câu hỏi mới -->
+          <form class="qa-new-question-form" id="newQuestionForm">
+            <div style="font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; color: #111;">
+              <i class="fa-solid fa-pen-to-square" style="color: var(--vt-red);"></i> Đặt câu hỏi cho người đã mua:
+            </div>
+            <div class="qa-form-row">
+              <input type="text" id="questionAuthorName" class="form-control" placeholder="Họ và tên của bạn..."
+                required style="max-width: 260px;">
+              <span style="font-size: 0.78rem; color: #6b7280; align-self: center;">(Câu hỏi sẽ được hiển thị công khai
+                để người đã mua trả lời)</span>
+            </div>
+            <textarea id="questionContentText" class="form-control" rows="2"
+              placeholder="Ví dụ: Pin máy này dùng thực tế lướt web được mấy tiếng? Có bị nóng máy không bạn ơi?..."
+              required style="margin-top: 8px;"></textarea>
+            <button type="submit" class="btn-primary" style="margin-top: 8px; padding: 7px 18px; font-size: 0.85rem;">
+              <i class="fa-solid fa-paper-plane"></i> Gửi câu hỏi
+            </button>
+          </form>
+
+          <!-- Danh sách câu hỏi và câu trả lời -->
+          <div class="qa-list-wrapper">
+            <h4 style="font-size: 0.95rem; font-weight: 800; margin: 18px 0 12px; color: #111;">
+              Các câu hỏi & thảo luận gần đây:
+            </h4>
+            <div id="detailQuestionsList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CART FLYOUT DRAWER ==================== -->
+  <div class="cart-drawer-overlay" id="cartDrawer">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng của bạn</h3>
+        <button class="modal-close-btn" id="closeCartDrawerBtn">&times;</button>
+      </div>
+
+      <div class="cart-items-list" id="cartDrawerItemsList"></div>
+
+      <div class="cart-drawer-footer">
+        <div class="coupon-box">
+          <input type="text" id="couponCodeInput" class="coupon-input" placeholder="Mã giảm giá (VD: TECH10)">
+          <button class="btn-apply-coupon" id="btnApplyCoupon">Áp dụng</button>
+        </div>
+
+        <div class="cart-summary-line">
+          <span>Tạm tính:</span>
+          <span id="cartDrawerSubtotal">0₫</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Phí vận chuyển:</span>
+          <span id="cartDrawerShipping">30.000₫</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Giảm giá:</span>
+          <span id="cartDrawerDiscount" style="color: #059669;">-0₫</span>
+        </div>
+        <div class="cart-total-line">
+          <span>Tổng cộng:</span>
+          <span id="cartDrawerFinalTotal">0₫</span>
+        </div>
+
+        <button class="btn-primary btn-checkout" id="btnOpenCheckout">
+          <i class="fa-solid fa-credit-card"></i> Tiến hành đặt hàng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHECKOUT MODAL ==================== -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-content" style="max-width: 1050px;">
+      <button class="modal-close-btn" id="closeCheckoutModalBtn">&times;</button>
+      <div class="checkout-layout">
+        <div class="checkout-header-banner">
+          <i class="fa-solid fa-shield-halved" style="color: var(--vt-red); font-size: 1.5rem;"></i>
+          <div>
+            <h3>Thông Tin Đặt Hàng & Thanh Toán An Toàn</h3>
+          </div>
+        </div>
+        <form id="checkoutForm">
+          <div class="checkout-grid">
+            <div class="checkout-form-col">
+              <h4 style="font-size: 1rem; font-weight: 800; margin-bottom: 14px; color: #111;">1. Thông tin giao hàng
+              </h4>
+              <div class="form-group">
+                <label class="form-label" for="customerName">Họ và tên người nhận *</label>
+                <input type="text" id="customerName" class="form-control" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                  <label class="form-label" for="customerPhone">Số điện thoại *</label>
+                  <input type="tel" id="customerPhone" class="form-control" placeholder="0988123456" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="customerEmail">Email</label>
+                  <input type="email" id="customerEmail" class="form-control" placeholder="email@gmail.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="shippingAddress">Địa chỉ nhận hàng chi tiết *</label>
+                <input type="text" id="shippingAddress" class="form-control"
+                  placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/TP" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="orderNotes">Ghi chú đơn hàng</label>
+                <input type="text" id="orderNotes" class="form-control"
+                  placeholder="Giao giờ hành chính, gọi trước khi đến...">
+              </div>
+
+              <div class="form-group" style="margin-top: 18px;">
+                <label class="form-label" style="font-weight: 800;">Phương thức thanh toán *</label>
+                <div class="payment-methods-grid">
+                  <label class="payment-method-card active">
+                    <input type="radio" name="payment_method" value="vnpay" checked>
+                    <div style="color: #005baa; font-size: 1.3rem;"><i class="fa-solid fa-qrcode"></i></div>
+                    <div class="pm-details">
+                      <strong>Cổng VNPAY-QR</strong>
+                    </div>
+                  </label>
+                  <label class="payment-method-card">
+                    <input type="radio" name="payment_method" value="momo">
+                    <div style="color: #d82d8b; font-size: 1.3rem;"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="pm-details">
+                      <strong>Ví MoMo</strong>
+                    </div>
+                  </label>
+                  <label class="payment-method-card">
+                    <input type="radio" name="payment_method" value="credit_card">
+                    <div style="color: #2563eb; font-size: 1.3rem;"><i class="fa-solid fa-credit-card"></i></div>
+                    <div class="pm-details">
+                      <strong>Thẻ Quốc Tế (Visa / Mastercard)</strong>
+                    </div>
+                  </label>
+                  <label class="payment-method-card">
+                    <input type="radio" name="payment_method" value="cod">
+                    <div style="color: #059669; font-size: 1.3rem;"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="pm-details">
+                      <strong>Thanh toán khi nhận hàng (COD)</strong>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="background: #f9fafb; border: 1px solid var(--border-color); border-radius: 10px; padding: 18px; height: fit-content;">
+              <h4
+                style="font-size: 1rem; font-weight: 800; margin-bottom: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                Đơn hàng của bạn</h4>
+              <div id="checkoutOrderItems" style="height: 260px; overflow-y: auto; margin-bottom: 14px;"></div>
+              <div class="cart-summary-line"><span>Tạm tính:</span><span id="checkoutSubtotal">0₫</span></div>
+              <div class="cart-summary-line"><span>Vận chuyển:</span><span id="checkoutShippingFee">30.000₫</span></div>
+              <div class="cart-summary-line"><span>Giảm giá:</span><span id="checkoutDiscount"
+                  style="color: #059669;">-0₫</span></div>
+              <div class="cart-total-line" style="font-size: 1.2rem;"><span>Tổng thanh toán:</span><span
+                  id="checkoutFinalTotal">0₫</span></div>
+              <button type="submit" class="btn-primary" id="btnSubmitOrder"
+                style="width: 100%; margin-top: 20px; padding: 12px; font-size: 1rem; justify-content: center;">
+                <i class="fa-solid fa-lock"></i> ĐẶT HÀNG NGAY
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ORDER SUCCESS MODAL ==================== -->
+  <div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal-content" style="max-width: 540px;">
+      <button class="modal-close-btn"
+        onclick="document.getElementById('orderSuccessModal').classList.remove('active')">&times;</button>
+      <div class="order-success-box">
+        <div class="success-icon-animated"><i class="fa-solid fa-check"></i></div>
+        <h2 style="font-size: 1.5rem; font-weight: 900; color: #111;">Đặt Hàng Thành Công!</h2>
+        <p style="color: #6b7280; font-size: 0.88rem;">Cảm ơn bạn đã lựa chọn mua sắm điện thoại chính hãng tại
+          TechStore.</p>
+        <div style="margin-top: 10px; font-size: 0.85rem; color: #374151;">Mã đơn hàng của bạn:</div>
+        <div class="order-code-badge" id="successOrderCode">ORD-00000</div>
+        <div
+          style="background: #f9fafb; border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; text-align: left; margin: 16px 0; font-size: 0.88rem; line-height: 1.8;">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Khách hàng:</span>
+            <strong id="successCustomerName">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Số điện thoại:</span>
+            <strong id="successCustomerPhone">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Địa chỉ:</span>
+            <strong id="successCustomerAddress">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Ghi chú:</span>
+            <strong id="successOrderNote">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Phương thức:</span>
+            <strong id="successPaymentStatus">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Tổng thanh toán:</span>
+            <strong style="color: var(--vt-red);" id="successTotalAmount">0₫</strong>
+          </div>
+        </div>
+        <button class="btn-primary" style="margin: 0 auto;"
+          onclick="document.getElementById('orderSuccessModal').classList.remove('active');">
+          Tiếp tục mua sắm
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ORDER CANCELLED PAYMENT MODAL ==================== -->
+  <div class="modal-overlay" id="orderCancelledModal">
+    <div class="modal-content" style="max-width: 520px;">
+      <button class="modal-close-btn"
+        onclick="document.getElementById('orderCancelledModal').classList.remove('active')">&times;</button>
+
+      <div class="order-cancelled-box" style="text-align: center; padding: 10px 4px;">
+        <div class="cancelled-icon-animated"
+          style="width: 64px; height: 64px; background: #fef3c7; color: #d97706; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 14px;">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h2 style="font-size: 1.4rem; font-weight: 800; color: #111;">Chưa Hoàn Tất Thanh Toán</h2>
+        <p style="color: #6b7280; font-size: 0.88rem; margin-top: 4px;">
+          Giao dịch thanh toán trực tuyến vừa bị hủy bỏ.
+        </p>
+
+        <div style="margin-top: 12px; font-size: 0.85rem; color: #374151;">Mã đơn hàng của bạn:</div>
+        <div class="order-code-badge" id="cancelledOrderCode"
+          style="background: #fef3c7; color: #b45309; border: 1px dashed #f59e0b; margin-top: 4px;">ORD-00000</div>
+
+        <div
+          style="background: #f9fafb; border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; text-align: left; margin: 16px 0; font-size: 0.88rem; line-height: 1.8;">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Khách hàng:</span>
+            <strong id="cancelledCustomerName">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Tổng thanh toán:</span>
+            <strong style="color: var(--vt-red);" id="cancelledTotalAmount">0₫</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Trạng thái thanh toán:</span>
+            <span style="color: #d97706; font-weight: 700;"><i class="fa-solid fa-clock"></i> Chưa thanh toán (Chờ thanh
+              toán)</span>
+          </div>
+          <div
+            style="font-size: 0.8rem; color: #6b7280; margin-top: 8px; border-top: 1px dashed #e5e7eb; padding-top: 6px;">
+            <i class="fa-solid fa-circle-info"></i> Đơn hàng đã được lưu lại hệ thống. Bạn có thể bấm <strong>"Thanh
+              toán lại"</strong> hoặc tra cứu lại bất cứ lúc nào.
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn-primary" id="btnRetryPayment" style="background: var(--vt-red); padding: 10px 18px;">
+            <i class="fa-solid fa-rotate-right"></i> Thanh toán lại ngay
+          </button>
+          <button class="btn-secondary"
+            onclick="document.getElementById('orderCancelledModal').classList.remove('active'); document.getElementById('btnOpenTracking').click();">
+            <i class="fa-solid fa-truck-fast"></i> Tra cứu đơn hàng
+          </button>
+          <button class="btn-secondary"
+            onclick="document.getElementById('orderCancelledModal').classList.remove('active');">
+            Đóng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ORDER TRACKING MODAL ==================== -->
+  <div class="modal-overlay" id="orderTrackingModal">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="modal-close-btn" id="closeTrackingModalBtn">&times;</button>
+
+      <div style="padding: 24px;">
+        <h3
+          style="font-size: 1.25rem; font-weight: 800; color: var(--vt-red); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-magnifying-glass-location"></i> Tra Cứu Trạng Thái Đơn Hàng
+        </h3>
+        <p style="color: #6b7280; font-size: 0.85rem; margin-bottom: 16px;">
+          Nhập <strong>Mã đơn hàng</strong> (VD: <code>ORD-98241</code>) hoặc <strong>Số điện thoại</strong> đã đặt hàng
+          để kiểm tra tiến trình giao hàng.
+        </p>
+
+        <form id="orderTrackingForm" style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <input type="text" id="trackingInputCode" class="form-control" placeholder="Nhập mã đơn hoặc số điện thoại..."
+            required style="flex: 1;">
+          <button type="submit" class="btn-primary" style="white-space: nowrap;">
+            <i class="fa-solid fa-search"></i> Tra cứu
+          </button>
+        </form>
+
+        <div id="trackingResultContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FILTER DRAWER (NGĂN KÉO LỌC NÂNG CAO TRƯỢT TỪ PHẢI) ==================== -->
+  <div class="filter-drawer-overlay" id="filterDrawerOverlay">
+    <div class="filter-drawer" id="filterDrawer">
+      <div class="filter-drawer-header">
+        <div class="drawer-title">
+          <i class="fa-solid fa-sliders" style="color: var(--vt-red);"></i>
+          <h3>Bộ Lọc Nâng Cao</h3>
+        </div>
+        <button type="button" class="btn-close-drawer" id="btnCloseFilterDrawer" title="Đóng bộ lọc">&times;</button>
+      </div>
+
+      <div class="filter-drawer-body">
+        <!-- 1. Danh mục sản phẩm -->
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title">
+            <i class="fa-solid fa-layer-group"></i> Danh mục sản phẩm
+          </div>
+          <div class="drawer-category-chips" id="drawerCategoryChips">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- 2. Thương hiệu -->
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title">
+            <i class="fa-solid fa-tag"></i> Thương hiệu
+          </div>
+          <div class="drawer-brand-grid" id="drawerBrandGrid">
+            <button type="button" class="drawer-chip active" data-brand="all">Tất cả</button>
+            <button type="button" class="drawer-chip" data-brand="Apple">Apple</button>
+            <button type="button" class="drawer-chip" data-brand="Samsung">Samsung</button>
+            <button type="button" class="drawer-chip" data-brand="Asus">Asus</button>
+            <button type="button" class="drawer-chip" data-brand="Dell">Dell</button>
+            <button type="button" class="drawer-chip" data-brand="Sony">Sony</button>
+            <button type="button" class="drawer-chip" data-brand="Logitech">Logitech</button>
+            <button type="button" class="drawer-chip" data-brand="Razer">Razer</button>
+            <button type="button" class="drawer-chip" data-brand="Keychron">Keychron</button>
+            <button type="button" class="drawer-chip" data-brand="Xiaomi">Xiaomi</button>
+          </div>
+        </div>
+
+        <!-- 3. Khoảng giá tùy chỉnh -->
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title">
+            <i class="fa-solid fa-dollar-sign"></i> Mức giá mong muốn
+          </div>
+          <!-- Nhập tay từ ... đến ... -->
+          <div class="drawer-custom-price-inputs">
+            <div class="price-input-box">
+              <label>Từ (₫)</label>
+              <input type="number" id="drawerMinPriceInput" placeholder="0" min="0" step="500000">
+            </div>
+            <span class="price-separator">-</span>
+            <div class="price-input-box">
+              <label>Đến (₫)</label>
+              <input type="number" id="drawerMaxPriceInput" placeholder="100.000.000" min="0" step="500000">
+            </div>
+          </div>
+          <!-- Radio mốc giá -->
+          <div class="drawer-price-radios">
+            <label class="drawer-radio-label">
+              <input type="radio" name="drawerPricePreset" value="all" checked>
+              <span>Tất cả mức giá</span>
+            </label>
+            <label class="drawer-radio-label">
+              <input type="radio" name="drawerPricePreset" value="0-5000000">
+              <span>Dưới 5 triệu</span>
+            </label>
+            <label class="drawer-radio-label">
+              <input type="radio" name="drawerPricePreset" value="5000000-15000000">
+              <span>Từ 5 - 15 triệu</span>
+            </label>
+            <label class="drawer-radio-label">
+              <input type="radio" name="drawerPricePreset" value="15000000-30000000">
+              <span>Từ 15 - 30 triệu</span>
+            </label>
+            <label class="drawer-radio-label">
+              <input type="radio" name="drawerPricePreset" value="30000000-999000000">
+              <span>Trên 30 triệu</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 4. Đánh giá chất lượng -->
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title">
+            <i class="fa-solid fa-star"></i> Đánh giá từ khách hàng
+          </div>
+          <div class="drawer-rating-options" id="drawerRatingOptions">
+            <button type="button" class="drawer-rating-chip active" data-rating="all">Tất cả</button>
+            <button type="button" class="drawer-rating-chip" data-rating="5">
+              <span>5 sao</span> <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+            </button>
+            <button type="button" class="drawer-rating-chip" data-rating="4">
+              <span>Từ 4 sao</span> <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+            </button>
+            <button type="button" class="drawer-rating-chip" data-rating="3">
+              <span>Từ 3 sao</span> <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-drawer-footer">
+        <button type="button" class="btn-drawer-reset" id="btnDrawerReset">
+          <i class="fa-solid fa-rotate-left"></i> Thiết lập lại
+        </button>
+        <button type="button" class="btn-drawer-apply" id="btnDrawerApply">
+          Áp dụng bộ lọc
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER (VIETTEL STORE STYLE) ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <!-- 4 Cam kết chính sách -->
+      <div class="footer-policy-row">
+        <div class="policy-item">
+          <div class="policy-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="policy-text">
+            <h5>Sản phẩm chính hãng 100%</h5>
+            <p>Bảo hành chính hãng 12-24 tháng</p>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <div class="policy-icon"><i class="fa-solid fa-truck-bolt"></i></div>
+          <div class="policy-text">
+            <h5>Giao hàng siêu tốc 2H</h5>
+            <p>Miễn phí giao hàng đơn từ 5 triệu</p>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <div class="policy-icon"><i class="fa-solid fa-rotate-left"></i></div>
+          <div class="policy-text">
+            <h5>Đổi trả lỗi 1 - 1 trong 30 ngày</h5>
+            <p>Áp dụng toàn bộ hệ thống siêu thị</p>
+          </div>
+        </div>
+
+        <div class="policy-item">
+          <div class="policy-icon"><i class="fa-solid fa-headset"></i></div>
+          <div class="policy-text">
+            <h5>Hotline: 1800 8123</h5>
+            <p>Hỗ trợ giải đáp miễn phí cuộc gọi</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cột liên kết & thông tin -->
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 10px;">
+            <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div>TECH<span>STORE</span></div>
+          </div>
+          <p>Hệ thống siêu thị bán lẻ điện thoại, laptop, máy tính bảng, gaming gear và phụ kiện chính hãng lớn nhất
+            Việt Nam.</p>
+          <p style="margin-top: 8px; font-size: 0.78rem; color: #9ca3af;">Đồ án cơ sở ngành Công nghệ thông tin - Thương
+            mại điện tử.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Sản Phẩm Công Nghệ</h4>
+          <ul class="footer-links">
+            <li><button type="button" class="btn-footer-link" onclick="App.filterByCategory('smartphone')">Điện thoại
+                thông minh</button></li>
+            <li><button type="button" class="btn-footer-link" onclick="App.filterByCategory('laptop')">Laptop chính
+                hãng</button></li>
+            <li><button type="button" class="btn-footer-link" onclick="App.filterByCategory('tablet')">Máy tính bảng
+                iPad & Tab</button></li>
+            <li><button type="button" class="btn-footer-link" onclick="App.filterByCategory('audio')">Tai nghe & Loa
+                Bluetooth</button></li>
+            <li><button type="button" class="btn-footer-link" onclick="App.filterByCategory('smartwatch')">Đồng hồ thông
+                minh</button></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Hỗ Trợ Khách Hàng</h4>
+          <ul class="footer-links">
+            <li><button type="button" class="btn-footer-link"
+                onclick="showToast('Chính sách bảo hành 1 đổi 1 trong 30 ngày', 'info')">Chính sách bảo hành</button>
+            </li>
+            <li><button type="button" class="btn-footer-link"
+                onclick="showToast('Giao hàng 2H nội thành và 2-3 ngày toàn quốc', 'info')">Chính sách vận
+                chuyển</button>
+            </li>
+            <li><button type="button" class="btn-footer-link"
+                onclick="document.getElementById('btnOpenTracking').click()">Tra cứu tiến
+                trình đơn hàng</button></li>
+            <li><a href="/login.html">Đăng nhập / Đăng ký tài khoản</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Phương Thức Thanh Toán</h4>
+          <p>Tích hợp các cổng thanh toán điện tử mô phỏng tương tác cao:</p>
+          <div style="display: flex; gap: 8px; font-size: 1.6rem; margin-top: 8px;">
+            <i class="fa-brands fa-cc-visa" style="color: #2563eb;"></i>
+            <i class="fa-brands fa-cc-mastercard" style="color: #ea580c;"></i>
+            <i class="fa-solid fa-qrcode" style="color: #005baa;"></i>
+            <i class="fa-solid fa-wallet" style="color: #d82d8b;"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechStore Ecommerce System. Thiết kế phục vụ Đồ án Cơ sở ngành
+          ngành.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING CONTROLS (BACK TO TOP & SUPPORT) ==================== -->
+  <div class="floating-controls-cluster">
+    <!-- Nút Cuộn Lên Đầu Trang với Circular Progress -->
+    <button type="button" class="btn-back-to-top" id="btnBackToTop" title="Cuộn lên đầu trang">
+      <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+        <circle class="progress-ring-bg" cx="23" cy="23" r="19" stroke-width="3" fill="none" />
+        <circle class="progress-ring-circle" id="scrollProgressCircle" cx="23" cy="23" r="19" stroke-width="3"
+          fill="none" />
+      </svg>
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Nút Hỗ trợ nhanh nổi (Hotline, Chat, Tra cứu) -->
+    <div class="floating-support-wrapper">
+      <div class="support-popup-menu" id="supportPopupMenu">
+        <div class="support-popup-header">
+          <strong><i class="fa-solid fa-headset" style="color: var(--vt-red);"></i> Hỗ Trợ Khách Hàng</strong>
+          <p>TechStore luôn sẵn sàng giải đáp thắc mắc</p>
+        </div>
+        <a href="tel:18008123" class="support-popup-item">
+          <i class="fa-solid fa-phone-volume" style="color: #10b981;"></i>
+          <div>
+            <div style="font-weight: 700; color: #111;">1800 8123 (Miễn phí)</div>
+            <div style="font-size: 0.75rem; color: #6b7280;">Tư vấn mua hàng 8h - 22h</div>
+          </div>
+        </a>
+        <button type="button" class="support-popup-item" onclick="document.getElementById('btnOpenTracking').click()">
+          <i class="fa-solid fa-truck-fast" style="color: #3b82f6;"></i>
+          <div>
+            <div style="font-weight: 700; color: #111;">Tra cứu đơn hàng</div>
+            <div style="font-size: 0.75rem; color: #6b7280;">Kiểm tra tiến trình giao vận</div>
+          </div>
+        </button>
+        <button type="button" class="support-popup-item"
+          onclick="showToast('Hệ thống có hơn 350 cửa hàng trên toàn quốc', 'info')">
+          <i class="fa-solid fa-store" style="color: #f59e0b;"></i>
+          <div>
+            <div style="font-weight: 700; color: #111;">Tìm siêu thị gần bạn</div>
+            <div style="font-size: 0.75rem; color: #6b7280;">Trải nghiệm máy trực tiếp</div>
+          </div>
+        </button>
+      </div>
+      <button type="button" class="btn-floating-support" id="btnFloatingSupport" title="Liên hệ hỗ trợ">
+        <span class="support-pulse-ring"></span>
+        <i class="fa-solid fa-comments"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/payment-gateway.js"></script>
+  <script src="/js/checkout.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

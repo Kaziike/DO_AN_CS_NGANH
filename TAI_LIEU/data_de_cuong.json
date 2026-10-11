@@ -1,0 +1,179 @@
+{
+  "ten_de_tai": "XÂY DỰNG WEBSITE THƯƠNG MẠI ĐIỆN TỬ SẢN PHẨM CÔNG NGHỆ (TECHSTORE) TÍCH HỢP CỔNG THANH TOÁN TRỰC TUYẾN",
+  "sinh_vien": [
+    "Họ và tên: ............................................................................",
+    "MSSV: ....................................................................................",
+    "Điện thoại: ...........................................................................",
+    "Email: ...................................................................................",
+    "Mã lớp: ................................................................................."
+  ],
+  "giang_vien": [
+    "Họ và tên: ............................................................................",
+    "Học hàm, học vị: ................................................................."
+  ],
+  "tinh_cap_thiet": {
+    "title": "TÍNH CẤP THIẾT CỦA ĐỀ TÀI",
+    "paragraphs": [
+      "Trong bối cảnh công nghệ thông tin và chuyển đổi số phát triển mạnh mẽ hiện nay, thương mại điện tử (TMĐT) đã trở thành một kênh phân phối và mua sắm thiết yếu, thay đổi căn bản thói quen tiêu dùng của xã hội. Trong đó, thị trường các thiết bị công nghệ số (Laptop, Smartphone, Tablet, Phụ kiện âm thanh, Gaming Gear, Smartwatch) luôn ghi nhận nhu cầu tiêu thụ và giá trị giao dịch rất lớn từ học sinh, sinh viên, người đi làm và các tổ chức, doanh nghiệp.",
+      "Tuy nhiên, đặc thù của các mặt hàng công nghệ là có giá trị cao, đa dạng về chủng loại và thông số kỹ thuật phức tạp (CPU, RAM, ROM, Card đồ họa, độ phân giải màn hình, dung lượng pin,...). Người tiêu dùng khi mua sắm trực tuyến luôn đòi hỏi một nền tảng có giao diện trực quan, chuyên nghiệp theo phong cách hệ thống bán lẻ công nghệ hàng đầu (chuẩn phong cách Viettel Store với tông màu Đỏ - Trắng hiện đại, thân thiện với người tiêu dùng Việt Nam, font chữ Inter sắc nét và bộ icon Font Awesome 6), cung cấp khả năng tìm kiếm tức thời (Live Search) và bộ lọc đa tiêu chí linh hoạt (theo danh mục, thương hiệu, phân khúc giá, sắp xếp), kèm theo thông số chi tiết và đánh giá minh bạch từ những người mua thực tế. Bên cạnh đó, nhu cầu thanh toán trực tuyến nhanh gọn, an toàn thông qua mã VNPAY-QR, Ví MoMo hay Thẻ thanh toán quốc tế đang dần thay thế phương thức trả tiền mặt truyền thống.",
+      "Về phía nhà quản lý, việc số hóa quy trình kinh doanh giúp tối ưu hóa công tác quản trị kho sản phẩm (CRUD thông tin, quản lý giá bán và kiểm soát số lượng tồn kho), tự động hóa tiếp nhận và theo dõi trạng thái đơn hàng (từ tiếp nhận, đóng gói, bàn giao vận chuyển đến khi hoàn tất hoặc hủy đơn), đồng thời thống kê doanh thu và chỉ số kinh doanh chính xác theo thời gian thực.",
+      "Đối với sinh viên ngành Công nghệ thông tin, việc thực hiện đề tài 'Xây dựng website thương mại điện tử sản phẩm công nghệ (TechStore) tích hợp cổng thanh toán trực tuyến' mang ý nghĩa thực tiễn to lớn. Đề tài giúp sinh viên vận dụng tổng hợp các kiến thức cốt lõi đã học: từ thiết kế cơ sở dữ liệu quan hệ chuẩn 3NF trên MySQL, xây dựng các dịch vụ Backend theo kiến trúc RESTful API chuẩn mực bằng Node.js & Express.js có đảm bảo tính toàn vẹn giao dịch ACID (Connection Pool, Transactions), đến thiết kế giao diện người dùng hiện đại chuẩn phong cách Viettel Store (tông Đỏ - Trắng thanh lịch, tối ưu trải nghiệm người dùng) bằng HTML5, CSS3 và JavaScript ES6+. Đây là bước đệm vững chắc giúp sinh viên hoàn thành tốt học phần Đồ án cơ sở ngành và tích lũy kỹ năng thực tế để phục vụ cho đồ án chuyên ngành và công việc tương lai."
+    ]
+  },
+  "muc_tieu": {
+    "title": "MỤC TIÊU CỦA ĐỀ TÀI (Nêu rõ mục tiêu cần đạt được của đề tài, qua đó làm cơ sở xác định nội dung nghiên cứu)",
+    "label_tong_quat": "5.1. Mục tiêu tổng quát:",
+    "tong_quat": "Nghiên cứu, phân tích, thiết kế và xây dựng hoàn chỉnh hệ thống Website Thương mại điện tử chuyên kinh doanh sản phẩm công nghệ (TechStore) hoạt động theo mô hình Client-Server dựa trên kiến trúc chuẩn RESTful API, cung cấp đầy đủ các phân hệ chức năng cho khách hàng mua sắm trực tuyến và quản trị viên quản lý bán hàng, đảm bảo giao diện Viettel Store chuẩn mực, tốc độ phản hồi nhanh, bảo mật và tính toàn vẹn dữ liệu.",
+    "label_cu_the": "5.2. Mục tiêu cụ thể:",
+    "cu_the": [
+      "- Về phân tích & thiết kế: Khảo sát và chuẩn hóa quy trình nghiệp vụ bán lẻ thiết bị công nghệ; xây dựng sơ đồ ca sử dụng (Use Case), sơ đồ tuần tự (Sequence Diagram); thiết kế mô hình cơ sở dữ liệu quan hệ (ERD) đạt chuẩn 3NF trên MySQL với đầy đủ ràng buộc khóa ngoại, tối ưu hóa các chỉ mục (Indexes) phục vụ truy vấn tốc độ cao.",
+      "- Về phát triển hệ thống Backend: Xây dựng Backend trên nền tảng Node.js & Express.js cung cấp đầy đủ các RESTful API phục vụ quản lý danh mục, sản phẩm, giỏ hàng, đặt hàng, mã giảm giá (voucher), hệ thống đánh giá sao và hỏi đáp thảo luận đa cấp; quản lý giao dịch CSDL đảm bảo tính ACID khi đặt hàng và trừ tồn kho; tích hợp cơ chế mô phỏng cổng thanh toán trực tuyến (VNPAY-QR, MoMo, Thẻ quốc tế Visa/Mastercard với xác thực OTP bảo mật); hỗ trợ cơ chế Fallback Mock Data dự phòng linh hoạt.",
+      "- Về phát triển giao diện Frontend: Xây dựng giao diện Web thương mại điện tử chuyên nghiệp theo phong cách Viettel Store hiện đại với tông màu chủ đạo Đỏ - Trắng (#ee0033), bố cục khoa học, thanh thông báo ưu đãi (Top Notice Bar), thanh điều hướng cố định (Sticky Header), thanh danh mục dịch vụ đa tầng (Navbar Menu); tích hợp giỏ hàng trượt thông minh (Flyout Drawer) lưu trữ qua Web Storage (LocalStorage); bộ lọc đa tiêu chí (danh mục, thương hiệu, mức giá, sắp xếp) và live search tức thời; modal chi tiết sản phẩm kèm thông số kỹ thuật; trang tra cứu tiến trình vận đơn trực quan theo thời gian thực (Order Stepper Progress).",
+      "- Về phân hệ quản trị (Admin Portal): Xây dựng trang quản trị độc lập cho phép thống kê chỉ số kinh doanh then chốt (tổng doanh thu, số lượng đơn hàng, lượng sản phẩm tồn kho, đánh giá khách hàng); quản lý vòng đời đơn hàng qua các trạng thái (Chờ xử lý, Đã xác nhận, Đang giao, Hoàn thành, Đã hủy) và cập nhật thanh toán; quản lý kho hàng với đầy đủ thao tác thêm, sửa, xóa, tìm kiếm sản phẩm và cấu hình thông số kỹ thuật dạng JSON.",
+      "- Về kiểm thử & đóng gói: Xây dựng bộ kịch bản kiểm thử (Test Cases), thực hiện kiểm thử chức năng (Functional Testing), kiểm thử giao diện đáp ứng đa thiết bị (Responsive UI trên Desktop, Tablet, Mobile) và kiểm thử luồng thanh toán đầu-cuối (End-to-End Testing)."
+    ]
+  },
+  "noi_dung_nghien_cuu": {
+    "title": "NỘI DUNG NGHIÊN CỨU (nêu rõ những nội dung nghiên cứu chính của đề tài)",
+    "items": [
+      {
+        "title": "Nội dung 1: Khảo sát thực trạng, phân tích nghiệp vụ bán lẻ công nghệ và xác định yêu cầu hệ thống.",
+        "desc": "Tìm hiểu mô hình vận hành và các tiêu chuẩn của hệ thống TMĐT bán lẻ công nghệ uy tín (tiêu biểu như Viettel Store, FPT Shop, Thế Giới Di Động); khảo sát hành vi mua sắm thiết bị số của người tiêu dùng; phân tích và đặc tả chi tiết các yêu cầu chức năng (phía khách hàng: xem danh mục, lọc thương hiệu/giá, tìm kiếm live search, giỏ hàng, đặt hàng, mã voucher, thanh toán trực tuyến mô phỏng, tra cứu đơn hàng, đánh giá/hỏi đáp; phía admin: thống kê doanh thu, quản lý đơn hàng, quản lý kho sản phẩm CRUD) và yêu cầu phi chức năng (bảo mật, hiệu năng, tính tương thích responsive)."
+      },
+      {
+        "title": "Nội dung 2: Phân tích & thiết kế kiến trúc hệ thống và cơ sở dữ liệu quan hệ.",
+        "desc": "Thiết kế kiến trúc tổng thể Client-Server giao tiếp thông qua chuẩn RESTful API định dạng JSON; thiết kế mô hình dữ liệu quan hệ thực thể (ERD) trên MySQL gồm 8 bảng: categories, products, orders, order_items, reviews, product_questions, coupons, users; thiết lập các khóa chính, khóa ngoại (Foreign Keys), ràng buộc toàn vẹn và tối ưu hóa các chỉ mục (Indexes) trên các trường tìm kiếm/lọc phổ biến (idx_products_category, idx_products_brand, idx_orders_code, idx_users_phone,...)."
+      },
+      {
+        "title": "Nội dung 3: Phát triển hệ thống Backend RESTful API với Node.js & Express.js.",
+        "desc": "Xây dựng cấu trúc dự án chuẩn phân tầng (Config, Routes, Controllers, Data Models); phát triển các RESTful API phân hệ Sản phẩm & Danh mục (truy vấn lọc đa điều kiện, sắp xếp, phân trang, live search); phát triển API Đơn hàng có xử lý giao dịch CSDL (Transaction: Begin, Commit, Rollback) đảm bảo tính toàn vẹn ACID khi tạo đơn và trừ tồn kho; phát triển API Đánh giá sao & Hỏi đáp thảo luận đa cấp; xây dựng module mô phỏng Cổng thanh toán trực tuyến (VNPAY-QR, Ví MoMo, Thẻ quốc tế Visa/Mastercard với xác thực OTP bảo mật); xây dựng cơ chế Fallback Mock Data đảm bảo tính sẵn sàng cao."
+      },
+      {
+        "title": "Nội dung 4: Thiết kế và phát triển giao diện người dùng (Frontend).",
+        "desc": "Hiện thực giao diện đồ họa chuẩn phong cách Viettel Store (tông màu Đỏ - Trắng hiện đại, typography font Inter, Font Awesome 6) bằng HTML5 Semantic, CSS3 nâng cao (CSS Custom Properties, Modern Flexbox/Grid); hiện thực các tính năng tương tác bằng JavaScript ES6+ (thanh tìm kiếm trực tiếp Live Search, thanh điều hướng danh mục đa dạng, giỏ hàng trượt Flyout Drawer lưu trữ LocalStorage, modal chi tiết sản phẩm và bảng thông số kỹ thuật, form đặt hàng và modal cổng thanh toán số với mã QR động và đồng hồ đếm ngược OTP, giao diện tra cứu tiến trình vận đơn trực quan theo thời gian thực và Bảng điều khiển quản trị Admin Portal)."
+      },
+      {
+        "title": "Nội dung 5: Kiểm thử hệ thống, đánh giá kết quả và viết báo cáo.",
+        "desc": "Xây dựng bộ kịch bản kiểm thử (Test Cases), kiểm thử chức năng từng màn hình và từng API endpoint (Postman); kiểm thử luồng giao dịch thanh toán và xử lý đơn hàng đầu-cuối (End-to-End Testing); kiểm thử tính tương thích trên các kích thước màn hình (Responsive Design); đánh giá kết quả đạt được so với mục tiêu đề ra, tổng kết và hoàn thiện quyển báo cáo Đồ án cơ sở ngành."
+      }
+    ]
+  },
+  "doi_tuong_pham_vi": {
+    "title_main": "ĐỐI TƯỢNG VÀ PHẠM VI NGHIÊN CỨU",
+    "title_doi_tuong": "Đối tượng nghiên cứu",
+    "doi_tuong": [
+      "- Về mặt nghiệp vụ: Quy trình thương mại điện tử chuyên ngành bán lẻ thiết bị công nghệ số (Laptop, Smartphone, Tablet, Phụ kiện âm thanh, Gaming Gear, Smartwatch); quy trình quản lý giỏ hàng, áp dụng voucher khuyến mãi, xử lý giao dịch thanh toán trực tuyến và tra cứu hành trình vận đơn; quy trình quản trị kho hàng (CRUD thông tin sản phẩm), quản lý vòng đời đơn hàng và thống kê doanh thu của cửa hàng.",
+      "- Về mặt công nghệ & công cụ:",
+      "+ Môi trường và framework Backend: Node.js (v18+), Express.js framework, kiến trúc RESTful API, các middleware cors, dotenv.",
+      "+ Hệ quản trị cơ sở dữ liệu: MySQL 8.0, thư viện mysql2/promise, mô hình giao dịch ACID (Database Transactions), Connection Pool tối ưu hóa kết nối.",
+      "+ Công nghệ phát triển Frontend: HTML5 Semantic, CSS3 nâng cao (CSS Variables, Flexbox/Grid, Viettel Store Design System tông màu Đỏ - Trắng, Font Inter, Font Awesome 6), JavaScript ES6+ (Fetch API, Web Storage LocalStorage, Module pattern).",
+      "+ Cơ chế thanh toán số: Phương thức sinh mã QR thanh toán động và quy trình xác thực mã OTP bảo mật dựa trên quy chuẩn kỹ thuật của VNPAY Sandbox và MoMo Sandbox."
+    ],
+    "title_pham_vi": "Phạm vi nghiên cứu",
+    "pham_vi": [
+      "- Phạm vi chức năng:",
+      "+ Hệ thống phía Khách hàng: Xem danh mục, lọc theo thương hiệu/giá/tiêu chí, tìm kiếm thời gian thực (Live Search), xem chi tiết và bảng thông số kỹ thuật, đánh giá sao, hỏi đáp thảo luận sản phẩm, giỏ hàng trượt, áp dụng voucher giảm giá, thực hiện đặt hàng, thanh toán qua cổng mô phỏng (VNPAY-QR, Ví MoMo, Thẻ quốc tế Visa/Mastercard, COD) và tra cứu tiến trình đơn hàng theo mã đơn hoặc số điện thoại.",
+      "+ Hệ thống phía Quản trị viên (Admin Portal): Bảng điều khiển KPI thống kê tổng quan (doanh thu, đơn hàng, sản phẩm, đánh giá); quản lý đơn hàng (lọc theo trạng thái, xem chi tiết khách hàng và sản phẩm mua, duyệt trạng thái đơn và cập nhật thanh toán); quản lý kho sản phẩm (CRUD thêm mới, chỉnh sửa thông tin, cấu hình thông số JSON, cập nhật giá bán/tồn kho, xóa sản phẩm).",
+      "+ Cổng thanh toán trực tuyến: Giới hạn trong môi trường mô phỏng (Simulated Gateway Sandbox) bám sát trải nghiệm thực tế và quy trình nghiệp vụ để phục vụ nghiên cứu và kiểm thử đồ án mà không phát sinh dòng tiền thật.",
+      "- Phạm vi dữ liệu & thiết bị: Dữ liệu sản phẩm tập trung vào các mặt hàng công nghệ cao cấp (Apple, Asus, Dell, Samsung, Sony, Logitech, Razer, Keychron,...); hệ thống được tối ưu hóa hiển thị trên các trình duyệt web hiện đại (Chrome, Edge, Firefox) và tương thích tốt trên các thiết bị Desktop, Tablet và Mobile.",
+      "- Phạm vi thời gian: Đề tài được triển khai thực hiện trong 8 tuần (từ ngày 12/10/2026 đến ngày 06/12/2026)."
+    ]
+  },
+  "phuong_phap_nghien_cuu": {
+    "title": "PHƯƠNG PHÁP NGHIÊN CỨU (Mô tả chi tiết phương pháp và kỹ thuật nghiên cứu phù hợp với từng nội dung của đề tài nhằm đạt được mục tiêu đề ra)",
+    "paragraphs": [
+      "- Phương pháp thu thập và phân tích tài liệu: Thu thập và nghiên cứu tài liệu kỹ thuật chính thức của Node.js, Express.js, MySQL; nghiên cứu chuẩn thiết kế kiến trúc RESTful API; nghiên cứu tài liệu tích hợp API của các cổng thanh toán VNPAY Sandbox và MoMo Sandbox; khảo sát và phân tích giao diện, luồng trải nghiệm người dùng (UX) của các website TMĐT công nghệ hàng đầu tại Việt Nam (đặc biệt là Viettel Store, FPT Shop, Thế Giới Di Động) để đúc kết giải pháp thiết kế tối ưu với tông màu Đỏ - Trắng hiện đại và thân thiện.",
+      "- Phương pháp phân tích và thiết kế hệ thống:",
+      "+ Sử dụng ngôn ngữ mô hình hóa UML để xây dựng sơ đồ ca sử dụng (Use Case Diagram), sơ đồ phân rã chức năng (BFD), sơ đồ chuyển trạng thái đơn hàng (State Machine Diagram: Pending -> Confirmed -> Shipping -> Completed / Cancelled).",
+      "+ Sử dụng phương pháp mô hình hóa dữ liệu quan hệ (Entity Relationship Diagram - ERD), áp dụng các quy tắc chuẩn hóa dữ liệu đạt chuẩn dạng chuẩn 3 (3NF) nhằm loại bỏ trùng lặp và đảm bảo tính toàn vẹn dữ liệu trên MySQL.",
+      "- Phương pháp thực nghiệm và phát triển phần mềm:",
+      "+ Áp dụng mô hình phát triển phần mềm lặp và tiến hóa (Iterative & Agile), phân chia đồ án thành các chặng ngắn: phân tích yêu cầu -> thiết kế CSDL -> xây dựng Backend API -> xây dựng giao diện Frontend -> ghép nối Full-Stack -> kiểm thử và tối ưu.",
+      "+ Kỹ thuật lập trình Backend: Lập trình bất đồng bộ không chặn (Non-blocking I/O) với async/await, kiểm soát kết nối CSDL qua Connection Pool, gom nhóm thao tác ghi dữ liệu nhiều bảng vào trong Transaction để bảo đảm tính nhất quán (Atomicity, Consistency).",
+      "+ Kỹ thuật lập trình Frontend: Áp dụng tư duy module hóa JavaScript, quản trị trạng thái phía Client lưu vào LocalStorage, xử lý sự kiện tương tác DOM trực tiếp không phụ thuộc thư viện nặng giúp trang web đạt tốc độ tải trang cực nhanh và mượt mà, định hình phong cách Viettel Store thanh lịch.",
+      "- Phương pháp kiểm thử và đánh giá hệ thống:",
+      "+ Sử dụng phương pháp kiểm thử hộp đen (Black-box testing) để kiểm chứng tính đúng đắn của từng chức năng nghiệp vụ theo bộ kịch bản kiểm thử (Test Cases).",
+      "+ Kiểm thử giao diện lập trình ứng dụng (API Testing) sử dụng công cụ Postman để kiểm tra tính hợp lệ của dữ liệu đầu vào (Payload Validation), mã phản hồi HTTP và xử lý lỗi biên.",
+      "+ Kiểm thử tích hợp và kiểm thử luồng đầu-cuối (End-to-End Testing): mô phỏng toàn bộ hành trình khách hàng từ lúc chọn sản phẩm, vào giỏ, nhập mã giảm giá, điền form, thanh toán OTP và chuyển sang phía Admin duyệt đơn."
+    ]
+  },
+  "ke_hoach_thuc_hien": {
+    "title": "KẾ HOẠCH THỰC HIỆN",
+    "schedule": [
+      {
+        "week": "1",
+        "time": "12/10/2026 - 18/10/2026",
+        "task": "Khảo sát thực tế hệ thống TMĐT bán lẻ công nghệ (chuẩn Viettel Store); xác định mục tiêu, phạm vi và công nghệ của đề tài; lập đề cương chi tiết.",
+        "result": "Bản Đề cương chi tiết hoàn chỉnh được GVHD phê duyệt."
+      },
+      {
+        "week": "2",
+        "time": "19/10/2026 - 25/10/2026",
+        "task": "Phân tích yêu cầu hệ thống; xây dựng sơ đồ Use Case; thiết kế mô hình cơ sở dữ liệu quan hệ (ERD) chuẩn 3NF trên MySQL (8 bảng dữ liệu); viết script schema.sql và chuẩn bị dữ liệu mẫu seed.sql.",
+        "result": "Tài liệu đặc tả yêu cầu; Sơ đồ Use Case; Sơ đồ ERD; CSDL techstore_db được khởi tạo trên MySQL với dữ liệu mẫu phong phú."
+      },
+      {
+        "week": "3",
+        "time": "26/10/2026 - 01/11/2026",
+        "task": "Khởi tạo kiến trúc Backend Node.js & Express.js; cấu hình MySQL Connection Pool và chế độ Fallback Mock Data dự phòng; phát triển các RESTful API Sản phẩm & Danh mục (/api/products, /api/categories), mã giảm giá (/api/coupons/validate).",
+        "result": "Nền tảng Backend hoạt động ổn định; hoàn thành và kiểm thử thành công các API sản phẩm, danh mục, voucher bằng Postman."
+      },
+      {
+        "week": "4",
+        "time": "02/11/2026 - 08/11/2026",
+        "task": "Phát triển các RESTful API phân hệ Đơn hàng (/api/orders), tra cứu đơn hàng (/api/orders/track), cài đặt giao dịch CSDL (Transaction: Begin, Commit, Rollback); API Đánh giá sao & Hỏi đáp (/api/reviews, /api/questions); API Thống kê số liệu (/api/stats).",
+        "result": "Bộ API xử lý đơn hàng hoàn tất với cơ chế bảo đảm ACID; API đánh giá/hỏi đáp thảo luận và API thống kê doanh thu hoạt động chuẩn xác."
+      },
+      {
+        "week": "5",
+        "time": "09/11/2026 - 15/11/2026",
+        "task": "Phát triển module Cổng thanh toán trực tuyến mô phỏng: API khởi tạo thanh toán (/api/payment/init), API xác thực giao dịch OTP (/api/payment/verify) cho VNPAY-QR, Ví MoMo và Thẻ tín dụng quốc tế (Visa/Mastercard).",
+        "result": "Phân hệ cổng thanh toán mô phỏng hoàn tất, kiểm tra phản hồi mã OTP và cập nhật hóa đơn chính xác."
+      },
+      {
+        "week": "6",
+        "time": "16/11/2026 - 22/11/2026",
+        "task": "Thiết kế và lập trình giao diện Frontend: Áp dụng chuẩn thiết kế phong cách Viettel Store (tông màu Đỏ - Trắng hiện đại, font Inter, Font Awesome 6); xây dựng Top notice, Sticky Header, Navbar danh mục đa tầng, Hero Banner, Lưới sản phẩm, bộ lọc đa tiêu chí và Live Search thời gian thực.",
+        "result": "Giao diện trang chủ hoàn chỉnh, đồng bộ chuẩn nhận diện Viettel Store thân thiện và tương thích hiển thị tốt trên đa thiết bị."
+      },
+      {
+        "week": "7",
+        "time": "23/11/2026 - 29/11/2026",
+        "task": "Lập trình giao diện Frontend: Modal chi tiết sản phẩm và thông số kỹ thuật, giỏ hàng trượt (Flyout Drawer) lưu LocalStorage; form thanh toán đặt hàng và Modal Cổng thanh toán mô phỏng kèm mã QR động và đồng hồ đếm ngược OTP; trang tra cứu tiến trình đơn hàng; Xây dựng trang Quản trị Admin Portal (admin.html) quản lý kho & duyệt đơn hàng.",
+        "result": "Hoàn thiện trọn vẹn luồng mua sắm, thanh toán phía người dùng và giao diện Bảng điều khiển quản trị Admin Portal."
+      },
+      {
+        "week": "8",
+        "time": "30/11/2026 - 06/12/2026",
+        "task": "Ghép nối toàn diện hệ thống Full-Stack; thực hiện kiểm thử tích hợp và kiểm thử đầu-cuối (End-to-End Testing); tối ưu hóa tốc độ tải trang; viết quyển báo cáo tổng kết Đồ án cơ sở ngành; đóng gói mã nguồn và chuẩn bị slide thuyết trình bảo vệ đề tài.",
+        "result": "Hệ thống website TechStore vận hành mượt mà, không lỗi; Quyển báo cáo đồ án đúng quy chuẩn và slide thuyết trình nghiệm thu hoàn tất."
+      }
+    ]
+  },
+  "ket_qua_du_kien": {
+    "title": "KẾT QUẢ DỰ KIẾN CỦA ĐỀ TÀI",
+    "title_ung_dung": "Sản phẩm ứng dụng:",
+    "label_prototype": "Nguyên mẫu (prototype):",
+    "prototype": "☑ (Bản mẫu thiết kế giao diện UI/UX chuẩn phong cách Viettel Store với tông màu Đỏ - Trắng hiện đại, bố cục khoa học, thân thiện người dùng và Responsive trên Desktop, Tablet và Mobile)",
+    "label_may_tinh": "Chương trình máy tính:",
+    "may_tinh": "☑ (Hệ thống Website Thương mại điện tử TechStore Full-Stack hoàn chỉnh gồm: Phân hệ khách hàng mua sắm, Phân hệ quản trị Admin Dashboard, Hệ thống Backend RESTful API và Cơ sở dữ liệu quan hệ MySQL)",
+    "label_quy_trinh": "Quy trình công nghệ:",
+    "quy_trinh": "☑ (Quy trình nghiệp vụ xử lý đơn hàng khép kín và quy trình tích hợp, xác thực giao dịch qua cổng thanh toán trực tuyến mô phỏng VNPAY-QR, Ví MoMo, Thẻ tín dụng quốc tế)",
+    "label_so_do": "Sơ đồ, bản thiết kế:",
+    "so_do": "☑ (Sơ đồ kiến trúc tổng thể Client-Server RESTful API, Sơ đồ ca sử dụng Use Case, Sơ đồ quan hệ thực thể cơ sở dữ liệu ERD chuẩn 3NF, Sơ đồ chuyển trạng thái đơn hàng State Machine)",
+    "label_khac": "Sản phẩm khác:",
+    "khac": "Toàn bộ mã nguồn hoàn chỉnh của dự án có cấu trúc rõ ràng, chú thích chi tiết; Bộ kịch bản kiểm thử (Test Cases); Tài liệu hướng dẫn cài đặt và vận hành hệ thống (README.md).",
+    "title_ket_qua_khac": "Kết quả khác:",
+    "ket_qua_khac": [
+      "- Quyển báo cáo tổng kết Thực tập Đồ án cơ sở ngành được biên soạn chi tiết, đầy đủ và đúng quy chuẩn học thuật của Khoa Công nghệ thông tin - Trường Kỹ thuật và Công nghệ.",
+      "- Nâng cao năng lực chuyên môn: Làm chủ kỹ năng lập trình Web Full-Stack với Node.js, Express.js, cơ sở dữ liệu MySQL, kiến trúc RESTful API, JavaScript ES6+ và CSS3 hiện đại; rèn luyện tư duy thiết kế hệ thống, bảo đảm tính toàn vẹn dữ liệu giao dịch ACID và bảo mật ứng dụng web.",
+      "- Phát triển các kỹ năng mềm thiết yếu: Kỹ năng phân tích và giải quyết vấn đề kỹ thuật thực tế, kỹ năng nghiên cứu tài liệu công nghệ mới, kỹ năng quản lý tiến độ và lập kế hoạch thực hiện đồ án."
+    ]
+  },
+  "chu_ky": {
+    "label_gv": "Giảng viên hướng dẫn",
+    "label_ky_gv": "(Ký, họ và tên)",
+    "dia_diem_ngay": "Vĩnh Long, ngày ... tháng 12 năm 2026",
+    "label_sv": "Sinh viên thực hiện",
+    "label_ky_sv": "(Ký, họ và tên)"
+  }
+}

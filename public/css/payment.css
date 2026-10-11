@@ -1,0 +1,345 @@
+/* ==========================================================
+   SIMULATED PAYMENT GATEWAYS (VNPAY / MOMO / CARD)
+   ========================================================== */
+
+.payment-gateway-modal {
+  max-width: 500px;
+  width: 100%;
+  max-height: 92vh;
+  background: #0f172a;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(99, 102, 241, 0.25);
+  position: relative;
+}
+
+/* Gateway Brand Header */
+.gateway-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.gateway-header.vnpay {
+  background: linear-gradient(135deg, #005baa 0%, #003666 100%);
+}
+
+.gateway-header.momo {
+  background: linear-gradient(135deg, #a50064 0%, #750047 100%);
+}
+
+.gateway-header.card {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+}
+
+.gateway-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gateway-logo-badge {
+  background: #ffffff;
+  color: #0b0f19;
+  font-weight: 900;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: -0.5px;
+}
+
+.gateway-title-group h3 {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gateway-title-group p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+}
+
+.gateway-security-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* Gateway Body */
+.gateway-body {
+  padding: 16px 20px 18px;
+  background: #0f172a;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-order-summary {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.pos-amount {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #38bdf8;
+}
+
+/* QR Code Section */
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.qr-box {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.qr-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Laser scan animation */
+.qr-scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ef4444, transparent);
+  box-shadow: 0 0 10px #ef4444;
+  animation: qrScan 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes qrScan {
+  0% { top: 5%; }
+  100% { top: 92%; }
+}
+
+.qr-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+.qr-timer strong {
+  color: #f59e0b;
+}
+
+/* Simulation Controls */
+.sim-instructions {
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px dashed rgba(99, 102, 241, 0.3);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.sim-instructions ol {
+  padding-left: 18px;
+  margin-top: 4px;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: #94a3b8;
+}
+
+.otp-simulation-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.otp-input-field {
+  flex: 1;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 9px 12px;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 700;
+  outline: none;
+}
+.otp-input-field:focus {
+  border-color: #38bdf8;
+}
+
+.btn-autofill-otp {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-autofill-otp:hover {
+  background: #38bdf8;
+  color: #0b0f19;
+}
+
+/* Gateway Action Buttons - Luôn cố định rõ ràng ở dưới */
+.gateway-actions {
+  display: flex;
+  gap: 10px;
+  position: sticky;
+  bottom: 0;
+  background: #0f172a;
+  padding-top: 10px;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 10;
+}
+
+.btn-gateway-confirm {
+  flex: 2;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-gateway-confirm:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-gateway-cancel {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-gateway-cancel:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* Simulated Credit Card Graphic */
+.sim-credit-card {
+  width: 100%;
+  max-width: 360px;
+  height: 210px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e1b4b 100%);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.sim-credit-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-chip {
+  width: 44px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffd700, #b8860b);
+  border-radius: 6px;
+}
+
+.card-brand-logo {
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.card-number-display {
+  font-size: 1.25rem;
+  letter-spacing: 3px;
+  color: #ffffff;
+  font-family: monospace;
+}
+
+.card-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}

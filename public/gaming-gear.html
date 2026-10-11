@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Gear & Phụ Kiện - Bàn Phím Cơ Keychron, Chuột Razer, Logitech MX | TechStore</title>
+  <meta name="description"
+    content="Mua Gaming Gear chính hãng: Bàn phím cơ không dây hotswap Keychron, Chuột gaming Razer DeathAdder V3 Pro 30K DPI, Chuột công thái học Logitech MX Master 3S. Bảo hành 24 tháng tại TechStore.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/payment.css">
+</head>
+
+<body data-category="gaming-gear">
+
+  <!-- Top Notice Bar -->
+  <div class="top-notice-bar">
+    <div class="container">
+      <span><i class="fa-solid fa-gift"></i> Chào mừng đến với TechStore! Giảm ngay 10% đơn đầu tiên với mã
+        <strong>TECH10</strong> &bull; Hotline hỗ trợ: <strong>1800 8123</strong> (Miễn phí)</span>
+    </div>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header">
+    <div class="container">
+      <div class="header-top">
+        <a href="/" class="brand-logo" id="storeLogo">
+          <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div>TECH<span>STORE</span></div>
+        </a>
+
+        <button type="button" class="header-location-badge"
+          onclick="showToast('Hệ thống áp dụng chính sách giao hàng toàn quốc', 'info')">
+          <span>Xem giá, tồn kho tại:</span>
+          <span>Toàn quốc <i class="fa-solid fa-angle-down" style="font-size: 0.7rem;"></i></span>
+        </button>
+
+        <div class="search-wrapper">
+          <div class="search-bar">
+            <input type="text" id="mainSearchInput"
+              placeholder="Tìm kiếm bàn phím cơ Keychron, chuột Razer, Logitech..." autocomplete="off">
+            <i class="fa-solid fa-magnifying-glass search-icon"
+              onclick="App.state.search = document.getElementById('mainSearchInput').value; App.loadProducts();"></i>
+          </div>
+        </div>
+
+        <a href="tel:18008123" class="header-hotline-box">
+          <i class="fa-solid fa-phone-volume"></i>
+          <div>
+            <span>Tư vấn mua hàng:</span>
+            <strong>1800 8123</strong>
+          </div>
+        </a>
+
+        <div class="header-actions">
+          <button class="header-action-item" id="btnOpenTracking" title="Tra cứu đơn hàng">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Tra cứu đơn</span>
+          </button>
+          <button type="button" class="header-action-item"
+            onclick="showToast('Hệ thống có hơn 350 siêu thị trên toàn quốc', 'info')">
+            <i class="fa-solid fa-store"></i>
+            <span>Cửa hàng</span>
+          </button>
+          <button class="header-action-item" id="btnOpenCart" title="Xem giỏ hàng">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Giỏ hàng</span>
+            <span class="badge-counter" id="cartCountBadge">0</span>
+          </button>
+          <div id="headerUserSlot">
+            <a href="/login.html" class="header-action-item" title="Đăng nhập tài khoản">
+              <i class="fa-regular fa-circle-user"></i>
+              <span>Đăng nhập</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="vts-navbar">
+      <div class="container">
+        <ul class="vts-menu-list">
+          <li class="vts-menu-item"><a href="/" class="vts-menu-link"><i class="fa-solid fa-border-all"></i><span>Tất
+                cả</span></a></li>
+          <li class="vts-menu-item"><a href="/smartphone.html" class="vts-menu-link"><i
+                class="fa-solid fa-mobile-screen-button"></i><span>Điện thoại</span></a></li>
+          <li class="vts-menu-item"><a href="/laptop.html" class="vts-menu-link"><i
+                class="fa-solid fa-laptop"></i><span>Laptop</span></a></li>
+          <li class="vts-menu-item"><a href="/tablet.html" class="vts-menu-link"><i
+                class="fa-solid fa-tablet-screen-button"></i><span>Máy tính bảng</span></a></li>
+          <li class="vts-menu-item"><a href="/smartwatch.html" class="vts-menu-link"><i
+                class="fa-solid fa-clock"></i><span>Đồng hồ thông minh</span></a></li>
+          <li class="vts-menu-item"><a href="/audio.html" class="vts-menu-link"><i
+                class="fa-solid fa-headphones"></i><span>Âm thanh & Tai nghe</span></a></li>
+          <li class="vts-menu-item"><a href="/gaming-gear.html" class="vts-menu-link active"><i
+                class="fa-solid fa-gamepad"></i><span>Gaming Gear & Phụ kiện</span></a></li>
+          <li class="vts-menu-item"><a class="vts-menu-link" style="cursor: pointer;"
+              onclick="showToast('Dịch vụ Sim số đẹp & Gói cước data 5G', 'info')"><i
+                class="fa-solid fa-sim-card"></i><span>Sim số - Dịch vụ</span></a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO HEADER CHO GAMING GEAR ==================== -->
+  <section class="container">
+    <div class="category-hero-header">
+      <div>
+        <div class="category-breadcrumb">
+          <a href="/"><i class="fa-solid fa-house"></i> Trang chủ</a>
+          <span>/</span>
+          <span>Gaming Gear & Phụ kiện</span>
+        </div>
+        <h1 class="category-hero-title">
+          <i class="fa-solid fa-gamepad" style="color: var(--vt-red);"></i> Gaming Gear & Phụ Kiện Chuyên Nghiệp
+        </h1>
+        <p class="category-hero-desc">
+          Bứt phá phong độ và tối ưu hiệu suất làm việc với hệ sinh thái Gear đỉnh cao: Bàn phím cơ hotswap Keychron K8
+          Pro gõ cực êm, chuột gaming siêu nhẹ Razer DeathAdder V3 Pro 30K DPI và chuột công thái học Logitech MX Master
+          3S.
+        </p>
+      </div>
+      <div class="category-hero-stat-badge">
+        <i class="fa-solid fa-crosshairs" style="color: #10b981; font-size: 1.2rem;"></i>
+        <span>Switch Quang Học Chuẩn Esports & 30.000 DPI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CATALOG & BỘ LỌC CẤU HÌNH GAMING GEAR ==================== -->
+  <section class="container" id="catalogSection">
+    <div class="catalog-card-wrapper">
+      <div class="catalog-header-top">
+        <div class="catalog-title-group">
+          <h2><i class="fa-solid fa-sliders" style="color: var(--vt-red);"></i> Bộ Lọc Gaming Gear & Phụ Kiện</h2>
+          <p class="catalog-subtitle">Lọc theo Loại phụ kiện, Công nghệ Switch, Cảm biến DPI và Chuẩn kết nối</p>
+        </div>
+        <div class="catalog-header-right">
+          <span class="catalog-results-badge">
+            <i class="fa-solid fa-boxes-stacked"></i> Hiển thị <strong id="resultsCount">0</strong> sản phẩm
+          </span>
+        </div>
+      </div>
+
+      <!-- Dãy Thương hiệu -->
+      <div class="brand-filter-bar">
+        <span class="brand-filter-label"><i class="fa-solid fa-tags"></i> Thương hiệu:</span>
+        <div class="brand-chips-row" id="quickBrandChips">
+          <button type="button" class="brand-chip active" data-brand="all">Tất cả</button>
+          <button type="button" class="brand-chip" data-brand="Razer">Razer Gaming</button>
+          <button type="button" class="brand-chip" data-brand="Logitech">Logitech</button>
+          <button type="button" class="brand-chip" data-brand="Keychron">Keychron</button>
+          <button type="button" class="brand-chip" data-brand="Corsair">Corsair</button>
+        </div>
+      </div>
+
+      <!-- Toolbar: Nút mở rộng bộ lọc + Price Pills + Sort -->
+      <div class="catalog-toolbar" style="margin-top: 12px;">
+        <div class="toolbar-left-filters">
+          <button type="button" class="btn-toggle-advanced-filters" id="btnToggleAdvancedFilters"
+            title="Mở bộ lọc gaming gear nâng cao">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Bộ lọc nâng cao</span>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            <span class="badge-filter-count" id="activeFilterBadge" style="display: none;">0</span>
+          </button>
+
+          <div class="quick-price-pills" id="quickPricePills">
+            <button type="button" class="price-pill active" data-range="all">Tất cả giá</button>
+            <button type="button" class="price-pill" data-range="0-2000000">Dưới 2 triệu</button>
+            <button type="button" class="price-pill" data-range="2000000-3500000">2 - 3.5 triệu</button>
+            <button type="button" class="price-pill" data-range="3500000-999000000">Trên 3.5 triệu</button>
+          </div>
+        </div>
+
+        <div class="toolbar-right-sort">
+          <div class="sort-control-box">
+            <label for="sortSelect"><i class="fa-solid fa-arrow-down-short-wide"></i> Sắp xếp:</label>
+            <select id="sortSelect" class="sort-select">
+              <option value="newest">Mới nhất</option>
+              <option value="price-asc">Giá: Thấp đến Cao</option>
+              <option value="price-desc">Giá: Cao đến Thấp</option>
+              <option value="rating">Đánh giá cao nhất</option>
+              <option value="popular">Bán chạy nhất</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- BỘ LỌC NÂNG CAO MỞ RỘNG TỪ TRÊN XUỐNG (ACCORDION PANEL) -->
+      <div class="advanced-filters-panel" id="advancedFiltersPanel">
+        <div class="panel-header-row">
+          <div class="panel-title"><i class="fa-solid fa-sliders" style="color: var(--vt-red);"></i> Tùy chọn thông số
+            Gaming Gear chi tiết</div>
+          <button type="button" class="btn-secondary" style="padding: 4px 10px; font-size: 0.78rem;"
+            onclick="App.resetFilters()">
+            <i class="fa-solid fa-rotate-left"></i> Đặt lại
+          </button>
+        </div>
+
+        <div class="spec-filters-container">
+          <!-- Hàng 1: Loại phụ kiện -->
+          <div class="spec-filter-bar">
+            <span class="spec-filter-label"><i class="fa-solid fa-computer-mouse"></i> Phân loại:</span>
+            <div class="spec-chips-row">
+              <button type="button" class="spec-filter-chip active" data-spec-type="feature" data-spec-val="all">Tất cả
+                phụ kiện</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="Chuột">Chuột Gaming
+                & Văn phòng</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="Bàn phím">Bàn phím
+                cơ không dây</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature"
+                data-spec-val="công thái học">Chuột công thái học</button>
+            </div>
+          </div>
+
+          <!-- Hàng 2: Switch & Cảm biến -->
+          <div class="spec-filter-bar">
+            <span class="spec-filter-label"><i class="fa-solid fa-microchip"></i> Switch & Cảm biến:</span>
+            <div class="spec-chips-row">
+              <button type="button" class="spec-filter-chip active" data-spec-type="feature" data-spec-val="all">Tất cả
+                công nghệ</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="Hotswap">Switch G
+                Pro Hotswap</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="30K">Focus Pro 30K
+                Optical Sensor</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature"
+                data-spec-val="Darkfield">Darkfield 8000 DPI (Kính)</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="63g">Siêu nhẹ
+                63g</button>
+            </div>
+          </div>
+
+          <!-- Hàng 3: Chuẩn kết nối -->
+          <div class="spec-filter-bar">
+            <span class="spec-filter-label"><i class="fa-solid fa-wifi"></i> Kết nối:</span>
+            <div class="spec-chips-row">
+              <button type="button" class="spec-filter-chip active" data-spec-type="connection" data-spec-val="all">Tất
+                cả kết nối</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="connection" data-spec-val="Không dây">Không
+                dây 2.4GHz / Wireless</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="connection" data-spec-val="Bluetooth"><i
+                  class="fa-brands fa-bluetooth-b"></i> Bluetooth đa thiết bị</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="connection" data-spec-val="Type-C">Cáp rời
+                Type-C</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Filter Tags Bar -->
+      <div class="active-filter-tags-bar" id="activeFilterTagsBar" style="display: none;">
+        <span class="active-tags-label"><i class="fa-solid fa-filter-circle-check"></i> Đang lọc:</span>
+        <div class="active-tags-list" id="activeFilterTagsList"></div>
+        <button type="button" class="btn-clear-all-filters" id="btnClearAllFilters">
+          <i class="fa-solid fa-rotate-left"></i> Xóa tất cả
+        </button>
+      </div>
+    </div>
+
+    <!-- FULL WIDTH PRODUCT GRID -->
+    <div class="catalog-products-wrapper">
+      <div class="products-grid full-width" id="productsGrid"></div>
+      <div id="paginationWrapper"></div>
+    </div>
+  </section>
+
+  <!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+  <div class="modal-overlay" id="productDetailModal">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="closeDetailModalBtn">&times;</button>
+      <div class="product-detail-layout">
+        <div class="detail-gallery">
+          <div class="detail-main-img"><img id="detailMainImg" src="" alt="Sản phẩm"></div>
+          <div class="detail-thumbnails" id="detailThumbnails"></div>
+        </div>
+        <div class="detail-info">
+          <div
+            style="font-size: 0.78rem; font-weight: 800; color: var(--vt-red); text-transform: uppercase; margin-bottom: 4px;"
+            id="detailCategory">GAMING GEAR & PHỤ KIỆN</div>
+          <h2 class="detail-title" id="detailTitle">Tên sản phẩm</h2>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 0.85rem;">
+            <span style="color: var(--accent-gold);"><i class="fa-solid fa-star"></i> <strong
+                id="detailRating">5.0</strong></span>
+            <span style="color: #6b7280;">(<span id="detailReviewCount">0</span> đánh giá)</span>
+            <span style="color: #f97316; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-left: 6px;"><i class="fa-solid fa-fire"></i> <span id="detailSoldCount">Đã bán 0</span></span>
+            <span style="margin-left: auto; color: #059669; font-weight: 700;" id="detailStock">Còn hàng</span>
+          </div>
+          <div class="detail-price-box">
+            <span class="detail-current-price" id="detailPrice">0₫</span>
+            <span class="detail-old-price" id="detailOldPrice"></span>
+          </div>
+          <p class="detail-desc-text" id="detailDescription"></p>
+          <div class="detail-specs-box">
+            <h4><i class="fa-solid fa-circle-info"></i> Thông số kỹ thuật chi tiết</h4>
+            <table class="specs-table" id="detailSpecsTable"></table>
+          </div>
+          <div class="detail-actions">
+            <div class="quantity-picker" style="height: 42px;">
+              <button class="quantity-btn" onclick="App.adjustDetailQty(-1)">-</button>
+              <input type="number" id="detailQtyInput" class="quantity-input" value="1" min="1" readonly>
+              <button class="quantity-btn" onclick="App.adjustDetailQty(1)">+</button>
+            </div>
+            <button class="btn-card-cart" id="detailAddCartBtn" style="padding: 10px 16px;"><i
+                class="fa-solid fa-cart-plus"></i> Thêm vào giỏ</button>
+            <button class="btn-primary" id="detailBuyNowBtn" style="padding: 10px 20px;">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-interaction-section">
+        <div class="interaction-tabs-nav">
+          <button type="button" class="interaction-tab-btn active" id="tabBtnReviews"
+            onclick="App.switchInteractionTab('reviews')">
+            <i class="fa-solid fa-star" style="color: var(--accent-gold);"></i><span>Đánh giá từ khách đã
+              mua</span><span class="tab-badge" id="tabReviewsCount">0</span>
+          </button>
+          <button type="button" class="interaction-tab-btn" id="tabBtnQuestions"
+            onclick="App.switchInteractionTab('questions')">
+            <i class="fa-solid fa-comments" style="color: var(--vt-red);"></i><span>Hỏi đáp người đã mua</span><span
+              class="tab-badge" id="tabQuestionsCount">0</span>
+          </button>
+        </div>
+        <div class="interaction-tab-content active" id="tabContentReviews">
+          <div id="reviewActionContainer"></div>
+          <div class="reviews-list-wrapper">
+            <div id="detailReviewsList"></div>
+          </div>
+        </div>
+        <div class="interaction-tab-content" id="tabContentQuestions" style="display: none;">
+          <form class="qa-new-question-form" id="newQuestionForm">
+            <div class="qa-form-row">
+              <input type="text" id="questionAuthorName" class="form-control" placeholder="Họ và tên..." required
+                style="max-width: 260px;">
+            </div>
+            <textarea id="questionContentText" class="form-control" rows="2"
+              placeholder="Đặt câu hỏi về chuột / bàn phím..." required style="margin-top: 8px;"></textarea>
+            <button type="submit" class="btn-primary" style="margin-top: 8px; padding: 7px 18px;"><i
+                class="fa-solid fa-paper-plane"></i> Gửi câu hỏi</button>
+          </form>
+          <div class="qa-list-wrapper">
+            <div id="detailQuestionsList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cartDrawer">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <div class="cart-drawer-title"><i class="fa-solid fa-bag-shopping" style="color: var(--vt-red);"></i>
+          <h3>Giỏ Hàng Công Nghệ</h3>
+        </div>
+        <button class="cart-drawer-close" id="closeCartDrawerBtn">&times;</button>
+      </div>
+      <div class="cart-drawer-body">
+        <div id="cartDrawerItemsList"></div>
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-summary-line"><span>Tạm tính:</span><span id="drawerSubtotal">0₫</span></div>
+        <div class="cart-summary-line"><span>Vận chuyển:</span><span id="drawerShipping">Miễn phí</span></div>
+        <div class="cart-total-line"><span>Tổng thanh toán:</span><span id="drawerFinalTotal">0₫</span></div>
+        <button class="btn-primary" style="width: 100%; margin-top: 14px; padding: 12px; justify-content: center;"
+          onclick="document.getElementById('cartDrawer').classList.remove('open'); Checkout.openModal();">
+          <i class="fa-solid fa-credit-card"></i> TIẾN HÀNH ĐẶT HÀNG
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHECKOUT MODAL ==================== -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-content" style="max-width: 1050px;">
+      <button class="modal-close-btn" id="closeCheckoutModalBtn">&times;</button>
+      <div class="checkout-layout">
+        <div class="checkout-header-banner">
+          <i class="fa-solid fa-shield-halved" style="color: var(--vt-red); font-size: 1.5rem;"></i>
+          <div>
+            <h3>Thông Tin Đặt Hàng & Thanh Toán An Toàn</h3>
+          </div>
+        </div>
+        <form id="checkoutForm">
+          <div class="checkout-grid">
+            <div class="checkout-form-col">
+              <h4 style="font-size: 1rem; font-weight: 800; margin-bottom: 14px; color: #111;">1. Thông tin giao hàng
+              </h4>
+              <div class="form-group">
+                <label class="form-label" for="customerName">Họ và tên người nhận *</label>
+                <input type="text" id="customerName" class="form-control" placeholder="Nguyễn Văn A" required>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                  <label class="form-label" for="customerPhone">Số điện thoại *</label>
+                  <input type="tel" id="customerPhone" class="form-control" placeholder="0988123456" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="customerEmail">Email</label>
+                  <input type="email" id="customerEmail" class="form-control" placeholder="email@gmail.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="shippingAddress">Địa chỉ nhận hàng chi tiết *</label>
+                <input type="text" id="shippingAddress" class="form-control"
+                  placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/TP" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="orderNotes">Ghi chú đơn hàng</label>
+                <input type="text" id="orderNotes" class="form-control"
+                  placeholder="Giao giờ hành chính, gọi trước khi đến...">
+              </div>
+
+              <div class="form-group" style="margin-top: 18px;">
+                <label class="form-label" style="font-weight: 800;">Phương thức thanh toán *</label>
+                <div class="payment-methods-grid">
+                  <label class="payment-method-card active">
+                    <input type="radio" name="payment_method" value="vnpay" checked>
+                    <div style="color: #005baa; font-size: 1.3rem;"><i class="fa-solid fa-qrcode"></i></div>
+                    <div class="pm-details">
+                      <strong>Cổng VNPAY-QR</strong>
+                    </div>
+                  </label>
+                  <label class="payment-method-card">
+                    <input type="radio" name="payment_method" value="momo">
+                    <div style="color: #d82d8b; font-size: 1.3rem;"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="pm-details">
+                      <strong>Ví MoMo</strong>
+                    </div>
+                  </label>
+                  <label class="payment-method-card">
+                    <input type="radio" name="payment_method" value="credit_card">
+                    <div style="color: #2563eb; font-size: 1.3rem;"><i class="fa-solid fa-credit-card"></i></div>
+                    <div class="pm-details">
+                      <strong>Thẻ Quốc Tế (Visa / Mastercard)</strong>
+                    </div>
+                  </label>
+                  <label class="payment-method-card">
+                    <input type="radio" name="payment_method" value="cod">
+                    <div style="color: #059669; font-size: 1.3rem;"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="pm-details">
+                      <strong>Thanh toán khi nhận hàng (COD)</strong>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="background: #f9fafb; border: 1px solid var(--border-color); border-radius: 10px; padding: 18px; height: fit-content;">
+              <h4
+                style="font-size: 1rem; font-weight: 800; margin-bottom: 14px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                Đơn hàng của bạn</h4>
+              <div id="checkoutOrderItems" style="height: 260px; overflow-y: auto; margin-bottom: 14px;"></div>
+              <div class="cart-summary-line"><span>Tạm tính:</span><span id="checkoutSubtotal">0₫</span></div>
+              <div class="cart-summary-line"><span>Vận chuyển:</span><span id="checkoutShippingFee">30.000₫</span></div>
+              <div class="cart-summary-line"><span>Giảm giá:</span><span id="checkoutDiscount"
+                  style="color: #059669;">-0₫</span></div>
+              <div class="cart-total-line" style="font-size: 1.2rem;"><span>Tổng thanh toán:</span><span
+                  id="checkoutFinalTotal">0₫</span></div>
+              <button type="submit" class="btn-primary" id="btnSubmitOrder"
+                style="width: 100%; margin-top: 20px; padding: 12px; font-size: 1rem; justify-content: center;">
+                <i class="fa-solid fa-lock"></i> ĐẶT HÀNG NGAY
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ORDER SUCCESS MODAL ==================== -->
+  <div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal-content" style="max-width: 540px;">
+      <button class="modal-close-btn"
+        onclick="document.getElementById('orderSuccessModal').classList.remove('active')">&times;</button>
+      <div class="order-success-box">
+        <div class="success-icon-animated"><i class="fa-solid fa-check"></i></div>
+        <h2 style="font-size: 1.5rem; font-weight: 900; color: #111;">Đặt Hàng Thành Công!</h2>
+        <p style="color: #6b7280; font-size: 0.88rem;">Cảm ơn bạn đã lựa chọn mua sắm điện thoại chính hãng tại
+          TechStore.</p>
+        <div style="margin-top: 10px; font-size: 0.85rem; color: #374151;">Mã đơn hàng của bạn:</div>
+        <div class="order-code-badge" id="successOrderCode">ORD-00000</div>
+        <div
+          style="background: #f9fafb; border: 1px solid var(--border-color); border-radius: 8px; padding: 14px; text-align: left; margin: 16px 0; font-size: 0.88rem; line-height: 1.8;">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Khách hàng:</span>
+            <strong id="successCustomerName">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Số điện thoại:</span>
+            <strong id="successCustomerPhone">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Địa chỉ:</span>
+            <strong id="successCustomerAddress">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Ghi chú:</span>
+            <strong id="successOrderNote">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Phương thức:</span>
+            <strong id="successPaymentStatus">--</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #6b7280;">Tổng thanh toán:</span>
+            <strong style="color: var(--vt-red);" id="successTotalAmount">0₫</strong>
+          </div>
+        </div>
+        <button class="btn-primary" style="margin: 0 auto;"
+          onclick="document.getElementById('orderSuccessModal').classList.remove('active');">
+          Tiếp tục mua sắm
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ORDER TRACKING MODAL ==================== -->
+  <div class="modal-overlay" id="orderTrackingModal">
+    <div class="modal-content" style="max-width: 600px;">
+      <button class="modal-close-btn" id="closeTrackingModalBtn">&times;</button>
+      <div style="padding: 24px;">
+        <h3
+          style="font-size: 1.25rem; font-weight: 800; color: var(--vt-red); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-magnifying-glass-location"></i> Tra Cứu Trạng Thái Đơn Hàng
+        </h3>
+        <p style="color: #6b7280; font-size: 0.85rem; margin-bottom: 16px;">
+          Nhập <strong>Mã đơn hàng</strong> (VD: <code>ORD-98241</code>) hoặc <strong>Số điện thoại</strong> để kiểm
+          tra.
+        </p>
+        <form id="orderTrackingForm" style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <input type="text" id="trackingInputCode" class="form-control" placeholder="Nhập mã đơn hoặc số điện thoại..."
+            required style="flex: 1;">
+          <button type="submit" class="btn-primary" style="white-space: nowrap;">
+            <i class="fa-solid fa-search"></i> Tra cứu
+          </button>
+        </form>
+        <div id="trackingResultContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER DRAWER GAMING GEAR -->
+  <div class="filter-drawer-overlay" id="filterDrawerOverlay">
+    <div class="filter-drawer" id="filterDrawer">
+      <div class="filter-drawer-header">
+        <div class="drawer-title"><i class="fa-solid fa-sliders" style="color: var(--vt-red);"></i>
+          <h3>Bộ Lọc Gaming Gear</h3>
+        </div>
+        <button type="button" class="btn-close-drawer" id="btnCloseFilterDrawer">&times;</button>
+      </div>
+      <div class="filter-drawer-body">
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title"><i class="fa-solid fa-tag"></i> Thương hiệu</div>
+          <div class="drawer-brand-grid" id="drawerBrandGrid">
+            <button type="button" class="drawer-chip active" data-brand="all">Tất cả</button>
+            <button type="button" class="drawer-chip" data-brand="Razer">Razer</button>
+            <button type="button" class="drawer-chip" data-brand="Logitech">Logitech</button>
+            <button type="button" class="drawer-chip" data-brand="Keychron">Keychron</button>
+            <button type="button" class="drawer-chip" data-brand="Corsair">Corsair</button>
+          </div>
+        </div>
+
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title"><i class="fa-solid fa-computer-mouse"></i> Phân loại & Tính năng</div>
+          <div class="drawer-spec-grid">
+            <button type="button" class="drawer-spec-chip active" data-spec-type="feature" data-spec-val="all">Tất
+              cả</button>
+            <button type="button" class="drawer-spec-chip" data-spec-type="feature" data-spec-val="Chuột">Chuột</button>
+            <button type="button" class="drawer-spec-chip" data-spec-type="feature" data-spec-val="Bàn phím">Bàn phím
+              cơ</button>
+            <button type="button" class="drawer-spec-chip" data-spec-type="feature" data-spec-val="công thái học">Công
+              thái học</button>
+          </div>
+        </div>
+
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title"><i class="fa-solid fa-wifi"></i> Kết nối</div>
+          <div class="drawer-spec-grid">
+            <button type="button" class="drawer-spec-chip active" data-spec-type="connection" data-spec-val="all">Tất
+              cả</button>
+            <button type="button" class="drawer-spec-chip" data-spec-type="connection" data-spec-val="Không dây">Không
+              dây</button>
+            <button type="button" class="drawer-spec-chip" data-spec-type="connection"
+              data-spec-val="Bluetooth">Bluetooth</button>
+          </div>
+        </div>
+
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title"><i class="fa-solid fa-dollar-sign"></i> Khoảng giá</div>
+          <div class="drawer-custom-price-inputs">
+            <div class="price-input-box"><label>Từ (₫)</label><input type="number" id="drawerMinPriceInput"
+                placeholder="0" min="0"></div>
+            <span class="price-separator">-</span>
+            <div class="price-input-box"><label>Đến (₫)</label><input type="number" id="drawerMaxPriceInput"
+                placeholder="10.000.000" min="0"></div>
+          </div>
+        </div>
+
+        <div class="drawer-filter-group">
+          <div class="drawer-group-title"><i class="fa-solid fa-star"></i> Đánh giá</div>
+          <div class="drawer-rating-options" id="drawerRatingOptions">
+            <button type="button" class="drawer-rating-chip active" data-rating="all">Tất cả</button>
+            <button type="button" class="drawer-rating-chip" data-rating="4">Từ 4 sao <i class="fa-solid fa-star"
+                style="color: #f59e0b;"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="filter-drawer-footer">
+        <button type="button" class="btn-drawer-reset" id="btnDrawerReset"><i class="fa-solid fa-rotate-left"></i> Thiết
+          lập lại</button>
+        <button type="button" class="btn-drawer-apply" id="btnDrawerApply">Áp dụng bộ lọc</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechStore Ecommerce System. Gaming gear và phụ kiện chính hãng.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING CONTROLS -->
+  <div class="floating-controls-cluster">
+    <button type="button" class="btn-back-to-top" id="btnBackToTop" title="Cuộn lên đầu trang">
+      <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+        <circle class="progress-ring-bg" cx="23" cy="23" r="19" stroke-width="3" fill="none" />
+        <circle class="progress-ring-circle" id="scrollProgressCircle" cx="23" cy="23" r="19" stroke-width="3"
+          fill="none" />
+      </svg>
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <div class="floating-support-wrapper">
+      <div class="support-popup-menu" id="supportPopupMenu">
+        <div class="support-popup-header"><strong><i class="fa-solid fa-headset" style="color: var(--vt-red);"></i> Hỗ
+            Trợ Gaming Gear</strong></div>
+        <a href="tel:18008123" class="support-popup-item"><i class="fa-solid fa-phone-volume"
+            style="color: #10b981;"></i>
+          <div>
+            <div style="font-weight: 700;">1800 8123 (Miễn phí)</div>
+          </div>
+        </a>
+      </div>
+      <button type="button" class="btn-floating-support" id="btnFloatingSupport"><span
+          class="support-pulse-ring"></span><i class="fa-solid fa-comments"></i></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/cart.js"></script>
+  <script src="/js/payment-gateway.js"></script>
+  <script src="/js/checkout.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

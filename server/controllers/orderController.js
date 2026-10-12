@@ -62,20 +62,31 @@ exports.getOrders = async (req, res) => {
   }
 };
 
-// Tra cứu đơn hàng theo Mã đơn hoặc Số điện thoại
+// Tra cứu đơn hàng theo Mã đơn hoặc Số điện thoại (trả về toàn bộ danh sách đơn hàng khớp)
 exports.trackOrder = async (req, res) => {
   try {
     const { code } = req.params;
-    const order = await db.getOrderByCode(code);
-    if (!order) {
+    const orders = await db.getOrdersByQuery(code);
+    if (!orders || orders.length === 0) {
       return res.status(404).json({
         success: false,
-        message: `Không tìm thấy đơn hàng với mã hoặc số điện thoại: "${code}". Vui lòng kiểm tra lại.`
+        message: `Không tìm thấy đơn hàng nào với mã hoặc số điện thoại: "${code}". Vui lòng kiểm tra lại.`
       });
     }
-    res.json({ success: true, data: order });
+    res.json({ success: true, data: orders, count: orders.length });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Lỗi khi tra cứu đơn hàng', error: error.message });
+  }
+};
+
+// Lấy danh sách toàn bộ đơn hàng của người dùng đang đăng nhập
+exports.getUserOrders = async (req, res) => {
+  try {
+    const { userId, phone, email } = req.query;
+    const orders = await db.getUserOrders({ userId, phone, email });
+    res.json({ success: true, data: orders, count: orders.length });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Lỗi khi tải danh sách đơn hàng', error: error.message });
   }
 };
 

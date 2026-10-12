@@ -501,6 +501,77 @@ const db = {
     return order;
   },
 
+  async getOrdersByQuery(query) {
+    const p = getPool();
+    const str = String(query || '').trim();
+    if (!str) return [];
+
+    const cleaned = str.replace(/[\s.-]/g, '');
+    const isNum = /^\d+$/.test(cleaned);
+    let orders = [];
+
+    if (isNum) {
+      [orders] = await p.query(
+        `SELECT * FROM orders 
+         WHERE customer_phone = ? 
+            OR REPLACE(REPLACE(customer_phone, ' ', ''), '.', '') = ? 
+            OR UPPER(order_code) = ? 
+            OR id = ? 
+            OR user_id = ? 
+         ORDER BY id DESC`,
+        [str, cleaned, str.toUpperCase(), Number(cleaned), Number(cleaned)]
+      );
+    } else {
+      [orders] = await p.query(
+        `SELECT * FROM orders 
+         WHERE UPPER(order_code) = ? 
+            OR customer_phone = ? 
+            OR customer_email = ? 
+         ORDER BY id DESC`,
+        [str.toUpperCase(), str, str]
+      );
+    }
+
+    for (const order of orders) {
+      const [items] = await p.query('SELECT * FROM order_items WHERE order_id = ?', [order.id]);
+      order.items = items;
+    }
+    return orders;
+  },
+
+  async getUserOrders({ userId, phone, email }) {
+    const p = getPool();
+    const conditions = [];
+    const params = [];
+
+    if (userId) {
+      conditions.push('user_id = ?');
+      params.push(Number(userId));
+    }
+    if (phone) {
+      const cleanPhone = String(phone).replace(/[\s.-]/g, '');
+      conditions.push('(customer_phone = ? OR REPLACE(REPLACE(customer_phone, " ", ""), ".", "") = ?)');
+      params.push(phone, cleanPhone);
+    }
+    if (email) {
+      conditions.push('customer_email = ?');
+      params.push(email);
+    }
+
+    if (conditions.length === 0) return [];
+
+    const [orders] = await p.query(
+      `SELECT * FROM orders WHERE ${conditions.join(' OR ')} ORDER BY id DESC`,
+      params
+    );
+
+    for (const order of orders) {
+      const [items] = await p.query('SELECT * FROM order_items WHERE order_id = ?', [order.id]);
+      order.items = items;
+    }
+    return orders;
+  },
+
   async updateOrderStatus(identifier, { order_status, payment_status, transaction_id }) {
     const p = getPool();
     const existingOrder = await this.getOrderByCode(identifier);

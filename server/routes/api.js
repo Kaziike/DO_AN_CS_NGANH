@@ -43,6 +43,7 @@ router.get('/categories', productController.getCategories);
 // --- ORDER ROUTES ---
 router.post('/orders', orderController.createOrder);
 router.get('/orders', requireAdmin, orderController.getOrders);
+router.get('/orders/user-orders', orderController.getUserOrders);
 router.get('/orders/track/:code', orderController.trackOrder);
 router.patch('/orders/:id/status', requireAdmin, orderController.updateOrderStatus);
 

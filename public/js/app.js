@@ -358,7 +358,8 @@ const App = {
       { id: 'showcaseSmartwatches', viewportId: 'viewportSmartwatches', btnPrevId: 'btnSmartwatchesPrev', btnNextId: 'btnSmartwatchesNext', slug: 'smartwatch' },
       { id: 'showcaseTablets', viewportId: 'viewportTablets', btnPrevId: 'btnTabletsPrev', btnNextId: 'btnTabletsNext', slug: 'tablet' },
       { id: 'showcaseAudio', viewportId: 'viewportAudio', btnPrevId: 'btnAudioPrev', btnNextId: 'btnAudioNext', slug: 'audio' },
-      { id: 'showcaseGamingGear', viewportId: 'viewportGamingGear', btnPrevId: 'btnGamingGearPrev', btnNextId: 'btnGamingGearNext', slug: 'gaming-gear' }
+      { id: 'showcaseGamingGear', viewportId: 'viewportGamingGear', btnPrevId: 'btnGamingGearPrev', btnNextId: 'btnGamingGearNext', slug: 'gaming-gear' },
+      { id: 'showcaseComponents', viewportId: 'viewportComponents', btnPrevId: 'btnComponentsPrev', btnNextId: 'btnComponentsNext', slug: 'components' }
     ];
 
     for (const sc of showcases) {
@@ -424,6 +425,7 @@ const App = {
       'tablet': 'sectionTablets',
       'audio': 'sectionAudio',
       'gaming-gear': 'sectionGamingGear',
+      'components': 'sectionComponents',
       'smartwatch-kids': 'sectionSmartwatches',
       'smartwacth-kid': 'sectionSmartwatches',
       'all': 'featuredSliderSection'
@@ -475,6 +477,7 @@ const App = {
       if (this.state.screen) params.append('screen', this.state.screen);
       if (this.state.feature) params.append('feature', this.state.feature);
       if (this.state.connection) params.append('connection', this.state.connection);
+      if (this.state.component_type) params.append('component_type', this.state.component_type);
 
       const res = await fetch(`/api/products?${params.toString()}`);
       const data = await res.json();
@@ -734,16 +737,17 @@ const App = {
     }
 
     // Cấu hình kỹ thuật (CPU, GPU, RAM, Ổ cứng, Màn hình, Tính năng, Kết nối)
-    const specLabels = { 
-      cpu: 'CPU/Chip', 
-      gpu: 'Card đồ họa', 
-      ram: 'RAM', 
-      storage: 'Bộ nhớ/Ổ cứng', 
+    const specLabels = {
+      cpu: 'CPU/Chip',
+      gpu: 'Card đồ họa',
+      ram: 'RAM',
+      storage: 'Bộ nhớ/Ổ cứng',
       screen: 'Màn hình/Kích thước',
       feature: 'Tính năng',
-      connection: 'Kết nối'
+      connection: 'Kết nối',
+      component_type: 'Loại linh kiện'
     };
-    ['cpu', 'gpu', 'ram', 'storage', 'screen', 'feature', 'connection'].forEach(type => {
+    ['cpu', 'gpu', 'ram', 'storage', 'screen', 'feature', 'connection', 'component_type'].forEach(type => {
       if (this.state[type]) {
         tags.push({
           type: type,
@@ -861,6 +865,7 @@ const App = {
     this.state.screen = null;
     this.state.feature = null;
     this.state.connection = null;
+    this.state.component_type = null;
     this.state.sort = 'newest';
     this.state.search = '';
     this.state.page = 1;
@@ -880,7 +885,7 @@ const App = {
     document.querySelector('#quickPricePills .price-pill[data-range="all"]')?.classList.add('active');
 
     // Reset Spec Chips
-    ['cpu', 'gpu', 'ram', 'storage', 'screen', 'feature', 'connection'].forEach(type => {
+    ['cpu', 'gpu', 'ram', 'storage', 'screen', 'feature', 'connection', 'component_type'].forEach(type => {
       document.querySelectorAll(`.spec-filter-chip[data-spec-type="${type}"]`).forEach(c => c.classList.remove('active'));
       document.querySelector(`.spec-filter-chip[data-spec-type="${type}"][data-spec-val="all"]`)?.classList.add('active');
     });
@@ -1255,7 +1260,7 @@ const App = {
       if (Array.isArray(p.images) && p.images.length > 0) {
         allImages = p.images;
       } else if (typeof p.images === 'string') {
-        try { allImages = JSON.parse(p.images); } catch(e) { allImages = [p.images]; }
+        try { allImages = JSON.parse(p.images); } catch (e) { allImages = [p.images]; }
       } else if (p.specifications && Array.isArray(p.specifications.demo_images)) {
         allImages = p.specifications.demo_images;
       }
@@ -2366,11 +2371,11 @@ const App = {
       let timelineHtml = `
         <div class="order-timeline">
           ${statusSteps.map((step, idx) => {
-            let stepClass = '';
-            if (currentIdx > idx) stepClass = 'completed';
-            else if (currentIdx === idx) stepClass = 'current';
+        let stepClass = '';
+        if (currentIdx > idx) stepClass = 'completed';
+        else if (currentIdx === idx) stepClass = 'current';
 
-            return `
+        return `
               <div class="timeline-step ${stepClass}">
                 <div class="timeline-circle">
                   <i class="fa-solid ${currentIdx > idx ? 'fa-check' : (idx === 0 ? 'fa-file-invoice' : (idx === 1 ? 'fa-box' : (idx === 2 ? 'fa-truck-fast' : 'fa-house-chimney')))}"></i>
@@ -2378,7 +2383,7 @@ const App = {
                 <span>${step.label}</span>
               </div>
             `;
-          }).join('')}
+      }).join('')}
         </div>
       `;
 

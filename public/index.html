@@ -104,7 +104,7 @@
 
   <!-- ==================== NAVIGATION BAR ==================== -->
   <nav class="vts-navbar">
-    <div class="container">
+    <div class="container-navbar">
       <ul class="vts-menu-list">
         <li class="vts-menu-item">
           <a class="vts-menu-link active" data-cat="all" onclick="App.filterByCategory('all')">
@@ -149,9 +149,9 @@
           </a>
         </li>
         <li class="vts-menu-item">
-          <a href="/kids-smartwatch.html" class="vts-menu-link" data-cat="kids-smartwatch">
-            <i class="fa-solid fa-heart-pulse"></i>
-            <span>Đồng hồ trẻ em</span>
+          <a href="/components.html" class="vts-menu-link" data-cat="components">
+            <i class="fa-solid fa-computer"></i>
+            <span>Linh kiện máy tính</span>
           </a>
         </li>
       </ul>
@@ -265,11 +265,11 @@
             <span>Gaming Gear</span>
           </div>
 
-          <div class="cat-badge-item" onclick="App.filterByCategory('smartwatch-kids')">
+          <div class="cat-badge-item" onclick="App.filterByCategory('components')">
             <div class="cat-badge-icon-box bg-yellow">
-              <i class="fa-solid fa-child"></i>
+              <i class="fa-solid fa-computer"></i>
             </div>
-            <span>Đồng hồ trẻ em</span>
+            <span>Linh kiện máy tính</span>
           </div>
 
 
@@ -315,21 +315,28 @@
       </div>
     </div>
   </section>
- 
+
   <!-- ==================== KHU VỰC KẾT QUẢ TÌM KIẾM SẢN PHẨM (INDEX) ==================== -->
   <section class="container" id="searchResultsSection" style="display: none; margin-top: 24px; margin-bottom: 24px;">
-    <div class="catalog-card-wrapper" style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px 24px; box-shadow: var(--shadow-sm);">
-      <div class="catalog-header-top" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f3f4f6; padding-bottom: 14px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+    <div class="catalog-card-wrapper"
+      style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px 24px; box-shadow: var(--shadow-sm);">
+      <div class="catalog-header-top"
+        style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f3f4f6; padding-bottom: 14px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
         <div class="catalog-title-group">
-          <h2 style="font-size: 1.25rem; font-weight: 800; color: #111; display: flex; align-items: center; gap: 8px; margin: 0;">
+          <h2
+            style="font-size: 1.25rem; font-weight: 800; color: #111; display: flex; align-items: center; gap: 8px; margin: 0;">
             <i class="fa-solid fa-magnifying-glass" style="color: var(--vt-red);"></i>
             <span>Kết quả tìm kiếm: <strong id="searchKeywordLabel" style="color: var(--vt-red);"></strong></span>
           </h2>
-          <p class="catalog-subtitle" style="font-size: 0.82rem; color: #6b7280; margin-top: 4px; margin-bottom: 0;">Danh sách sản phẩm phù hợp với từ khóa bạn đã tìm kiếm</p>
+          <p class="catalog-subtitle" style="font-size: 0.82rem; color: #6b7280; margin-top: 4px; margin-bottom: 0;">
+            Danh sách sản phẩm phù hợp với từ khóa bạn đã tìm kiếm</p>
         </div>
         <div class="catalog-header-right" style="display: flex; align-items: center; gap: 12px;">
-          <span class="catalog-results-badge" id="searchResultsCountBadge" style="background: #fee2e2; color: var(--vt-red); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">0 sản phẩm</span>
-          <button type="button" class="btn-clear-search-view" id="btnCloseSearchResults" onclick="App.clearSearchMode()">
+          <span class="catalog-results-badge" id="searchResultsCountBadge"
+            style="background: #fee2e2; color: var(--vt-red); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">0
+            sản phẩm</span>
+          <button type="button" class="btn-clear-search-view" id="btnCloseSearchResults"
+            onclick="App.clearSearchMode()">
             <i class="fa-solid fa-xmark"></i> Thoát tìm kiếm
           </button>
         </div>
@@ -544,6 +551,36 @@
       </div>
       <div class="featured-carousel-viewport carousel-viewport" id="viewportGamingGear">
         <div class="featured-carousel-track carousel-track" id="showcaseGamingGear">
+          <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. LINH KIỆN MÁY TÍNH & ĐIỆN TỬ BÁN CHẠY -->
+  <section class="container featured-slider-section showcase-section" id="sectionComponents">
+    <div class="showcase-card-wrapper">
+      <div class="showcase-header">
+        <div class="showcase-title-group">
+          <h2><i class="fa-solid fa-computer" style="color: #eab308;"></i> Linh Kiện Điện Tử & Máy Tính Nổi Bật</h2>
+          <p>CPU Intel Core i9, AMD Ryzen, VGA RTX 4090, RAM DDR5, SSD NVMe Gen 4 và Màn hình đồ họa</p>
+        </div>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnComponentsPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnComponentsNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="/components.html" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="featured-carousel-viewport carousel-viewport" id="viewportComponents">
+        <div class="featured-carousel-track carousel-track" id="showcaseComponents">
           <!-- Rendered by app.js (Tối đa 8 sản phẩm, 4 sản phẩm hiển thị cùng lúc) -->
         </div>
       </div>

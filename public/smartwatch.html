@@ -92,7 +92,7 @@
 
   <!-- NAVIGATION BAR -->
   <nav class="vts-navbar">
-    <div class="container">
+    <div class="container-navbar">
       <ul class="vts-menu-list">
         <li class="vts-menu-item"><a href="/" class="vts-menu-link"><i class="fa-solid fa-border-all"></i><span>Tất
               cả</span></a></li>
@@ -102,16 +102,16 @@
               class="fa-solid fa-laptop"></i><span>Laptop</span></a></li>
         <li class="vts-menu-item"><a href="/tablet.html" class="vts-menu-link"><i
               class="fa-solid fa-tablet-screen-button"></i><span>Máy tính bảng</span></a></li>
-        <li class="vts-menu-item"><a href="/smartwatch.html" class="vts-menu-link active"><i
+        <li class="vts-menu-item"><a href="/smartwatch.html" class="vts-menu-link"><i
               class="fa-solid fa-clock"></i><span>Đồng hồ thông minh</span></a></li>
         <li class="vts-menu-item"><a href="/audio.html" class="vts-menu-link"><i
               class="fa-solid fa-headphones"></i><span>Âm thanh & Tai nghe</span></a></li>
         <li class="vts-menu-item"><a href="/gaming-gear.html" class="vts-menu-link"><i
               class="fa-solid fa-gamepad"></i><span>Gaming Gear & Phụ kiện</span></a></li>
         <li class="vts-menu-item">
-          <a href="/kids-smartwatch.html" class="vts-menu-link" data-cat="kids-smartwatch">
-            <i class="fa-solid fa-heart-pulse"></i>
-            <span>Đồng hồ trẻ em</span>
+          <a href="/components.html" class="vts-menu-link" data-cat="components">
+            <i class="fa-solid fa-computer"></i>
+            <span>Linh kiện máy tính</span>
           </a>
         </li>
       </ul>
@@ -162,11 +162,15 @@
         <span class="brand-filter-label"><i class="fa-solid fa-tags"></i> Thương hiệu:</span>
         <div class="brand-chips-row" id="quickBrandChips">
           <button type="button" class="brand-chip active" data-brand="all">Tất cả</button>
-          <button type="button" class="brand-chip" data-brand="Apple"><i class="fa-brands fa-apple"></i> Apple
-            Watch</button>
-          <button type="button" class="brand-chip" data-brand="Samsung">Samsung Galaxy Watch</button>
+          <button type="button" class="brand-chip" data-brand="Apple"><i class="fa-brands fa-apple"></i> Apple Watch</button>
+          <button type="button" class="brand-chip" data-brand="Samsung">Samsung</button>
           <button type="button" class="brand-chip" data-brand="Garmin">Garmin</button>
-          <button type="button" class="brand-chip" data-brand="Xiaomi">Xiaomi Watch</button>
+          <button type="button" class="brand-chip" data-brand="Xiaomi">Xiaomi</button>
+          <button type="button" class="brand-chip" data-brand="Huawei">Huawei</button>
+          <button type="button" class="brand-chip" data-brand="Viettel"><i class="fa-solid fa-child"></i> Viettel Trẻ Em</button>
+          <button type="button" class="brand-chip" data-brand="Wonlex"><i class="fa-solid fa-location-dot"></i> Wonlex</button>
+          <button type="button" class="brand-chip" data-brand="Masstel">Masstel</button>
+          <button type="button" class="brand-chip" data-brand="Kidcare">Kidcare</button>
         </div>
       </div>
 
@@ -183,8 +187,10 @@
 
           <div class="quick-price-pills" id="quickPricePills">
             <button type="button" class="price-pill active" data-range="all">Tất cả giá</button>
-            <button type="button" class="price-pill" data-range="0-8000000">Dưới 8 triệu</button>
-            <button type="button" class="price-pill" data-range="8000000-15000000">8 - 15 triệu</button>
+            <button type="button" class="price-pill" data-range="0-2000000">Dưới 2 triệu</button>
+            <button type="button" class="price-pill" data-range="2000000-5000000">2 - 5 triệu</button>
+            <button type="button" class="price-pill" data-range="5000000-10000000">5 - 10 triệu</button>
+            <button type="button" class="price-pill" data-range="10000000-15000000">10 - 15 triệu</button>
             <button type="button" class="price-pill" data-range="15000000-999000000">Trên 15 triệu</button>
           </div>
         </div>
@@ -207,7 +213,7 @@
       <div class="advanced-filters-panel" id="advancedFiltersPanel">
         <div class="panel-header-row">
           <div class="panel-title"><i class="fa-solid fa-sliders" style="color: var(--vt-red);"></i> Tùy chọn tính năng
-            đồng hồ thông minh chi tiết</div>
+            đồng hồ thông minh & định vị trẻ em</div>
           <button type="button" class="btn-secondary" style="padding: 4px 10px; font-size: 0.78rem;"
             onclick="App.resetFilters()">
             <i class="fa-solid fa-rotate-left"></i> Đặt lại
@@ -215,6 +221,26 @@
         </div>
 
         <div class="spec-filters-container">
+          <!-- Hàng 0: Nhu cầu sử dụng -->
+          <div class="spec-filter-bar">
+            <span class="spec-filter-label"><i class="fa-solid fa-layer-group"></i> Nhu cầu:</span>
+            <div class="spec-chips-row">
+              <button type="button" class="spec-filter-chip active" data-spec-type="feature" data-spec-val="all">Tất cả nhu cầu</button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="Định vị">
+                <i class="fa-solid fa-location-crosshairs"></i> Đồng hồ định vị trẻ em (GPS 4G)
+              </button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="Video Call">
+                <i class="fa-solid fa-video"></i> Gọi Video Call 4G
+              </button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="ECG">
+                <i class="fa-solid fa-heart-pulse"></i> Đo ECG & Huyết áp
+              </button>
+              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="Titanium">
+                <i class="fa-solid fa-shield"></i> Vỏ Titanium cao cấp
+              </button>
+            </div>
+          </div>
+
           <!-- Hàng 1: Kích thước mặt / Màn hình -->
           <div class="spec-filter-bar">
             <span class="spec-filter-label"><i class="fa-solid fa-display"></i> Kích cỡ mặt:</span>
@@ -242,23 +268,6 @@
                   class="fa-brands fa-apple"></i> Apple S9 SiP (Double Tap)</button>
               <button type="button" class="spec-filter-chip" data-spec-type="cpu" data-spec-val="Exynos">Exynos W930
                 Dual Core</button>
-            </div>
-          </div>
-
-          <!-- Hàng 3: Tính năng & Chống nước -->
-          <div class="spec-filter-bar">
-            <span class="spec-filter-label"><i class="fa-solid fa-water"></i> Tính năng:</span>
-            <div class="spec-chips-row">
-              <button type="button" class="spec-filter-chip active" data-spec-type="feature" data-spec-val="all">Tất cả
-                tính năng</button>
-              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="WR100">WR100 (Lặn
-                biển 40m)</button>
-              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="5ATM">5ATM + IP68
-                thể thao</button>
-              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="ECG">Đo ECG & Huyết
-                áp</button>
-              <button type="button" class="spec-filter-chip" data-spec-type="feature" data-spec-val="Titanium">Vỏ
-                Titanium cao cấp</button>
             </div>
           </div>
         </div>

@@ -209,6 +209,7 @@ body {
     opacity: 0;
     transform: translateY(-6px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -637,6 +638,12 @@ body {
   z-index: 990;
   background: var(--vt-red-gradient);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+}
+
+.container-navbar {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .vts-menu-list {

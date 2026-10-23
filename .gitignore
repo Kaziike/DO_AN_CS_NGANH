@@ -49,3 +49,28 @@ desktop.ini
 *~
 *.sublime-project
 *.sublime-workspace
+
+# Image Assets
+public/images/
+images/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.ico
+*.bmp
+*.tiff
+*.svgz
+
+# Document Files
+*.doc
+*.docx
+*.pdf
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+TAI_LIEU/*.doc
+TAI_LIEU/*.docx
+TAI_LIEU/*.pdf

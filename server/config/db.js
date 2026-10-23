@@ -72,7 +72,7 @@ const db = {
   // ==========================================
   // 2. SẢN PHẨM (Products)
   // ==========================================
-  async getProducts({ category, brand, minPrice, maxPrice, minRating, sort, search, featured, cpu, gpu, ram, storage, screen, feature, connection, page = 1, limit = 12 } = {}) {
+  async getProducts({ category, brand, minPrice, maxPrice, minRating, sort, search, featured, cpu, gpu, ram, storage, screen, feature, connection, component_type, page = 1, limit = 12 } = {}) {
     const p = getPool();
     let sql = `
       SELECT p.*, c.name as category_name, c.slug as category_slug 
@@ -192,6 +192,15 @@ const db = {
       countParams.push(term, term);
     }
 
+    if (component_type) {
+      const filter = ' AND (p.specifications LIKE ? OR p.name LIKE ?)';
+      sql += filter;
+      countSql += filter;
+      const term = `%${component_type}%`;
+      params.push(term, term);
+      countParams.push(term, term);
+    }
+
     if (featured) {
       const filter = ' AND p.featured = 1';
       sql += filter;
@@ -227,10 +236,21 @@ const db = {
     params.push(limitNum, offset);
 
     const [rows] = await p.query(sql, params);
+    const safeJsonParse = (str, fallback) => {
+      if (!str) return fallback;
+      if (typeof str !== 'string') return str;
+      try {
+        return JSON.parse(str);
+      } catch (e) {
+        console.warn('JSON parse warning:', e.message);
+        return fallback;
+      }
+    };
+
     const products = rows.map(r => ({
       ...r,
-      images: typeof r.images === 'string' ? JSON.parse(r.images || '[]') : (r.images || []),
-      specifications: typeof r.specifications === 'string' ? JSON.parse(r.specifications || '{}') : (r.specifications || {})
+      images: safeJsonParse(r.images, []),
+      specifications: safeJsonParse(r.specifications, {})
     }));
 
     return {
@@ -253,10 +273,19 @@ const db = {
 
     if (rows.length === 0) return null;
     const r = rows[0];
+    const safeJsonParse = (str, fallback) => {
+      if (!str) return fallback;
+      if (typeof str !== 'string') return str;
+      try {
+        return JSON.parse(str);
+      } catch (e) {
+        return fallback;
+      }
+    };
     return {
       ...r,
-      images: typeof r.images === 'string' ? JSON.parse(r.images || '[]') : (r.images || []),
-      specifications: typeof r.specifications === 'string' ? JSON.parse(r.specifications || '{}') : (r.specifications || {})
+      images: safeJsonParse(r.images, []),
+      specifications: safeJsonParse(r.specifications, {})
     };
   },
 

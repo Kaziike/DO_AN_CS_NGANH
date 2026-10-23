@@ -3,7 +3,7 @@ const db = require('../config/db');
 // Lấy danh sách sản phẩm (có lọc, tìm kiếm, phân trang)
 exports.getProducts = async (req, res) => {
   try {
-    const { category, brand, minPrice, maxPrice, minRating, sort, search, featured, cpu, gpu, ram, storage, screen, feature, connection, page, limit } = req.query;
+    const { category, brand, minPrice, maxPrice, minRating, sort, search, featured, cpu, gpu, ram, storage, screen, feature, connection, component_type, page, limit } = req.query;
     const result = await db.getProducts({
       category,
       brand,
@@ -20,6 +20,7 @@ exports.getProducts = async (req, res) => {
       screen,
       feature,
       connection,
+      component_type,
       page: page || 1,
       limit: limit || 12
     });

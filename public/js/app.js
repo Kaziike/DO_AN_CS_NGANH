@@ -70,6 +70,8 @@ const App = {
     this.bindCartDrawer();
     this.bindOrderTracking();
     this.startFlashsaleCountdown();
+    this.renderMobileBottomNav();
+    this.initCategoryScrollIndicator();
 
     Checkout.init();
 
@@ -143,6 +145,9 @@ const App = {
                 <strong style="color: #111; font-size: 0.88rem;">${this.currentUser.name}</strong>
                 <div style="font-size: 0.75rem; color: #9ca3af; margin-top: 2px;">${this.currentUser.email || this.currentUser.phone}</div>
               </div>
+              <button type="button" class="user-dropdown-item" onclick="App.openUserProfileModal(); App.closeUserDropdown();">
+                <i class="fa-solid fa-id-card" style="color: var(--vt-red);"></i> Thông tin tài khoản
+              </button>
               <button type="button" class="user-dropdown-item" onclick="App.openMyOrders(); App.closeUserDropdown();">
                 <i class="fa-solid fa-truck-fast"></i> Đơn hàng của tôi
               </button>
@@ -269,8 +274,8 @@ const App = {
                       Tạm hết
                     </button>
                   ` : `
-                    <button class="btn-card-cart" onclick="App.handleAddToCart(${fs.product_id}, event)">
-                      <i class="fa-solid fa-cart-plus"></i> Thêm giỏ
+                    <button class="btn-card-cart" onclick="App.handleAddToCart(${fs.product_id}, event)" title="Thêm vào giỏ">
+                      <i class="fa-solid fa-cart-plus"></i> <span class="btn-card-cart-text">Thêm giỏ</span>
                     </button>
                     <button class="btn-card-buy" onclick="App.handleBuyNow(${fs.product_id})">
                       Mua ngay
@@ -543,8 +548,8 @@ const App = {
                 Tạm hết
               </button>
             ` : `
-              <button class="btn-card-cart" onclick="App.handleAddToCart(${p.id}, event)">
-                <i class="fa-solid fa-cart-plus"></i> Thêm giỏ
+              <button class="btn-card-cart" onclick="App.handleAddToCart(${p.id}, event)" title="Thêm vào giỏ">
+                <i class="fa-solid fa-cart-plus"></i> <span class="btn-card-cart-text">Thêm giỏ</span>
               </button>
               <button class="btn-card-buy" onclick="App.handleBuyNow(${p.id})">
                 Mua ngay
@@ -1154,20 +1159,80 @@ const App = {
     });
   },
 
-  // Bộ lọc nâng cao accordion mở rộng từ trên xuống
+  // Bộ lọc nâng cao accordion mở rộng từ trên xuống (Desktop) hoặc Bottom Sheet Modal (Mobile)
   bindAccordionFilters() {
     const btn = document.getElementById('btnToggleAdvancedFilters');
     const panel = document.getElementById('advancedFiltersPanel');
     if (!btn || !panel) return;
 
-    btn.addEventListener('click', () => {
+    // Đảm bảo nút đóng và footer áp dụng bộ lọc trên mobile được khởi tạo
+    const headerRow = panel.querySelector('.panel-header-row');
+    if (headerRow && !headerRow.querySelector('.btn-close-filter-sheet')) {
+      const closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'btn-close-filter-sheet';
+      closeBtn.innerHTML = '&times;';
+      closeBtn.title = 'Đóng bộ lọc';
+      closeBtn.onclick = (e) => {
+        e.stopPropagation();
+        this.closeAdvancedFilterSheet();
+      };
+      headerRow.appendChild(closeBtn);
+    }
+
+    if (!panel.querySelector('.mobile-filter-footer')) {
+      const mobileFooter = document.createElement('div');
+      mobileFooter.className = 'mobile-filter-footer';
+      mobileFooter.innerHTML = `
+        <button type="button" class="btn-filter-sheet-reset" onclick="App.resetFilters()">
+          <i class="fa-solid fa-rotate-left"></i> Đặt lại
+        </button>
+        <button type="button" class="btn-filter-sheet-apply" onclick="App.closeAdvancedFilterSheet()">
+          <i class="fa-solid fa-check"></i> Xem kết quả
+        </button>
+      `;
+      panel.appendChild(mobileFooter);
+    }
+
+    let backdrop = document.getElementById('filterBackdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.id = 'filterBackdrop';
+      backdrop.className = 'filter-backdrop';
+      document.body.appendChild(backdrop);
+      backdrop.addEventListener('click', () => {
+        this.closeAdvancedFilterSheet();
+      });
+    }
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = panel.classList.toggle('open');
       btn.classList.toggle('active', isOpen);
       const icon = btn.querySelector('.toggle-icon');
       if (icon) {
         icon.className = isOpen ? 'fa-solid fa-chevron-up toggle-icon' : 'fa-solid fa-chevron-down toggle-icon';
       }
+      if (backdrop) backdrop.classList.toggle('show', isOpen);
     });
+  },
+
+  closeAdvancedFilterSheet() {
+    const btn = document.getElementById('btnToggleAdvancedFilters');
+    const panel = document.getElementById('advancedFiltersPanel');
+    const backdrop = document.getElementById('filterBackdrop');
+    if (panel) panel.classList.remove('open');
+    if (btn) btn.classList.remove('active');
+    if (backdrop) backdrop.classList.remove('show');
+    const icon = btn?.querySelector('.toggle-icon');
+    if (icon) icon.className = 'fa-solid fa-chevron-down toggle-icon';
+
+    if (window.innerWidth <= 768) {
+      const catalog = document.getElementById('catalogSection') || document.querySelector('.catalog-card-wrapper');
+      if (catalog) {
+        catalog.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   },
 
   switchInteractionTab(tab) {
@@ -2131,6 +2196,9 @@ const App = {
     const badge = document.getElementById('cartCountBadge');
     if (badge) badge.textContent = summary.totalCount;
 
+    const mobileBadge = document.getElementById('mobileNavCartBadge');
+    if (mobileBadge) mobileBadge.textContent = summary.totalCount;
+
     const list = document.getElementById('cartDrawerItemsList');
     if (!list) return;
 
@@ -2527,6 +2595,281 @@ const App = {
         }
       });
     }
+  },
+
+  // 13. Mobile Bottom Navigation Bar (App Bar)
+  renderMobileBottomNav() {
+    let nav = document.getElementById('mobileBottomNav');
+    if (!nav) {
+      nav = document.createElement('nav');
+      nav.id = 'mobileBottomNav';
+      nav.className = 'mobile-bottom-nav';
+      nav.setAttribute('aria-label', 'Thanh điều hướng di động');
+      document.body.appendChild(nav);
+    }
+
+    const currentPath = window.location.pathname.toLowerCase();
+    const isHome = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html') || currentPath === '';
+    const cartSummary = Cart.getSummary ? Cart.getSummary() : { totalCount: 0 };
+    const cartCount = cartSummary.totalCount || 0;
+
+    nav.innerHTML = `
+      <a href="/" class="mobile-nav-item ${isHome ? 'active' : ''}">
+        <i class="fa-solid fa-house"></i>
+        <span>Trang chủ</span>
+      </a>
+      <button type="button" class="mobile-nav-item" id="mobileNavCategoriesBtn">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Danh mục</span>
+      </button>
+      <button type="button" class="mobile-nav-item" id="mobileNavSearchBtn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Tìm kiếm</span>
+      </button>
+      <button type="button" class="mobile-nav-item" id="mobileNavCartBtn">
+        <div class="mobile-nav-icon-wrap">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="mobile-nav-badge" id="mobileNavCartBadge">${cartCount}</span>
+        </div>
+        <span>Giỏ hàng</span>
+      </button>
+      <button type="button" class="mobile-nav-item" id="mobileNavUserBtn">
+        <i class="fa-solid fa-user"></i>
+        <span>Tài khoản</span>
+      </button>
+    `;
+
+    // Event: Danh mục
+    const catBtn = document.getElementById('mobileNavCategoriesBtn');
+    if (catBtn) {
+      catBtn.addEventListener('click', () => {
+        const catSection = document.getElementById('featuredCategories') || document.querySelector('.vts-navbar');
+        if (catSection) {
+          catSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.location.href = '/#featuredCategories';
+        }
+      });
+    }
+
+    // Event: Tìm kiếm
+    const searchBtn = document.getElementById('mobileNavSearchBtn');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const input = document.getElementById('mainSearchInput');
+        if (input) {
+          setTimeout(() => {
+            input.focus();
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 350);
+        }
+      });
+    }
+
+    // Event: Giỏ hàng
+    const cartBtn = document.getElementById('mobileNavCartBtn');
+    if (cartBtn) {
+      cartBtn.addEventListener('click', () => {
+        const drawer = document.getElementById('cartDrawer');
+        if (drawer) {
+          drawer.classList.add('open');
+        }
+      });
+    }
+
+    // Event: Tài khoản (mở popup đầy đủ thông tin trên cả desktop và mobile)
+    const userBtn = document.getElementById('mobileNavUserBtn');
+    if (userBtn) {
+      userBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.openUserProfileModal();
+      });
+    }
+  },
+
+  // Đồng bộ thanh trượt chỉ báo vị trí danh mục (Chuẩn demo.jpeg)
+  initCategoryScrollIndicator() {
+    const catGrid = document.querySelector('.categories-badges-grid');
+    const thumb = document.getElementById('catScrollThumb');
+    const track = document.querySelector('.cat-scroll-indicator-track');
+    if (!catGrid || !thumb || !track) return;
+
+    const updateThumb = () => {
+      const maxScroll = catGrid.scrollWidth - catGrid.clientWidth;
+      if (maxScroll > 0) {
+        const scrollRatio = Math.min(1, Math.max(0, catGrid.scrollLeft / maxScroll));
+        const maxThumbTranslate = track.clientWidth - thumb.clientWidth;
+        thumb.style.transform = `translateX(${scrollRatio * maxThumbTranslate}px)`;
+      } else {
+        thumb.style.transform = 'translateX(0px)';
+      }
+    };
+
+    catGrid.addEventListener('scroll', updateThumb, { passive: true });
+    window.addEventListener('resize', updateThumb, { passive: true });
+    setTimeout(updateThumb, 350);
+  },
+
+  // ==================== USER PROFILE MODAL ====================
+  ensureUserProfileModal() {
+    let modal = document.getElementById('userProfileModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.id = 'userProfileModal';
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) this.closeUserProfileModal();
+      });
+      document.body.appendChild(modal);
+    }
+    return modal;
+  },
+
+  openUserProfileModal() {
+    const modal = this.ensureUserProfileModal();
+    const user = this.currentUser;
+
+    if (user) {
+      const isAdmin = user.role === 'admin';
+      const roleBadge = isAdmin
+        ? '<span class="badge-role-admin"><i class="fa-solid fa-shield-halved"></i> Quản Trị Viên</span>'
+        : '<span class="badge-role-vip"><i class="fa-solid fa-crown"></i> Khách Hàng VIP</span>';
+      
+      const avatarUrl = user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
+      const memberCode = `TS-${String(user.id || 1).padStart(4, '0')}`;
+      const joinedDate = user.created_at ? new Date(user.created_at).toLocaleDateString('vi-VN') : '25/10/2026';
+
+      modal.innerHTML = `
+        <div class="user-profile-modal-box">
+          <div class="user-profile-modal-header">
+            <h3><i class="fa-solid fa-circle-user" style="color: var(--vt-red);"></i> Thông Tin Tài Khoản</h3>
+            <button class="modal-close-btn" onclick="App.closeUserProfileModal()">&times;</button>
+          </div>
+          <div class="user-profile-modal-body">
+            <!-- Hero User Card -->
+            <div class="user-modal-hero-card">
+              <img src="${avatarUrl}" alt="Avatar" class="user-modal-avatar">
+              <div class="user-modal-hero-info">
+                <h4>${user.name || 'Người dùng TechStore'}</h4>
+                <div>${roleBadge}</div>
+                <div style="font-size: 0.74rem; color: #64748b; margin-top: 4px;">Mã thành viên: <strong>#${memberCode}</strong></div>
+              </div>
+            </div>
+
+            <!-- Stats Highlight Grid -->
+            <div class="user-modal-stats-grid">
+              <div class="user-modal-stat-card">
+                <i class="fa-solid fa-box-archive"></i>
+                <strong>2</strong>
+                <span>Đơn đã mua</span>
+              </div>
+              <div class="user-modal-stat-card">
+                <i class="fa-solid fa-coins"></i>
+                <strong>520</strong>
+                <span>Điểm tích lũy</span>
+              </div>
+              <div class="user-modal-stat-card">
+                <i class="fa-solid fa-ticket"></i>
+                <strong>3</strong>
+                <span>Mã giảm giá</span>
+              </div>
+            </div>
+
+            <!-- Detailed Info Rows -->
+            <div class="user-modal-info-list">
+              <div class="user-modal-info-row">
+                <i class="fa-regular fa-envelope"></i>
+                <span class="row-label">Email tài khoản</span>
+                <span class="row-value">${user.email || 'Chưa cập nhật'}</span>
+              </div>
+              <div class="user-modal-info-row">
+                <i class="fa-solid fa-phone"></i>
+                <span class="row-label">Số điện thoại</span>
+                <span class="row-value">${user.phone || 'Chưa cập nhật'}</span>
+              </div>
+              <div class="user-modal-info-row">
+                <i class="fa-solid fa-location-dot"></i>
+                <span class="row-label">Địa chỉ mặc định</span>
+                <span class="row-value">${user.address || 'Hà Nội, Việt Nam'}</span>
+              </div>
+              <div class="user-modal-info-row">
+                <i class="fa-regular fa-calendar-check"></i>
+                <span class="row-label">Ngày tham gia</span>
+                <span class="row-value">${joinedDate}</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="user-modal-actions">
+              <button type="button" class="btn-user-action primary" onclick="App.closeUserProfileModal(); App.openMyOrders();">
+                <i class="fa-solid fa-truck-fast"></i> Lịch sử đơn hàng của tôi
+              </button>
+              ${isAdmin ? `
+              <a href="/admin.html" class="btn-user-action admin">
+                <i class="fa-solid fa-shield-halved"></i> Truy cập Bảng Quản Trị Hệ Thống
+              </a>` : ''}
+              <button type="button" class="btn-user-action logout" onclick="App.closeUserProfileModal(); App.handleLogout();">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất tài khoản
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      // Guest User View
+      modal.innerHTML = `
+        <div class="user-profile-modal-box">
+          <div class="user-profile-modal-header">
+            <h3><i class="fa-solid fa-circle-user" style="color: var(--vt-red);"></i> Tài Khoản TechStore</h3>
+            <button class="modal-close-btn" onclick="App.closeUserProfileModal()">&times;</button>
+          </div>
+          <div class="user-profile-modal-body">
+            <div class="user-guest-hero">
+              <div class="guest-icon"><i class="fa-regular fa-circle-user"></i></div>
+              <h4>Chào mừng bạn đến với TechStore!</h4>
+              <p>Đăng nhập hoặc tạo tài khoản mới để theo dõi đơn hàng, tích lũy điểm thưởng và hưởng các quyền lợi đặc quyền.</p>
+            </div>
+
+            <div class="guest-perks-list">
+              <div class="guest-perk-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Tích lũy tới 2 - 5% giá trị đơn hàng bằng TechXu</span>
+              </div>
+              <div class="guest-perk-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Miễn phí vận chuyển toàn quốc cho đơn từ 500.000₫</span>
+              </div>
+              <div class="guest-perk-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Chính sách đổi mới 1 - 1 trong 30 ngày nếu có lỗi NSX</span>
+              </div>
+            </div>
+
+            <div class="user-modal-actions">
+              <a href="/login.html" class="btn-primary" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:10px;text-decoration:none;font-weight:700;">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> Đăng nhập ngay
+              </a>
+              <a href="/login.html#register" class="btn-user-action primary" style="margin-top:4px;">
+                <i class="fa-solid fa-user-plus"></i> Đăng ký tài khoản mới
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  },
+
+  closeUserProfileModal() {
+    const modal = document.getElementById('userProfileModal');
+    if (modal) {
+      modal.classList.remove('active');
+    }
+    document.body.style.overflow = '';
   }
 };
 

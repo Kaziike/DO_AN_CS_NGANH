@@ -209,13 +209,23 @@
               <i class="fa-solid fa-gamepad"></i>
             </div>
           </a>
+
+          <a href="#catalogSection" class="side-banner-card" onclick="App.filterByCategory('components')">
+            <div class="side-banner-info">
+              <h4>Linh Kiện Máy Tính</h4>
+              <p>CPU, VGA, RAM chính hãng trợ giá</p>
+            </div>
+            <div class="side-banner-icon bg-yellow">
+              <i class="fa-solid fa-computer"></i>
+            </div>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==================== DANH MỤC NỔI BẬT ==================== -->
-  <section class="featured-categories-section">
+  <section class="featured-categories-section" id="featuredCategories">
     <div class="container">
       <div class="section-white-box">
         <div class="section-head">
@@ -272,7 +282,19 @@
             <span>Linh kiện máy tính</span>
           </div>
 
+          <div class="cat-badge-item" onclick="showToast('Phụ kiện sạc cáp, pin dự phòng chính hãng TechStore', 'info')">
+            <div class="cat-badge-icon-box bg-orange">
+              <i class="fa-solid fa-plug-circle-bolt"></i>
+            </div>
+            <span>Phụ kiện cáp sạc</span>
+          </div>
+        </div>
 
+        <!-- Thanh trượt chỉ báo vị trí (Chuẩn demo.jpeg) -->
+        <div class="cat-scroll-indicator-wrap" id="catScrollIndicatorWrap">
+          <div class="cat-scroll-indicator-track">
+            <div class="cat-scroll-indicator-thumb" id="catScrollThumb"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -358,13 +380,18 @@
           <h2><i class="fa-solid fa-fire" style="color: #f97316;"></i> Sản Phẩm Nổi Bật Bán Chạy</h2>
           <p>Top thiết bị công nghệ bán chạy nhất hệ thống TechStore sắp xếp theo số lượng bán ra</p>
         </div>
-        <div class="slider-nav-btns">
-          <button type="button" class="slider-arrow-btn" id="btnFeaturedPrev" title="Lướt sang trái">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button type="button" class="slider-arrow-btn" id="btnFeaturedNext" title="Lướt sang phải">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
+        <div class="showcase-header-right">
+          <div class="slider-nav-btns">
+            <button type="button" class="slider-arrow-btn" id="btnFeaturedPrev" title="Lướt sang trái">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="slider-arrow-btn" id="btnFeaturedNext" title="Lướt sang phải">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <a href="#catalogSection" class="btn-showcase-more">
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
+          </a>
         </div>
       </div>
       <div class="featured-carousel-viewport" id="featuredCarouselViewport">
@@ -395,7 +422,7 @@
             </button>
           </div>
           <a href="/smartphone.html" class="btn-showcase-more">
-            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -425,7 +452,7 @@
             </button>
           </div>
           <a href="/laptop.html" class="btn-showcase-more">
-            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -455,7 +482,7 @@
             </button>
           </div>
           <a href="/smartwatch.html" class="btn-showcase-more">
-            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -485,7 +512,7 @@
             </button>
           </div>
           <a href="/tablet.html" class="btn-showcase-more">
-            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -515,7 +542,7 @@
             </button>
           </div>
           <a href="/audio.html" class="btn-showcase-more">
-            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -545,7 +572,7 @@
             </button>
           </div>
           <a href="/gaming-gear.html" class="btn-showcase-more">
-            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -575,7 +602,7 @@
             </button>
           </div>
           <a href="/components.html" class="btn-showcase-more">
-            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+            Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -981,7 +1008,7 @@
         </div>
 
         <div class="policy-item">
-          <div class="policy-icon"><i class="fa-solid fa-truck-bolt"></i></div>
+          <div class="policy-icon"><i class="fa-solid fa-truck-fast"></i></div>
           <div class="policy-text">
             <h5>Giao hàng siêu tốc 2H</h5>
             <p>Miễn phí giao hàng đơn từ 5 triệu</p>

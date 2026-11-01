@@ -1,7 +1,11 @@
 # Pure ASCII PowerShell script to fill 3_MAU_BAO CAO TIEN DO 2026.doc
 $ErrorActionPreference = "Stop"
 
-$baseDir = "c:\Users\kaziila\Downloads\DO_AN_CO_SO_NGANH\TAI_LIEU"
+$baseDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+if (-not $baseDir) {
+    $baseDir = "C:\Users\kaziila\Downloads\Project\DO_AN_CO_SO_NGANH\TAI_LIEU"
+}
+
 $docPath = Join-Path $baseDir "3_MAU_BAO CAO TIEN DO 2026.doc"
 $backupPath = Join-Path $baseDir "3_MAU_BAO CAO TIEN DO 2026_BACKUP.doc"
 $jsonPath = Join-Path $baseDir "data_bao_cao_tien_do.json"
@@ -204,17 +208,7 @@ try {
     $doc.Save()
     Write-Host "SUCCESS: Saved populated 3_MAU_BAO CAO TIEN DO 2026.doc"
 
-    # Export DOCX copy
-    $docxPath = Join-Path $baseDir "3_MAU_BAO CAO TIEN DO 2026.docx"
-    $doc.SaveAs2($docxPath, 16)
-    Write-Host "SUCCESS: Exported modern DOCX copy to $docxPath"
-
-    # Export PDF copy
-    $pdfPath = Join-Path $baseDir "3_MAU_BAO CAO TIEN DO 2026.pdf"
-    $doc.SaveAs2($pdfPath, 17)
-    Write-Host "SUCCESS: Exported PDF copy to $pdfPath"
-
 } finally {
-    if ($doc) { $doc.Close() }
+    if ($doc) { $doc.Close([ref]$false) }
     if ($word) { $word.Quit() }
 }

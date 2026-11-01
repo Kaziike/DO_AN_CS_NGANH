@@ -2618,10 +2618,6 @@ const App = {
         <i class="fa-solid fa-house"></i>
         <span>Trang chủ</span>
       </a>
-      <button type="button" class="mobile-nav-item" id="mobileNavCategoriesBtn">
-        <i class="fa-solid fa-layer-group"></i>
-        <span>Danh mục</span>
-      </button>
       <button type="button" class="mobile-nav-item" id="mobileNavSearchBtn">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span>Tìm kiếm</span>
@@ -2638,19 +2634,6 @@ const App = {
         <span>Tài khoản</span>
       </button>
     `;
-
-    // Event: Danh mục
-    const catBtn = document.getElementById('mobileNavCategoriesBtn');
-    if (catBtn) {
-      catBtn.addEventListener('click', () => {
-        const catSection = document.getElementById('featuredCategories') || document.querySelector('.vts-navbar');
-        if (catSection) {
-          catSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          window.location.href = '/#featuredCategories';
-        }
-      });
-    }
 
     // Event: Tìm kiếm
     const searchBtn = document.getElementById('mobileNavSearchBtn');
@@ -2735,11 +2718,10 @@ const App = {
       const isAdmin = user.role === 'admin';
       const roleBadge = isAdmin
         ? '<span class="badge-role-admin"><i class="fa-solid fa-shield-halved"></i> Quản Trị Viên</span>'
-        : '<span class="badge-role-vip"><i class="fa-solid fa-crown"></i> Khách Hàng VIP</span>';
+        : '<span class="badge-role-vip"><i class="fa-solid fa-user-check"></i> Khách Hàng</span>';
       
       const avatarUrl = user.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80';
-      const memberCode = `TS-${String(user.id || 1).padStart(4, '0')}`;
-      const joinedDate = user.created_at ? new Date(user.created_at).toLocaleDateString('vi-VN') : '25/10/2026';
+      const joinedDate = user.created_at ? new Date(user.created_at).toLocaleDateString('vi-VN') : 'Mới tham gia';
 
       modal.innerHTML = `
         <div class="user-profile-modal-box">
@@ -2754,34 +2736,25 @@ const App = {
               <div class="user-modal-hero-info">
                 <h4>${user.name || 'Người dùng TechStore'}</h4>
                 <div>${roleBadge}</div>
-                <div style="font-size: 0.74rem; color: #64748b; margin-top: 4px;">Mã thành viên: <strong>#${memberCode}</strong></div>
+                <div style="font-size: 0.74rem; color: #64748b; margin-top: 4px;">ID tài khoản: <strong>#${user.id || 1}</strong></div>
               </div>
             </div>
 
-            <!-- Stats Highlight Grid -->
-            <div class="user-modal-stats-grid">
-              <div class="user-modal-stat-card">
-                <i class="fa-solid fa-box-archive"></i>
-                <strong>2</strong>
-                <span>Đơn đã mua</span>
-              </div>
-              <div class="user-modal-stat-card">
-                <i class="fa-solid fa-coins"></i>
-                <strong>520</strong>
-                <span>Điểm tích lũy</span>
-              </div>
-              <div class="user-modal-stat-card">
-                <i class="fa-solid fa-ticket"></i>
-                <strong>3</strong>
-                <span>Mã giảm giá</span>
-              </div>
-            </div>
-
-            <!-- Detailed Info Rows -->
+            <!-- Detailed Info Rows (Chỉ gồm các trường thực tế trong CSDL: id, name, email, phone, role, created_at) -->
             <div class="user-modal-info-list">
               <div class="user-modal-info-row">
+                <i class="fa-solid fa-hashtag"></i>
+                <span class="row-label">Mã tài khoản (ID)</span>
+                <span class="row-value">#${user.id || 1}</span>
+              </div>
+              <div class="user-modal-info-row">
+                <i class="fa-regular fa-user"></i>
+                <span class="row-label">Họ và tên</span>
+                <span class="row-value">${user.name || 'Chưa cập nhật'}</span>
+              </div>
+              <div class="user-modal-info-row">
                 <i class="fa-regular fa-envelope"></i>
-                <span class="row-label">Email tài khoản</span>
+                <span class="row-label">Email</span>
                 <span class="row-value">${user.email || 'Chưa cập nhật'}</span>
               </div>
               <div class="user-modal-info-row">
@@ -2790,13 +2763,13 @@ const App = {
                 <span class="row-value">${user.phone || 'Chưa cập nhật'}</span>
               </div>
               <div class="user-modal-info-row">
-                <i class="fa-solid fa-location-dot"></i>
-                <span class="row-label">Địa chỉ mặc định</span>
-                <span class="row-value">${user.address || 'Hà Nội, Việt Nam'}</span>
+                <i class="fa-solid fa-shield-halved"></i>
+                <span class="row-label">Vai trò</span>
+                <span class="row-value">${user.role === 'admin' ? 'Quản trị viên (Admin)' : 'Khách hàng (User)'}</span>
               </div>
               <div class="user-modal-info-row">
                 <i class="fa-regular fa-calendar-check"></i>
-                <span class="row-label">Ngày tham gia</span>
+                <span class="row-label">Ngày tạo tài khoản</span>
                 <span class="row-value">${joinedDate}</span>
               </div>
             </div>
@@ -2829,17 +2802,17 @@ const App = {
             <div class="user-guest-hero">
               <div class="guest-icon"><i class="fa-regular fa-circle-user"></i></div>
               <h4>Chào mừng bạn đến với TechStore!</h4>
-              <p>Đăng nhập hoặc tạo tài khoản mới để theo dõi đơn hàng, tích lũy điểm thưởng và hưởng các quyền lợi đặc quyền.</p>
+              <p>Đăng nhập hoặc tạo tài khoản mới để theo dõi đơn hàng và tận hưởng dịch vụ bảo hành chính hãng.</p>
             </div>
 
             <div class="guest-perks-list">
               <div class="guest-perk-item">
                 <i class="fa-solid fa-circle-check"></i>
-                <span>Tích lũy tới 2 - 5% giá trị đơn hàng bằng TechXu</span>
+                <span>Theo dõi và tra cứu trạng thái đơn hàng mọi lúc mọi nơi</span>
               </div>
               <div class="guest-perk-item">
                 <i class="fa-solid fa-circle-check"></i>
-                <span>Miễn phí vận chuyển toàn quốc cho đơn từ 500.000₫</span>
+                <span>Giao hàng nhanh toàn quốc - Kiểm tra hàng trước khi thanh toán</span>
               </div>
               <div class="guest-perk-item">
                 <i class="fa-solid fa-circle-check"></i>

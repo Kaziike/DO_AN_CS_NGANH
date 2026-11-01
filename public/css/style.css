@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* ==========================================================
    TECHSTORE - VIETTEL STORE THEME & DESIGN SYSTEM
    Phong cách chuẩn Viettel Store: Tông Đỏ - Trắng Hiện Đại
@@ -537,31 +539,6 @@ body {
   object-fit: cover;
 }
 
-.btn-header-logout {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: #fee2e2;
-  border: 1px solid #fca5a5;
-  color: #dc2626;
-  padding: 6px 12px;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.btn-header-logout:hover {
-  background: #dc2626;
-  color: #ffffff;
-  border-color: #dc2626;
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
-  transform: translateY(-1px);
-}
-
 .user-dropdown-menu {
   position: absolute;
   top: 110%;
@@ -849,20 +826,6 @@ body {
   border-radius: 2px;
 }
 
-.link-view-all {
-  color: var(--vt-red);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.link-view-all:hover {
-  text-decoration: underline;
-}
-
 /* Category Colorful Badges Grid */
 .categories-badges-grid {
   display: grid;
@@ -937,16 +900,6 @@ body {
 .bg-yellow {
   background: #fef7e0;
   color: #d97706;
-}
-
-.bg-rose {
-  background: #ffe4e6;
-  color: #e11d48;
-}
-
-.bg-orange {
-  background: #fff3e8;
-  color: #ea580c;
 }
 
 .cat-scroll-indicator-wrap {
@@ -1031,13 +984,13 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: all 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
   position: relative;
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.12);
   border-color: #fca5a5;
 }
 
@@ -1102,12 +1055,6 @@ body {
   background: #fef2f2;
   color: #dc2626;
   border: 1px solid #fecaca;
-}
-
-.badge-sold {
-  background: #f3f4f6;
-  color: #4b5563;
-  border: 1px solid #e5e7eb;
 }
 
 .product-card-body {
@@ -1243,6 +1190,9 @@ body {
   justify-content: center;
   opacity: 0.55;
   cursor: not-allowed;
+  background: #9ca3af;
+  border-color: #9ca3af;
+  color: #ffffff;
   pointer-events: none;
 }
 
@@ -1547,19 +1497,21 @@ body {
 /* Skeleton Loading Shimmer Cards (Chống giật trang khi load) */
 .skeleton-card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #f1f5f9;
   border-radius: var(--radius-md);
-  padding: 14px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
 }
 
 .skeleton-shimmer {
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
   background-size: 200% 100%;
-  animation: shimmerAnim 1.4s infinite ease-in-out;
-  border-radius: 4px;
+  animation: shimmerAnim 1.6s infinite;
+  border-radius: 6px;
 }
 
 @keyframes shimmerAnim {
@@ -1632,64 +1584,7 @@ body {
   border-color: #e5e7eb;
 }
 
-.featured-carousel-viewport {
-  position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-snap-type: x mandatory;
-  padding: 8px 4px 16px;
-  width: 100%;
-}
-
-.featured-carousel-viewport::-webkit-scrollbar {
-  display: none;
-}
-
-.featured-carousel-track {
-  display: flex;
-  gap: 18px;
-  width: max-content;
-}
-
-.featured-carousel-track .product-card {
-  width: calc((1200px - 3 * 18px) / 4);
-  flex: 0 0 calc((1200px - 3 * 18px) / 4);
-  scroll-snap-align: start;
-  height: 100%;
-}
-
-@media (max-width: 1240px) {
-  .featured-carousel-track .product-card {
-    width: calc((100vw - 80px - 3 * 18px) / 4);
-    flex: 0 0 calc((100vw - 80px - 3 * 18px) / 4);
-    min-width: 230px;
-  }
-}
-
-@media (max-width: 992px) {
-  .featured-carousel-track .product-card {
-    width: calc((100vw - 60px - 18px) / 2);
-    flex: 0 0 calc((100vw - 60px - 18px) / 2);
-    min-width: 220px;
-  }
-}
-
-@media (max-width: 576px) {
-  .featured-carousel-track .product-card {
-    width: calc(100vw - 48px);
-    flex: 0 0 calc(100vw - 48px);
-  }
-}
-
 /* Card Enhancements & Quick View */
-.product-card-top {
-  position: relative;
-  overflow: hidden;
-}
-
 .btn-quick-view {
   position: absolute;
   bottom: 10px;
@@ -1727,15 +1622,6 @@ body {
   color: #ffffff;
   border-color: var(--vt-red);
   box-shadow: 0 4px 14px rgba(238, 0, 51, 0.35);
-}
-
-.product-card {
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.12);
 }
 
 /* ==========================================================
@@ -1871,12 +1757,6 @@ body {
   margin-bottom: 12px;
 }
 
-@media (max-width: 640px) {
-  .tracking-info-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .tracking-items-box {
   border: 1px solid #f3f4f6;
   border-radius: 8px;
@@ -1969,55 +1849,6 @@ body {
   font-size: 1.15rem;
   font-weight: 900;
 }
-
-/* ==========================================================
-   SKELETON SHIMMER LOADING
-   ========================================================== */
-.skeleton-card {
-  background: #ffffff;
-  border: 1px solid #f1f5f9;
-  border-radius: var(--radius-md);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  overflow: hidden;
-}
-
-.skeleton-shimmer {
-  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-  background-size: 200% 100%;
-  animation: shimmerAnim 1.6s infinite;
-  border-radius: 6px;
-}
-
-.skeleton-img {
-  width: 100%;
-  height: 180px;
-}
-
-.skeleton-brand {
-  width: 40%;
-  height: 14px;
-}
-
-.skeleton-title {
-  width: 90%;
-  height: 20px;
-}
-
-.skeleton-price {
-  width: 60%;
-  height: 22px;
-}
-
-.skeleton-btn {
-  width: 100%;
-  height: 38px;
-  margin-top: 6px;
-}
-
 
 /* ==========================================================
    FLY-TO-CART ANIMATION & CART BUMP
@@ -2315,6 +2146,7 @@ body {
   transition: var(--transition-fast);
   padding: 16px;
   overflow-y: auto;
+
 }
 
 .modal-overlay.active {
@@ -3169,8 +3001,17 @@ body {
 }
 
 /* ==========================================================
-   CHECKOUT MODAL
+   CHECKOUT MODAL (DESKTOP DEFAULT)
    ========================================================== */
+.checkout-modal-content,
+#checkoutModal .modal-content {
+  max-width: 1050px;
+  width: 95%;
+  border-radius: var(--radius-lg);
+  margin: auto;
+  box-shadow: var(--shadow-lg);
+}
+
 .checkout-layout,
 .checkout-modal-layout {
   padding: 24px 28px;
@@ -3336,6 +3177,12 @@ body {
 
 .form-group {
   margin-bottom: 14px;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .form-label {
@@ -3669,36 +3516,12 @@ body {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
-}
 
-@media (max-width: 640px) {
-  .header-location-badge,
-  .header-hotline-box {
-    display: none;
-  }
-
-  .categories-badges-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .checkout-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .product-detail-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-policy-row {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cart-drawer {
-    width: 100%;
+  .featured-carousel-track .product-card,
+  .carousel-track .product-card {
+    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
   }
 }
 
@@ -3857,20 +3680,6 @@ body {
   transform: translateY(-1px);
 }
 
-@media (max-width: 768px) {
-  .category-hero-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .spec-filter-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-}
-
 /* ==========================================================
    DROPDOWN ACCORDION ADVANCED FILTER PANEL
    ========================================================== */
@@ -3904,12 +3713,14 @@ body {
   box-shadow: 0 3px 10px rgba(238, 0, 51, 0.25);
 }
 
-.btn-toggle-advanced-filters .filter-accordion-icon {
+.btn-toggle-advanced-filters .filter-accordion-icon,
+.btn-toggle-advanced-filters .toggle-icon {
   font-size: 0.72rem;
   transition: transform 0.25s ease;
 }
 
-.btn-toggle-advanced-filters.active .filter-accordion-icon {
+.btn-toggle-advanced-filters.active .filter-accordion-icon,
+.btn-toggle-advanced-filters.active .toggle-icon {
   transform: rotate(180deg);
 }
 
@@ -4035,16 +3846,6 @@ body {
   background: #fff1f2;
   color: var(--vt-red);
   box-shadow: 0 0 0 2px rgba(238, 0, 51, 0.2);
-}
-
-.btn-card-cart.disabled,
-.btn-card-buy.disabled {
-  opacity: 0.55 !important;
-  cursor: not-allowed !important;
-  background: #9ca3af !important;
-  border-color: #9ca3af !important;
-  color: #ffffff !important;
-  pointer-events: none !important;
 }
 
 /* ==========================================================
@@ -4208,16 +4009,6 @@ body {
   right: 8px;
 }
 
-@media (max-width: 1024px) {
-
-  .featured-carousel-track .product-card,
-  .carousel-track .product-card {
-    width: 240px;
-    min-width: 240px;
-    max-width: 240px;
-  }
-}
-
 /* ==========================================================
    TECHSTORE - COMPREHENSIVE MOBILE APP INTERFACE
    Phong cách chuẩn ứng dụng di động Viettel Store
@@ -4235,7 +4026,8 @@ body {
   }
 
   body {
-    padding-bottom: 64px !important; /* Space for Mobile Bottom Nav */
+    padding-bottom: 64px !important;
+    /* Space for Mobile Bottom Nav */
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -4274,8 +4066,9 @@ body {
     flex-shrink: 0 !important;
   }
 
-  .brand-logo > div:not(.logo-icon) {
-    display: none !important; /* Bỏ tên TECHSTORE trên mobile */
+  .brand-logo>div:not(.logo-icon) {
+    display: none !important;
+    /* Bỏ tên TECHSTORE trên mobile */
   }
 
   .brand-logo .logo-icon {
@@ -4386,30 +4179,6 @@ body {
     width: 210px;
     max-width: calc(100vw - 20px);
     z-index: 1045;
-  }
-
-  /* Search Bar (Full Width on Row 2) */
-  .search-wrapper {
-    order: 3;
-    flex: 1 1 100%;
-    max-width: 100%;
-    margin-top: 2px;
-  }
-
-  .search-bar {
-    padding: 6px 12px;
-    background: #f1f3f7;
-    border: 1px solid #e2e8f0;
-    border-radius: 999px;
-  }
-
-  .search-bar input {
-    font-size: 0.82rem;
-    padding: 2px 6px;
-  }
-
-  .search-bar .search-icon {
-    font-size: 0.95rem;
   }
 
   .live-search-dropdown {
@@ -4568,10 +4337,6 @@ body {
   .section-head h2::before {
     height: 15px;
     width: 3.5px;
-  }
-
-  .link-view-all {
-    font-size: 0.76rem;
   }
 
   .categories-badges-grid {
@@ -4800,6 +4565,7 @@ body {
   .featured-carousel-track,
   .carousel-track {
     gap: 8px;
+    align-items: stretch !important;
   }
 
   .featured-carousel-track .product-card,
@@ -4809,6 +4575,10 @@ body {
     max-width: 180px !important;
     scroll-snap-align: start;
     flex: 0 0 calc(50vw - 18px) !important;
+    height: auto !important;
+    align-self: stretch !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   /* 9. Product Cards (Chuẩn 2 Cột Trên Mobile) */
@@ -4823,6 +4593,10 @@ body {
     border-radius: 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     background: #ffffff;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    align-self: stretch !important;
   }
 
   .product-card-top {
@@ -4852,46 +4626,76 @@ body {
   }
 
   .product-card-body {
-    padding: 8px 8px 10px;
+    padding: 8px 8px 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
   }
 
   .product-brand {
     font-size: 0.65rem;
     margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1.25em;
   }
 
   .product-name {
-    font-size: 0.78rem;
-    line-height: 1.3;
-    height: 2.6em;
-    min-height: 2.6em;
-    max-height: 2.6em;
-    margin-bottom: 4px;
-    font-weight: 700;
+    font-size: 0.78rem !important;
+    line-height: 1.3 !important;
+    height: 2.6em !important;
+    min-height: 2.6em !important;
+    max-height: 2.6em !important;
+    margin-bottom: 4px !important;
+    font-weight: 700 !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
   }
 
   .product-price-row {
-    margin-top: 2px;
-    margin-bottom: 4px;
-    min-height: 20px;
-    flex-wrap: wrap;
-    gap: 4px;
-    align-items: baseline;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    min-height: 36px !important;
+    height: 36px !important;
+    margin-top: 2px !important;
+    margin-bottom: 4px !important;
+    gap: 1px !important;
   }
 
   .current-price {
-    font-size: 0.92rem;
-    font-weight: 900;
+    font-size: 0.92rem !important;
+    font-weight: 900 !important;
+    color: var(--vt-red) !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .original-price {
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
+    color: #94a3b8 !important;
+    line-height: 1.2 !important;
+    text-decoration: line-through !important;
+    white-space: nowrap !important;
+    height: 14px !important;
+    display: block !important;
   }
 
   .product-rating {
-    font-size: 0.66rem;
-    min-height: 16px;
-    margin-bottom: 6px;
+    font-size: 0.66rem !important;
+    min-height: 18px !important;
+    height: 18px !important;
+    margin-bottom: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
   }
 
   .product-sold-tag {
@@ -5181,6 +4985,12 @@ body {
     cursor: pointer;
   }
 
+  .category-hero-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
   .spec-filters-container {
     padding: 14px 16px !important;
     overflow-y: auto !important;
@@ -5280,14 +5090,15 @@ body {
   /* 12. Modals & Cart Drawer */
   .modal-overlay {
     padding: 0 !important;
-    align-items: flex-end !important; /* Modern bottom sheet UX on mobile */
+    align-items: flex-end !important;
+    /* Modern bottom sheet UX on mobile */
   }
 
   .modal-content {
     max-width: 100% !important;
     width: 100% !important;
-    max-height: 82dvh !important;
     max-height: 82vh !important;
+    max-height: 82dvh !important;
     border-radius: 20px 20px 0 0 !important;
     margin: 0 auto !important;
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 20px)) !important;
@@ -5407,6 +5218,333 @@ body {
     gap: 6px;
   }
 
+  /* Checkout Modal Mobile Optimizations */
+  #checkoutModal.modal-overlay {
+    padding: 0 !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    overflow-x: hidden !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal .modal-content,
+  .checkout-modal-content {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    max-height: 88vh !important;
+    max-height: 88dvh !important;
+    border-radius: 20px 20px 0 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #checkoutModal .modal-close-btn {
+    top: 10px !important;
+    right: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.25rem !important;
+    z-index: 30 !important;
+    background: #f3f4f6 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #4b5563 !important;
+  }
+
+  #checkoutModal .checkout-layout {
+    padding: 14px 14px calc(24px + env(safe-area-inset-bottom, 20px)) !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  #checkoutModal .checkout-header-banner {
+    margin: 0 0 14px 0 !important;
+    padding: 10px 42px 10px 12px !important;
+    border-radius: 10px !important;
+    gap: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+  }
+
+  #checkoutModal .checkout-header-banner h3 {
+    font-size: 0.92rem !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    font-weight: 800 !important;
+    word-break: break-word !important;
+  }
+
+  #checkoutModal .checkout-header-banner i {
+    font-size: 1.3rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  #checkoutModal form#checkoutForm {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  #checkoutModal .checkout-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal .checkout-form-col,
+  #checkoutModal .checkout-grid > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal .form-group {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin-bottom: 12px !important;
+  }
+
+  #checkoutModal .form-label {
+    font-size: 0.82rem !important;
+    margin-bottom: 4px !important;
+    font-weight: 700 !important;
+  }
+
+  #checkoutModal .form-control {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important; /* CRITICAL: Must be >= 16px to prevent iOS Safari auto-zoom! */
+    padding: 9px 12px !important;
+    height: 42px !important;
+    border-radius: 8px !important;
+    outline: none !important;
+  }
+
+  #checkoutModal .checkout-grid > div > div[style*="grid-template-columns"],
+  #checkoutModal .form-row-2col,
+  .form-row-2col {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    display: grid !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal .payment-methods-grid {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  #checkoutModal .payment-method-card {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 12px !important;
+    gap: 10px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
+  }
+
+  #checkoutModal .payment-method-card strong {
+    font-size: 0.85rem !important;
+  }
+
+  #checkoutModal .payment-method-card i {
+    font-size: 1.15rem !important;
+  }
+
+  #checkoutModal .checkout-grid > div:last-child {
+    padding: 14px 12px !important;
+    border-radius: 10px !important;
+    background: #f9fafb !important;
+    border: 1px solid var(--border-color) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal #checkoutOrderItems {
+    max-height: 200px !important;
+    height: auto !important;
+    min-height: 50px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin-bottom: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal .checkout-item-row {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    gap: 8px !important;
+    padding: 8px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  #checkoutModal .checkout-item-img {
+    width: 42px !important;
+    height: 42px !important;
+    flex-shrink: 0 !important;
+    border-radius: 6px !important;
+  }
+
+  #checkoutModal .checkout-item-details {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+  }
+
+  #checkoutModal .checkout-item-name {
+    white-space: normal !important;
+    word-break: break-word !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-size: 0.8rem !important;
+    line-height: 1.3 !important;
+  }
+
+  #checkoutModal .checkout-item-variant {
+    font-size: 0.72rem !important;
+    margin-top: 2px !important;
+  }
+
+  #checkoutModal .checkout-item-bottom {
+    margin-top: 4px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  #checkoutModal .checkout-item-price {
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+  }
+
+  #checkoutModal .checkout-coupon-wrapper {
+    margin: 10px 0 12px !important;
+    padding-top: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal .checkout-coupon-form {
+    display: flex !important;
+    gap: 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #checkoutModal .checkout-coupon-form input {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    font-size: 16px !important; /* Avoid iOS zoom */
+    padding: 8px 10px !important;
+    height: 38px !important;
+    box-sizing: border-box !important;
+    border-radius: 6px !important;
+  }
+
+  #checkoutModal .checkout-coupon-form button {
+    flex-shrink: 0 !important;
+    padding: 8px 12px !important;
+    font-size: 0.82rem !important;
+    height: 38px !important;
+    border-radius: 6px !important;
+  }
+
+  #checkoutModal .cart-summary-line {
+    font-size: 0.82rem !important;
+    margin-bottom: 5px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  #checkoutModal .cart-total-line {
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    border-top: 1px dashed var(--border-color) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  #checkoutModal #btnSubmitOrder {
+    width: 100% !important;
+    margin-top: 14px !important;
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* User Profile Modal Mobile */
+  #userProfileModal.modal-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .user-profile-modal-box {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 20px)) !important;
+    max-height: 85dvh !important;
+  }
+
+  /* Prevent iOS input auto-zoom across mobile elements */
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
   /* 13. Floating Action Buttons (Gọn gàng & lệch sát góc phải để không che sản phẩm) */
   .floating-controls-cluster {
     bottom: 66px !important;
@@ -5430,13 +5568,6 @@ body {
   .progress-ring {
     width: 36px;
     height: 36px;
-  }
-
-  .floating-support-popup {
-    bottom: calc(100% + 10px) !important;
-    right: 0 !important;
-    width: 240px !important;
-    max-width: 90vw !important;
   }
 
   /* 14. Mobile Bottom Navigation Bar */
@@ -5534,6 +5665,17 @@ body {
   }
 }
 
+/* Tablet & Medium Mobile (<= 640px) */
+@media (max-width: 640px) {
+  .tracking-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-policy-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Extra Compact Tweaks for Small Mobile Screens (<= 400px) */
 @media (max-width: 400px) {
   .categories-badges-grid {
@@ -5544,6 +5686,7 @@ body {
   .cat-badge-item {
     flex: 0 0 66px !important;
     width: 66px !important;
+    font-size: 0.66rem !important;
   }
 
   .cat-badge-icon-box {
@@ -5551,10 +5694,6 @@ body {
     height: 44px !important;
     font-size: 1.1rem !important;
     border-radius: 12px !important;
-  }
-
-  .cat-badge-item {
-    font-size: 0.66rem;
   }
 
   .product-card-top {
@@ -5595,6 +5734,7 @@ body {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -5686,40 +5826,6 @@ body {
   font-weight: 800;
   padding: 2px 8px;
   border-radius: 999px;
-}
-
-/* 3 Stats Highlights */
-.user-modal-stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.user-modal-stat-card {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 10px 6px;
-  text-align: center;
-}
-
-.user-modal-stat-card i {
-  font-size: 1.15rem;
-  color: var(--vt-red);
-  margin-bottom: 4px;
-}
-
-.user-modal-stat-card strong {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #0f172a;
-}
-
-.user-modal-stat-card span {
-  font-size: 0.7rem;
-  color: #64748b;
 }
 
 /* User Info Rows */
@@ -5871,18 +5977,4 @@ body {
 
 .guest-perk-item i {
   color: #10b981;
-}
-
-@media (max-width: 768px) {
-  #userProfileModal.modal-overlay {
-    align-items: flex-end !important;
-    padding: 0 !important;
-  }
-  .user-profile-modal-box {
-    max-width: 100% !important;
-    width: 100% !important;
-    border-radius: 20px 20px 0 0 !important;
-    padding-bottom: calc(24px + env(safe-area-inset-bottom, 20px)) !important;
-    max-height: 85dvh !important;
-  }
 }

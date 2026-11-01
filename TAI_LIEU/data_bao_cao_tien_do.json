@@ -31,6 +31,12 @@
         "time": "19/10/2026 -\r\n25/10/2026",
         "task": "Phân tích yêu cầu hệ thống; xây dựng sơ đồ Use Case; thiết kế mô hình cơ sở dữ liệu quan hệ (ERD) chuẩn 3NF trên MySQL (8 bảng dữ liệu); viết script schema.sql và chuẩn bị dữ liệu mẫu seed.sql.",
         "result": "Tài liệu đặc tả yêu cầu; Sơ đồ Use Case; Sơ đồ ERD; CSDL techstore_db được khởi tạo trên MySQL với dữ liệu mẫu phong phú."
+      },
+      {
+        "week": "3",
+        "time": "26/10/2026 -\r\n01/11/2026",
+        "task": "Khởi tạo kiến trúc Backend Node.js & Express.js; cấu hình MySQL Connection Pool và chế độ Fallback Mock Data dự phòng; phát triển các RESTful API Sản phẩm & Danh mục (/api/products, /api/categories), mã giảm giá (/api/coupons/validate).",
+        "result": "Nền tảng Backend hoạt động ổn định; hoàn thành và kiểm thử thành công các API sản phẩm, danh mục, voucher bằng Postman."
       }
     ]
   },
@@ -57,15 +63,22 @@
         "task": "Phân tích yêu cầu hệ thống; xây dựng sơ đồ Use Case; thiết kế mô hình cơ sở dữ liệu quan hệ (ERD) chuẩn 3NF trên MySQL (8 bảng dữ liệu); viết script schema.sql và chuẩn bị dữ liệu mẫu seed.sql.",
         "actual_result": "- Hoàn thành 100% công việc theo đúng tiến độ kế hoạch đề ra.\r\n- Hoàn thiện tài liệu đặc tả yêu cầu chức năng (phía Khách hàng: xem danh mục, lọc phần cứng, live search, giỏ hàng, đặt hàng, mã voucher, thanh toán trực tuyến mô phỏng, tra cứu đơn hàng, đánh giá/hỏi đáp; phía Quản trị viên: thống kê KPI doanh thu, quản lý đơn hàng, CRUD kho sản phẩm) và yêu cầu phi chức năng (bảo mật, hiệu năng, responsive UI).\r\n- Xây dựng hoàn chỉnh sơ đồ Ca sử dụng (Use Case Diagram) tổng quát và các sơ đồ phân rã chức năng chi tiết.\r\n- Thiết kế mô hình CSDL quan hệ thực thể (ERD) đạt chuẩn dạng chuẩn 3 (3NF) gồm 8 bảng dữ liệu: categories, products, orders, order_items, reviews, product_questions, coupons, users (kèm bảng flash_sales và các chỉ mục Indexes tối ưu hóa truy vấn).\r\n- Viết file script database/schema.sql và khởi tạo thành công CSDL techstore_db trên MySQL Server 8.0; nạp dữ liệu mẫu phong phú từ database/seed2.sql với đầy đủ thông số kỹ thuật (specifications JSON) cho các nhóm thiết bị số.",
         "next_plan": "Khởi tạo kiến trúc dự án Backend Node.js & Express.js; cấu hình MySQL Connection Pool và xây dựng các RESTful API phân hệ Sản phẩm, Danh mục, Mã giảm giá (Tuần 3: 26/10/2026 - 01/11/2026)."
+      },
+      {
+        "week": "3",
+        "time": "26/10/2026 -\r\n01/11/2026",
+        "task": "Khởi tạo kiến trúc Backend Node.js & Express.js; cấu hình MySQL Connection Pool và chế độ Fallback Mock Data dự phòng; phát triển các RESTful API Sản phẩm & Danh mục (/api/products, /api/categories), mã giảm giá (/api/coupons/validate).",
+        "actual_result": "- Hoàn thành 100% công việc theo đúng tiến độ kế hoạch đề ra.\r\n- Khởi tạo hoàn chỉnh cấu trúc dự án Backend Node.js & Express.js chuẩn phân tầng MVC (server.js, config/db.js, routes/api.js, controllers/productController.js, orderController.js) tích hợp middleware cors, express.json, urlencoded và dotenv.\r\n- Cấu hình thành công kết nối CSDL MySQL 8.0 sử dụng Connection Pool với thư viện mysql2/promise (connectionLimit: 10, enableKeepAlive: true, decimalNumbers: true), đảm bảo tái sử dụng kết nối và tối ưu hiệu năng; xây dựng cơ chế Fallback Mock Data dự phòng đảm bảo tính sẵn sàng cao khi CSDL mất kết nối.\r\n- Phát triển và hoàn thiện các RESTful API phân hệ Sản phẩm & Danh mục: GET /api/categories (lấy danh mục thiết bị), GET /api/products (truy vấn lọc nâng cao đa tiêu chí theo brand, giá, danh mục, thông số phần cứng JSON cpu/ram/storage/screen, live search từ khóa, phân trang và sắp xếp), GET /api/products/:id (chi tiết sản phẩm kèm gallery và biến thể); cùng các API quản trị CRUD sản phẩm có middleware requireAdmin bảo vệ.\r\n- Phát triển hoàn thiện API Mã giảm giá: POST /api/coupons/validate (kiểm tra tính hợp lệ của voucher, đối chiếu điều kiện đơn hàng tối thiểu và tính mức chiết khấu chính xác theo % hoặc tiền mặt).\r\n- Thực hiện kiểm thử toàn bộ các API endpoint bằng Postman: kiểm thử thành công các mã phản hồi HTTP (200 OK, 201 Created, 400 Bad Request, 404 Not Found) và dữ liệu JSON chuẩn mực, thời gian phản hồi nhanh (< 50ms).",
+        "next_plan": "Phát triển các RESTful API phân hệ Đơn hàng (/api/orders), tra cứu đơn hàng (/api/orders/track), cài đặt giao dịch CSDL (Transaction: Begin, Commit, Rollback); API Đánh giá sao & Hỏi đáp (/api/reviews, /api/questions); API Thống kê số liệu (/api/stats) (Tuần 4: 02/11/2026 - 08/11/2026)."
       }
     ]
   },
   "kho_khan_va_de_xuat": {
     "title": "KHÓ KHĂN VÀ ĐỀ XUẤT",
-    "content": "1. Khó khăn:\r\n- Đặc thù của các dòng sản phẩm công nghệ (Laptop, Smartphone, Tablet, Smartwatch, Âm thanh, Gaming Gear) có thông số kỹ thuật (specifications) rất đa dạng và phức tạp (CPU, RAM, ROM, Card đồ họa, Tần số quét, Kích thước màn hình,...). Ban đầu gặp khó khăn trong việc thiết kế bảng dữ liệu nếu dùng các cột cố định vì sẽ sinh ra nhiều trường giá trị NULL và khó mở rộng khi bổ sung ngành hàng mới.\r\n- Khối lượng dữ liệu mẫu (sản phẩm, hình ảnh, thông số kỹ thuật, giá cả, khuyến mãi) tương đối lớn, cần nhiều thời gian để thu thập và chuẩn hóa dữ liệu sát với thực tế.\r\n\r\n2. Đề xuất:\r\n- Đã áp dụng giải pháp lưu trữ thông số kỹ thuật linh hoạt bằng kiểu dữ liệu JSON (cột specifications) trên MySQL 8.0 kết hợp với các cột định danh quan trọng có đánh chỉ mục (Index) như category_id, brand, price để vừa đảm bảo tính linh hoạt cho từng ngành hàng, vừa tối ưu hóa tốc độ truy vấn và lọc thuộc tính.\r\n- Tiếp tục bám sát tiến độ đề cương chi tiết đã được GVHD phê duyệt; chuẩn bị sẵn môi trường phát triển Backend và tham khảo ý kiến GVHD về thiết kế giao dịch CSDL (Transaction) khi đặt hàng nhằm đảm bảo tính toàn vẹn ACID trong tuần tiếp theo."
+    "content": "1. Khó khăn:\r\n- Trong quá trình phát triển API lấy danh sách sản phẩm (/api/products), việc xây dựng câu truy vấn SQL động (Dynamic Query Builder) kết hợp đồng thời nhiều tiêu chí lọc phức tạp (lọc theo danh mục, khoảng giá, thương hiệu, sắp xếp, tìm kiếm từ khóa và các thuộc tính lưu trong trường JSON specifications như CPU, RAM, Ổ cứng, GPU) đòi hỏi xử lý logic ghép nối câu lệnh WHERE cẩn thận để không làm suy giảm tốc độ truy vấn.\r\n- Xử lý nghiệp vụ kiểm tra mã giảm giá (coupon validation) có nhiều ràng buộc điều kiện (hạn sử dụng, tổng tiền đơn hàng tối thiểu, mức giảm tối đa) cần xử lý chặt chẽ ở tầng Backend nhằm tránh gian lận khuyến mãi.\r\n\r\n2. Đề xuất:\r\n- Đã áp dụng kỹ thuật Parameterized Query (truy vấn tham số hóa với dấu hỏi chấm ?) trong mysql2/promise để đảm bảo an toàn tuyệt đối chống tấn công SQL Injection; đồng thời tối ưu hóa các chỉ mục (Indexes) trên các cột thường xuyên lọc như category_id, brand, price.\r\n- Đã tổ chức module hóa các hàm xử lý API trong thư mục controllers và cấu hình middleware requireAdmin độc lập; chuẩn bị sẵn sàng cấu trúc dữ liệu để tuần 4 triển khai các API xử lý giao dịch đơn hàng (Database Transactions)."
   },
   "chu_ky": {
-    "dia_diem_ngay": "Vĩnh Long, ngày 25 tháng 10 năm 2026",
+    "dia_diem_ngay": "Vĩnh Long, ngày 01 tháng 11 năm 2026",
     "label_sv": "Sinh viên thực hiện",
     "label_ky_sv": "(Ký, họ và tên)"
   }

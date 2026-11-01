@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>TechStore - Nhà bán lẻ thiết bị công nghệ lớn nhất Việt Nam</title>
   <meta name="description"
     content="TechStore chuyên phân phối Điện thoại, Laptop, Máy tính bảng, Phụ kiện chính hãng mới 100% với giá ưu đãi nhất, dịch vụ tốt nhất. Hotline: 1800 8123.">
@@ -280,13 +280,6 @@
               <i class="fa-solid fa-computer"></i>
             </div>
             <span>Linh kiện máy tính</span>
-          </div>
-
-          <div class="cat-badge-item" onclick="showToast('Phụ kiện sạc cáp, pin dự phòng chính hãng TechStore', 'info')">
-            <div class="cat-badge-icon-box bg-orange">
-              <i class="fa-solid fa-plug-circle-bolt"></i>
-            </div>
-            <span>Phụ kiện cáp sạc</span>
           </div>
         </div>
 
@@ -819,7 +812,7 @@
 
   <!-- ==================== CHECKOUT MODAL ==================== -->
   <div class="modal-overlay" id="checkoutModal">
-    <div class="modal-content" style="max-width: 1050px;">
+    <div class="modal-content checkout-modal-content">
       <button class="modal-close-btn" id="closeCheckoutModalBtn">&times;</button>
       <div class="checkout-layout">
         <div class="checkout-header-banner">
@@ -837,7 +830,7 @@
                 <label class="form-label" for="customerName">Họ và tên người nhận *</label>
                 <input type="text" id="customerName" class="form-control" placeholder="Nguyễn Văn A" required>
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="form-row-2col">
                 <div class="form-group">
                   <label class="form-label" for="customerPhone">Số điện thoại *</label>
                   <input type="tel" id="customerPhone" class="form-control" placeholder="0988123456" required>

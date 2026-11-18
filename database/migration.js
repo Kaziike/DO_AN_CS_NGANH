@@ -4,7 +4,7 @@ require('dotenv').config();
 async function runMigration() {
   const host = process.env.DB_HOST || 'localhost';
   const user = process.env.DB_USER || 'root';
-  const password = process.env.DB_PASSWORD || '123456';
+  const password = process.env.DB_PASSWORD !== undefined ? process.env.DB_PASSWORD : '';
   const database = process.env.DB_NAME || 'techstore_db';
   const port = parseInt(process.env.DB_PORT || '3306', 10);
 

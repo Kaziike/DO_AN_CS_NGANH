@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+echo "=================================================="
+echo "🚀 TECHSTORE & CLOUDFLARE TUNNEL STATUS"
+echo "=================================================="
+systemctl --user is-active --quiet mariadb.service && echo "💾 MariaDB:   ĐANG CHẠY (port 3306)" || echo "❌ MariaDB:   DỪNG"
+systemctl --user is-active --quiet techstore.service && echo "🌐 TechStore: ĐANG CHẠY (http://localhost:3000)" || echo "❌ TechStore: DỪNG"
+systemctl --user is-active --quiet cloudflared-tunnel.service && echo "☁️  Tunnel:    ĐANG KẾT NỐI (Named Tunnel kaz.id.vn)" || echo "❌ Tunnel:    DỪNG"
+echo "--------------------------------------------------"
+echo "🔗 Tên miền chính: https://kaz.id.vn"
+echo "📦 Quản trị Admin: https://kaz.id.vn/admin.html"
+echo "💻 Localhost:      http://localhost:3000"
+echo "=================================================="

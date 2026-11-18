@@ -8,6 +8,8 @@ CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE `techstore_db`;
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- 1. Bảng Danh mục sản phẩm (categories)
 CREATE TABLE IF NOT EXISTS `categories` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -156,3 +158,5 @@ CREATE INDEX `idx_orders_code` ON `orders` (`order_code`);
 CREATE INDEX `idx_orders_phone` ON `orders` (`customer_phone`);
 CREATE INDEX `idx_users_email` ON `users` (`email`);
 CREATE INDEX `idx_users_phone` ON `users` (`phone`);
+
+SET FOREIGN_KEY_CHECKS = 1;
